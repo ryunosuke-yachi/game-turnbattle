@@ -1,5 +1,5 @@
 # game-turnbattle
-ここにゲームの簡単な概要を記入
+[仕様書てきな](https://jikeigroupcom-my.sharepoint.com/:w:/g/personal/sdt22csc0002_edu_sca_ac_jp/EUUOLNb3iSFNjWSRf9fc28MBqgHSd6lQdXIcrTVQPsSfEw?e=yNsxaH)
 
 # 全員必読！！
 ## READMEについて
