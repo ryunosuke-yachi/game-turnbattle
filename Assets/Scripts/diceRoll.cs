@@ -18,21 +18,21 @@ public class diceRoll : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonDown(0)) 
-        {
-            Debug.Log("左クリックが入力されました");
 
-            diceNum = Random.Range(1,7);
-            diceNum2 = Random.Range(1, 7);
-            diceNum3 = Random.Range(1, 7);
-            diceNum4 = Random.Range(1,7);
-            diceNum5 = Random.Range(1,7);
-            Debug.Log(diceNum);
-            Debug.Log(diceNum2);
-            Debug.Log(diceNum3);
-            Debug.Log(diceNum4);
-            Debug.Log(diceNum5);
-        }
     }
 
+    public void DiceRolling() {
+        Debug.Log("左クリックが入力されました");
+
+        diceNum = Random.Range(1, 7);
+        diceNum2 = Random.Range(1, 7);
+        diceNum3 = Random.Range(1, 7);
+        diceNum4 = Random.Range(1, 7);
+        diceNum5 = Random.Range(1, 7);
+        Debug.Log(diceNum);
+        Debug.Log(diceNum2);
+        Debug.Log(diceNum3);
+        Debug.Log(diceNum4);
+        Debug.Log(diceNum5);
+    }
 }
