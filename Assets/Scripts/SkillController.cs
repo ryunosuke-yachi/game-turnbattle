@@ -5,27 +5,31 @@ using UnityEngine.UI;
 
 public class SkillController : MonoBehaviour
 {
+    public bool sw;
+
     // Start is called before the first frame update
     void Start()
-    {
-        
-    }
-
-    bool sw;
-    public void Push()
-    {
-        sw = true;
-    }
-    public void noPush()
     {
         sw = false;
     }
 
     void Update()
     {
-        if (sw)
+        if(sw == false)
         {
-            Debug.Log("Push");
+            if (Input.GetMouseButtonDown(0))
+            {
+                Debug.Log("onLeft");
+                sw = true;
+            }
+        }
+        else
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                Debug.Log("offLeft");
+                sw = false;
+            }
         }
     }
 }
