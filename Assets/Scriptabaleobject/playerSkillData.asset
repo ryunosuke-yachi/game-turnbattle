@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9a9a1a5041fcd244893635523518409, type: 3}
+  m_Name: playerSkillData
+  m_EditorClassIdentifier: 
+  skillInfoList:
+  - Name: "\u30B7\u30F3\u30B0\u30EB\u30A2\u30BF\u30C3\u30AF"
+    MP: 3
+    Effect: "\u6575\u306B10\uFF5E11\u30C0\u30E1\u30FC\u30B8"
+    skillGroup: 0
+    turnLimit: 0
+    isSelect: 0
+    image: 0
+  - Name: "\u30C0\u30D6\u30EB\u30A2\u30BF\u30C3\u30AF"
+    MP: 5
+    Effect: "\u6575\u306B10\uFF5E11\u30C0\u30E1\u30FC\u30B8\u306E\u4E8C\u56DE\u653B\u6483"
+    skillGroup: 0
+    turnLimit: 0
+    isSelect: 0
+    image: 1
+  - Name: "\u71B1\u98A8"
+    MP: 9
+    Effect: "\u6575\u306B44\uFF5E45\u30C0\u30E1\u30FC\u30B8"
+    skillGroup: 0
+    turnLimit: 0
+    isSelect: 0
+    image: 2
+  - Name: "\u6C34\u84B8\u6C17\u7206\u767A"
+    MP: 14
+    Effect: "\u6575\u306B66\uFF5E67\u30C0\u30E1\u30FC\u30B8"
+    skillGroup: 0
+    turnLimit: 0
+    isSelect: 0
+    image: 3
+  - Name: "\u30D0\u30EA\u30A2"
+    MP: 5
+    Effect: "\u81EA\u5206\u306B\u8010\u4E45\u529B25\u306E\u30D0\u30EA\u30A2\u3092\u5F35\u308B"
+    skillGroup: 1
+    turnLimit: 0
+    isSelect: 0
+    image: 4
+  - Name: "\u30EA\u30D5\u30EC\u30AF\u30C8"
+    MP: 6
+    Effect: "\u3053\u306E\u30BF\u30FC\u30F3\u4E2D\u3001\u53D7\u3051\u305F\u30C0\u30E1\u30FC\u30B8\u306E20\uFF05\u3092\u8DF3\u306D\u8FD4\u3059"
+    skillGroup: 1
+    turnLimit: 0
+    isSelect: 0
+    image: 5
+  - Name: "\u9632\u5FA1\u306E\u69CB\u3048"
+    MP: 10
+    Effect: "\u6B21\u306B\u53D7\u3051\u308B\u30C0\u30E1\u30FC\u30B8\u309250\uFF05\u6E1B\u3089\u3059"
+    skillGroup: 1
+    turnLimit: 0
+    isSelect: 0
+    image: 5
+  - Name: "\u4E00\u304B\u516B\u304B"
+    MP: 4
+    Effect: "\u6B21\u306E\u30BF\u30FC\u30F3\u81EA\u5206\u306E\u30C0\u30A4\u30B9\u306E\u76EE\u304C1\u30686\u306E\u307F\u306B\u306A\u308B"
+    skillGroup: 2
+    turnLimit: 2
+    isSelect: 0
+    image: 6
+  - Name: "\u30C0\u30A4\u30B9\u6D3B\u6027"
+    MP: 6
+    Effect: "\u6B21\u306E\u30BF\u30FC\u30F3\u81EA\u5206\u306E\u30C0\u30A4\u30B9\u306E\u76EE\u304C4\uFF0C5\uFF0C6\u306B\u306A\u308B"
+    skillGroup: 2
+    turnLimit: 3
+    isSelect: 0
+    image: 7
+  - Name: "\u30C0\u30A4\u30B9\u30D6\u30EC\u30A4\u30AF"
+    MP: 6
+    Effect: "\u6B21\u306E\u30BF\u30FC\u30F3\u3001\u6575\u306E\u30C0\u30A4\u30B9\u306E\u76EE\u304C1\uFF0C2\uFF0C3\u306B\u306A\u308B"
+    skillGroup: 2
+    turnLimit: 3
+    isSelect: 0
+    image: 8
