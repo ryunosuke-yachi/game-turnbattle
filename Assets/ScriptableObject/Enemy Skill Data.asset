@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32a916668c2bd38438dcfcd2ed780cc7, type: 3}
+  m_Name: Enemy Skill Data
+  m_EditorClassIdentifier: 
+  enemySkillInfoList:
+  - name: "\u30B7\u30F3\u30B0\u30EB\u30A2\u30BF\u30C3\u30AF"
+    minMP: 5
+    maxMP: 10
+    Effect: "\u30D7\u30EC\u30A4\u30E4\u30FC\u306B10\uFF5E14\u30C0\u30E1\u30FC\u30B8"
+    gauge: 30
+    image: 0
+  - name: "\u30C0\u30D6\u30EB\u30A2\u30BF\u30C3\u30AF"
+    minMP: 11
+    maxMP: 16
+    Effect: "\u30D7\u30EC\u30A4\u30E4\u30FC\u306B10\uFF5E14\u30C0\u30E1\u30FC\u30B8\u306E\u4E8C\u56DE\u653B\u6483"
+    gauge: 25
+    image: 1
+  - name: "\u786B\u9EC4\u30AC\u30B9"
+    minMP: 17
+    maxMP: 22
+    Effect: "\u30D7\u30EC\u30A4\u30E4\u30FC\u306B50\uFF5E55\u30C0\u30E1\u30FC\u30B8"
+    gauge: 20
+    image: 2
+  - name: "\u7C89\u5875\u7206\u767A"
+    minMP: 23
+    maxMP: 30
+    Effect: "\u30D7\u30EC\u30A4\u30E4\u30FC\u306B86\uFF5E88\u30C0\u30E1\u30FC\u30B8"
+    gauge: 10
+    image: 3
+  - name: "\u8D85\u9AD8\u51FA\u529B\u7832"
+    minMP: 0
+    maxMP: 0
+    Effect: "\u5FC5\u6BBA\u6280\u3000\u30D7\u30EC\u30A4\u30E4\u30FC\u306B150\u30C0\u30E1\u30FC\u30B8"
+    gauge: 0
+    image: 4
