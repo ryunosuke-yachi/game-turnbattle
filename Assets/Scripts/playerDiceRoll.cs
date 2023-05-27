@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class diceRoll : MonoBehaviour
+public class playerDiceRoll : MonoBehaviour
 {
 
     [SerializeField]
