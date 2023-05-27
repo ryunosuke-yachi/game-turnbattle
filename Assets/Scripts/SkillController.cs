@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class SkillController : MonoBehaviour
 {
+    /*
     public bool sw;
 
     // Start is called before the first frame update
@@ -32,4 +33,5 @@ public class SkillController : MonoBehaviour
             }
         }
     }
+    */
 }
