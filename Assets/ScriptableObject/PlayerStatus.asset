@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aa6986838c6cb1468ff670f1e564ab1, type: 3}
   m_Name: PlayerStatus
   m_EditorClassIdentifier: 
-  MP: 13
-  HP: 0
+  MP: 18
+  HP: 378
   diceSituation: 0
-  diceNum: 0100000002000000030000000600000001000000
+  diceNum: 0100000005000000050000000500000002000000
   isDead: 0
