@@ -5,26 +5,22 @@ using UnityEngine.UI;
 
 public class Re : MonoBehaviour
 {
-    [SerializeField] private GameObject[] initialButtons;  // 初期の3つのボタン
-    [SerializeField] private GameObject[] newButtons;      // 切り替え後の5つのボタン
+    [SerializeField] GameObject thisPre;
+    [SerializeField] GameObject mainCan;
 
     private void Start()
     {
-        SetActiveButtons(initialButtons);
+        
     }
 
-    private void SetActiveButtons(GameObject[] buttons, bool active = true)
+    public void Update()
     {
-        foreach (var button in buttons)
-        {
-            button.SetActive(active);
-        }
+       
     }
-
 
     public void OnClick()
     {
-        SetActiveButtons(newButtons, false);
-        SetActiveButtons(initialButtons);
+        Destroy(thisPre);
+        mainCan.SetActive(true);
     }
 }

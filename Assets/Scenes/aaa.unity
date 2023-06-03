@@ -240,7 +240,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f85873c949a65be47801949a992fd471, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atkP: {fileID: 5321742975749036341, guid: 0312cb743c0b5b145b21e494dea593d3, type: 3}
+  mainCan: {fileID: 572401088}
+  atkP: {fileID: 5992721350547518989, guid: 03e05b48c93e3c04aad638f81c0f10c6, type: 3}
 --- !u!114 &572401094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,7 +254,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c6319ffa703b764c8f221b00489aec2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemP: {fileID: 2228756853613284666, guid: f1f9aead86c409c4c9d2b70fa9456cf5, type: 3}
+  itemP: {fileID: 94632439896767395, guid: 435487bfd2d579f4a8ea96772e3b97e6, type: 3}
+  mainCan: {fileID: 572401088}
 --- !u!114 &572401095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -266,7 +268,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63a98e7e4fc5f79498839f93a164547f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defP: {fileID: 7123542611551304928, guid: 05ab73a7af282b4478e8c9946e36d8f4, type: 3}
+  defP: {fileID: 7060965645996167775, guid: 05ab73a7af282b4478e8c9946e36d8f4, type: 3}
+  mainCan: {fileID: 572401088}
 --- !u!1001 &582592800
 PrefabInstance:
   m_ObjectHideFlags: 0

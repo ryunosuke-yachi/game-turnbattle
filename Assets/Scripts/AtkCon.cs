@@ -6,6 +6,7 @@ public class AtkCon : MonoBehaviour
 {
     private bool atkBoolFlag = false;
 
+    [SerializeField] private GameObject mainCan;
     [SerializeField] private GameObject atkP;
     private GameObject atkPInstantiate;
 
@@ -35,7 +36,9 @@ public class AtkCon : MonoBehaviour
 
     public void atkButton()
     {
+        
         atkPInstantiate = GameObject.Instantiate(atkP) as GameObject;
         atkBoolFlag = true;
+        mainCan.gameObject.SetActive(false);
     }
 }

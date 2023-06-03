@@ -7,6 +7,7 @@ public class DefCon : MonoBehaviour
     private bool defBoolFlag = false;
 
     [SerializeField] private GameObject defP;
+    [SerializeField] private GameObject mainCan;
     private GameObject defPInstantiate;
 
     public bool DefBoolFlag
@@ -37,5 +38,6 @@ public class DefCon : MonoBehaviour
     {
         defPInstantiate = GameObject.Instantiate(defP) as GameObject;
         defBoolFlag = true;
+        mainCan.SetActive(false);
     }
 }

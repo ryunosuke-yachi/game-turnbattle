@@ -7,6 +7,7 @@ public class ItemCon : MonoBehaviour
     private bool itemBoolFlag = false;
 
     [SerializeField] private GameObject itemP;
+    [SerializeField] private GameObject mainCan;
     private GameObject itemPInstantiate;
 
     public bool ItemBoolFlag
@@ -37,5 +38,6 @@ public class ItemCon : MonoBehaviour
     {
         itemPInstantiate = GameObject.Instantiate(itemP) as GameObject;
         itemBoolFlag = true;
+        mainCan.SetActive(false);
     }
 }
