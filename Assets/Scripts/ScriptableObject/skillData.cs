@@ -18,6 +18,7 @@ public class skillInfo
     public int skillGroup;//0 = 攻撃, 1 = 防御, 2 = アイテム
     public int turnLimit;//ターン制限
     public bool isSelect;//選択されているか
+    public bool inEffect;//スキル効果中か
     public int image;//スキルイラスト
 
 }
