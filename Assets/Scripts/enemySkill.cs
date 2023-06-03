@@ -10,6 +10,8 @@ public class enemySkill : MonoBehaviour
     enemySkillData enemyskillData;
     [SerializeField]
     PlayerStatus playerStatus;
+    [SerializeField]
+    skillData playerskillData;
     // Start is called before the first frame update
     void Start()
     {

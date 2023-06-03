@@ -647,6 +647,7 @@ MonoBehaviour:
   enemyStatus: {fileID: 11400000, guid: f1c3de7b4c7eba449b34d495505b47e0, type: 2}
   enemyskillData: {fileID: 11400000, guid: 16a5a46d32bcc7f48b9595f981256f7c, type: 2}
   playerStatus: {fileID: 11400000, guid: 0cc79f8d5cd9e3d498871240817f961e, type: 2}
+  playerskillData: {fileID: 11400000, guid: 14c61ccf29a5d354b8e8c2c7f7e1d191, type: 2}
 --- !u!4 &1399750815
 Transform:
   m_ObjectHideFlags: 0
