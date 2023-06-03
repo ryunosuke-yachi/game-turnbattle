@@ -41,45 +41,31 @@ MonoBehaviour:
     turnLimit: 0
     isSelect: 0
     image: 3
-  - Name: "\u30D0\u30EA\u30A2"
-    MP: 5
-    Effect: "\u81EA\u5206\u306B\u8010\u4E45\u529B25\u306E\u30D0\u30EA\u30A2\u3092\u5F35\u308B"
-    skillGroup: 1
+  - Name: "\u30C9\u30EC\u30A4\u30F3"
+    MP: 15
+    Effect: "\u6575\u306B40\uFF5E50\u30C0\u30E1\u30FC\u30B8\u3000\u4E0E\u3048\u305F\u30C0\u30E1\u30FC\u30B8\u306E50\uFF05\u56DE\u5FA9"
+    skillGroup: 0
     turnLimit: 0
     isSelect: 0
     image: 4
-  - Name: "\u30EA\u30D5\u30EC\u30AF\u30C8"
-    MP: 6
-    Effect: "\u3053\u306E\u30BF\u30FC\u30F3\u4E2D\u3001\u53D7\u3051\u305F\u30C0\u30E1\u30FC\u30B8\u306E20\uFF05\u3092\u8DF3\u306D\u8FD4\u3059"
-    skillGroup: 1
-    turnLimit: 0
-    isSelect: 0
-    image: 5
   - Name: "\u9632\u5FA1\u306E\u69CB\u3048"
     MP: 10
-    Effect: "\u6B21\u306B\u53D7\u3051\u308B\u30C0\u30E1\u30FC\u30B8\u309250\uFF05\u6E1B\u3089\u3059"
+    Effect: "\u6B21\u306B\u53D7\u3051\u30C0\u30E1\u30FC\u30B8\u309250\uFF05\u6E1B\u3089\u3059"
     skillGroup: 1
     turnLimit: 0
     isSelect: 0
     image: 5
-  - Name: "\u4E00\u304B\u516B\u304B"
-    MP: 4
-    Effect: "\u6B21\u306E\u30BF\u30FC\u30F3\u81EA\u5206\u306E\u30C0\u30A4\u30B9\u306E\u76EE\u304C1\u30686\u306E\u307F\u306B\u306A\u308B"
-    skillGroup: 2
-    turnLimit: 2
-    isSelect: 0
-    image: 6
   - Name: "\u30C0\u30A4\u30B9\u6D3B\u6027"
     MP: 6
-    Effect: "\u6B21\u306E\u30BF\u30FC\u30F3\u81EA\u5206\u306E\u30C0\u30A4\u30B9\u306E\u76EE\u304C4\uFF0C5\uFF0C6\u306B\u306A\u308B"
+    Effect: "\u6B21\u306E\u30BF\u30FC\u30F3\u81EA\u5206\u306E\u632F\u308B\u30C0\u30A4\u30B9\u306E\u76EE\u304C4\uFF0C5\uFF0C6\u306B\u306A\u308B"
+    skillGroup: 2
+    turnLimit: 3
+    isSelect: 0
+    image: 6
+  - Name: "\u30C0\u30A4\u30B9\u30D6\u30EC\u30A4\u30AF"
+    MP: 6
+    Effect: "\u6B21\u306E\u30BF\u30FC\u30F3\u6575\u304C\u632F\u308B\u30C0\u30A4\u30B9\u306E\u76EE\u304C1\uFF0C2\uFF0C3\u306B\u306A\u308B"
     skillGroup: 2
     turnLimit: 3
     isSelect: 0
     image: 7
-  - Name: "\u30C0\u30A4\u30B9\u30D6\u30EC\u30A4\u30AF"
-    MP: 6
-    Effect: "\u6B21\u306E\u30BF\u30FC\u30F3\u3001\u6575\u306E\u30C0\u30A4\u30B9\u306E\u76EE\u304C1\uFF0C2\uFF0C3\u306B\u306A\u308B"
-    skillGroup: 2
-    turnLimit: 3
-    isSelect: 0
-    image: 8

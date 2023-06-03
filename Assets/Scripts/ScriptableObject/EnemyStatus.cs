@@ -6,9 +6,11 @@ using UnityEngine;
 public class EnemyStatus : ScriptableObject
 {
 
-    public int HP;
-    public int MP;
-    public int gauge;
-    public int [] diceNum = new int [5];
-    public int diceSituation;
+    public int HP;//敵のHP
+    public int MP;//敵のMP
+    public int gauge;//敵のゲージ状況
+    public int [] diceNum = new int [5];//ダイスの個数
+    public int diceSituation;//どのダイスをふるか
+    public int increaseGauge = 20;//一回の行動で増えるゲージの量
+    public int maxGauge = 100;//ゲージのmax量
 }
