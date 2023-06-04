@@ -11,6 +11,8 @@ public class UIManager : MonoBehaviour
     public Text enemyMP;
     [SerializeField]
     PlayerStatus playerStatus;
+    [SerializeField]
+    EnemyStatus enemyStatus;
 
     void Start()
     {
@@ -21,5 +23,7 @@ public class UIManager : MonoBehaviour
     void Update()
     {
         playerHP.text = "HP: " + playerStatus.HP.ToString();
+        playerMP.text = "MP:" + playerStatus.MP.ToString();
+        enemyMP.text ="“GMP:"+ enemyStatus.MP.ToString();
     }
 }
