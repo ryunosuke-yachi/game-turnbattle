@@ -48,29 +48,29 @@ public class enemySkill : MonoBehaviour
     }
 
     public void singleAttack() {
-        int damage = Random.Range(10,15);
+        enemyStatus.damage[0] = Random.Range(10,15);
         if(playerskillData.skillInfoList[5].inEffect)
         {
-            damage/= 2;
+            enemyStatus.damage[0] /= 2;
             playerskillData.skillInfoList[5].inEffect = false;
         }
-        playerStatus.HP -= damage;//playerのHPを10～11減少させる
-        Debug.Log("Playerに" + damage +"のダメージ");
+        playerStatus.HP -= enemyStatus.damage[0];//playerのHPを10～11減少させる
+        Debug.Log("Playerに" + enemyStatus.damage[0] +"のダメージ");
         enemyStatus.gauge += enemyStatus.increaseGauge;
         Debug.Log("ゲージ:" + enemyStatus.gauge);
     }
 
     public void doubleAttack() {
-        int[] damage = new int [2];
+
         for(int i = 0;i < 2; ++i) {
-            damage[i] = Random.Range(10,15);//playerのHPを10～11減少させる
+            enemyStatus.damage[i] = Random.Range(10,15);//playerのHPを10～11減少させる
             if (playerskillData.skillInfoList[5].inEffect)
             {
-                damage[i] /= 2;
+                enemyStatus.damage[i] /= 2;
                 playerskillData.skillInfoList[5].inEffect = false;
             }
-            playerStatus.HP -=damage[i];
-            Debug.Log("Playerに" + damage[i] + "のダメージ");
+            playerStatus.HP -=enemyStatus.damage[i];
+            Debug.Log("Playerに" + enemyStatus.damage[i] + "のダメージ");
         }
         enemyStatus.gauge += enemyStatus.increaseGauge;
         Debug.Log("ゲージ:" + enemyStatus.gauge);
@@ -79,42 +79,42 @@ public class enemySkill : MonoBehaviour
 
     public void thirdAttack()
     {
-        int damage = Random.Range(50,56);
+        enemyStatus.damage[0] = Random.Range(50,56);
         if (playerskillData.skillInfoList[5].inEffect)
         {
-            damage /= 2;
+            enemyStatus.damage[0] /= 2;
             playerskillData.skillInfoList[5].inEffect = false;
         }
-        playerStatus.HP -= damage;
-        Debug.Log("Playerに" + damage + "のダメージ");
+        playerStatus.HP -= enemyStatus.damage[0];
+        Debug.Log("Playerに" + enemyStatus.damage[0] + "のダメージ");
         enemyStatus.gauge += enemyStatus.increaseGauge;
         Debug.Log("ゲージ" + enemyStatus.gauge);
     }
 
     public void fourthAttack()
     {
-        int damage = Random.Range(86,89);
+        enemyStatus.damage[0] = Random.Range(86,89);
         if (playerskillData.skillInfoList[5].inEffect)
         {
-            damage /= 2;
+            enemyStatus.damage[0] /= 2;
             playerskillData.skillInfoList[5].inEffect = false;
         }
-        playerStatus.HP -= damage;
-        Debug.Log("Playerに" + damage + "のダメージ");
+        playerStatus.HP -= enemyStatus.damage[0];
+        Debug.Log("Playerに" + enemyStatus.damage[0] + "のダメージ");
         enemyStatus.gauge += enemyStatus.increaseGauge;
         Debug.Log("ゲージ：" + enemyStatus.gauge);
     }
 
     public void ult()
     {
-        int damage = 150;
+        enemyStatus.damage[0] = enemyStatus.MP * 5;
         if (playerskillData.skillInfoList[5].inEffect)
         {
-            damage /= 2;
+            enemyStatus.damage[0] /= 2;
             playerskillData.skillInfoList[5].inEffect = false;
         }
-        playerStatus.HP -= damage;
-        Debug.Log("プレイヤーに" + damage + "のダメージ");
+        playerStatus.HP -= enemyStatus.damage[0];
+        Debug.Log("プレイヤーに" + enemyStatus.damage[0] + "のダメージ");
         enemyStatus.gauge = 0;
         Debug.Log("ゲージ：" + enemyStatus.gauge);
     }
