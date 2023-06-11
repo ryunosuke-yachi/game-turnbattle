@@ -5,33 +5,25 @@ using UnityEngine;
 public class skillCon : MonoBehaviour
 {
     //Ši”[‚·‚é—p‚ÌList
-    public List<skill> buttonList = new List<skill>();
+    public List<int> buttonList = new List<int>();
 
     public void Start()
     {
-        buttonList = new List<skill>();
+        
     }
 
-    public void AddToList(int skNum, string skName)
+    public void AddToList(int element)
     {
-        skill newElemet = new skill(skNum, skName);
-        buttonList.Add(newElemet);
+        buttonList.Add(element);
     }
 
-    public void RemoveFromList(int skNum, string skName)
+    public void RemoveFromList(int element)
     {
-        skill elementToRemove = buttonList.Find(skill => skill.skNum == skNum && skill.skName == skName);
-        if (elementToRemove != null)
-        {
-            buttonList.Remove(elementToRemove);
-        }
+        buttonList.Remove(element);
     }
 
     public void DisplayList()
     {
-        foreach(skill element in buttonList)
-        {
-            Debug.Log(element.skNum + element.skName);
-        }
+        
     }
 }
