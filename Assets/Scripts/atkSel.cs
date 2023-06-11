@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class atkSel : MonoBehaviour
 {
+    private skillCon SkillCon;
+
     //それぞれのボタンのフラグ
     private bool skill_1BoolFlag = false;
     private bool skill_2BoolFlag = false;
@@ -14,6 +16,12 @@ public class atkSel : MonoBehaviour
     //スキル情報を持っているScriptableObject
     [SerializeField]
     skillData playerSkillData;
+
+    public void Start()
+    {
+        SkillCon = FindObjectOfType<skillCon>();
+    }
+
     public bool Skill_1BoolFlag
     {
         get { return this.skill_1BoolFlag; }
@@ -50,6 +58,7 @@ public class atkSel : MonoBehaviour
         playerSkillData.skillInfoList[0].isSelect = true;
         skill_1BoolFlag = true;
         Debug.Log(playerSkillData.skillInfoList[0].Name);
+        SkillCon.AddToList(0, playerSkillData.skillInfoList[0].Name);
     }
 
     public void SelButton_2()
@@ -57,6 +66,7 @@ public class atkSel : MonoBehaviour
         playerSkillData.skillInfoList[1].isSelect = true;
         skill_2BoolFlag = true;
         Debug.Log(playerSkillData.skillInfoList[1].Name);
+        SkillCon.AddToList(1, playerSkillData.skillInfoList[1].Name);
     }
 
     public void SelButton_3()
@@ -64,6 +74,7 @@ public class atkSel : MonoBehaviour
         playerSkillData.skillInfoList[2].isSelect = true;
         skill_3BoolFlag = true;
         Debug.Log(playerSkillData.skillInfoList[2].Name);
+        SkillCon.AddToList(2, playerSkillData.skillInfoList[2].Name);
     }
 
     public void SelButton_4()
@@ -71,6 +82,7 @@ public class atkSel : MonoBehaviour
         playerSkillData.skillInfoList[3].isSelect = true;
         skill_4BoolFlag = true;
         Debug.Log(playerSkillData.skillInfoList[3].Name);
+        SkillCon.AddToList(3, playerSkillData.skillInfoList[3].Name);
     }
 
     public void SelButton_5()
@@ -78,5 +90,6 @@ public class atkSel : MonoBehaviour
         playerSkillData.skillInfoList[4].isSelect = true;
         skill_5BoolFlag = true;
         Debug.Log(playerSkillData.skillInfoList[4].Name);
+        SkillCon.AddToList(4, playerSkillData.skillInfoList[4].Name);
     }
 }
