@@ -5,22 +5,28 @@ using UnityEngine.UI;
 
 public class Re : MonoBehaviour
 {
-    [SerializeField] GameObject thisPre;
-    [SerializeField] GameObject mainCan;
+    private bool reBoolFlag = false;
+    
+    [SerializeField] private GameObject thisPre;
+    [SerializeField] private GameObject mainCan;
+    private GameObject mainPreInstantiate;
 
-    private void Start()
+    public bool ReBoolFlag
     {
-        
+        get
+        {
+            return this.reBoolFlag;
+        }
+        set
+        {
+            this.reBoolFlag = value;
+        }
     }
 
-    public void Update()
+    public void ReButton()
     {
-       
-    }
-
-    public void OnClick()
-    {
+        mainPreInstantiate = GameObject.Instantiate(mainCan) as GameObject;
+        reBoolFlag = true;
         Destroy(thisPre);
-        mainCan.SetActive(true);
     }
 }

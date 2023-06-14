@@ -36,7 +36,6 @@ public class AtkCon : MonoBehaviour
 
     public void atkButton()
     {
-        
         atkPInstantiate = GameObject.Instantiate(atkP) as GameObject;
         atkBoolFlag = true;
         mainCan.gameObject.SetActive(false);

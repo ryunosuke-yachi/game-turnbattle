@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class skillSel : MonoBehaviour
 {
@@ -17,15 +18,13 @@ public class skillSel : MonoBehaviour
     {
         SkillCon = FindObjectOfType<skillCon>();
 
-        playerSkillData.skillInfoList[0].isSelect = false;
-        playerSkillData.skillInfoList[1].isSelect = false;
-        playerSkillData.skillInfoList[2].isSelect = false;
-        playerSkillData.skillInfoList[3].isSelect = false;
-        playerSkillData.skillInfoList[4].isSelect = false;
-        playerSkillData.skillInfoList[5].isSelect = false;
-        playerSkillData.skillInfoList[6].isSelect = false;
-        playerSkillData.skillInfoList[7].isSelect = false;
+        for (int i = 0; i < playerSkillData.skillInfoList.Count; i++)
+        {
+            playerSkillData.skillInfoList[i].isSelect = false;
+        }
     }
+
+
 
     //それぞれのボタンが押されたときのフラグの切り替え
     public void SelButton_0()
