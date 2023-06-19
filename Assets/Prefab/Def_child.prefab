@@ -548,7 +548,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisPre: {fileID: 7060965645996167775}
-  mainCan: {fileID: 0}
+  mainCan: {fileID: 8233677761377624411, guid: 59496072c346bf940a6daa2dc0e2c0eb, type: 3}
 --- !u!1 &7060965645996167775
 GameObject:
   m_ObjectHideFlags: 0

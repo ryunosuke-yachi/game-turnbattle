@@ -38,6 +38,6 @@ public class DefCon : MonoBehaviour
     {
         defPInstantiate = GameObject.Instantiate(defP) as GameObject;
         defBoolFlag = true;
-        mainCan.SetActive(false);
+        Destroy(mainCan);
     }
 }

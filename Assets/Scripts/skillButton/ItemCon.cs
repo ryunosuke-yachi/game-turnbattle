@@ -38,6 +38,6 @@ public class ItemCon : MonoBehaviour
     {
         itemPInstantiate = GameObject.Instantiate(itemP) as GameObject;
         itemBoolFlag = true;
-        mainCan.SetActive(false);
+        Destroy(mainCan);
     }
 }

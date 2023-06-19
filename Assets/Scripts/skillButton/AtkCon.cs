@@ -38,6 +38,6 @@ public class AtkCon : MonoBehaviour
     {
         atkPInstantiate = GameObject.Instantiate(atkP) as GameObject;
         atkBoolFlag = true;
-        mainCan.gameObject.SetActive(false);
+        Destroy(mainCan);
     }
 }
