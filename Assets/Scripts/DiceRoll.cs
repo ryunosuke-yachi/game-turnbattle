@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DiceRoll : MonoBehaviour
 {
@@ -10,9 +11,12 @@ public class DiceRoll : MonoBehaviour
 
     [SerializeField] 
     EnemyStatus enemyStatus;
+    [SerializeField] private GameObject mainCan;
+    [SerializeField]
+    private GameObject DiceButton;
+    private GameObject mainPreInstantiate;
     void Start()
     {
-
     }
 
     // Update is called once per frame
@@ -31,9 +35,14 @@ public class DiceRoll : MonoBehaviour
                 if(enemyStatus.diceSituation == 0) {
                     NormalDice();
                     enemyNormalDice();
-                }else if(enemyStatus.diceSituation == 1) {
+                    mainPreInstantiate = GameObject.Instantiate(mainCan) as GameObject;
+                    DiceButton.SetActive(false);
+                    
+                } else if(enemyStatus.diceSituation == 1) {
                     NormalDice();
                     enemyLowDice();
+                    DiceButton.SetActive(false);
+                    mainPreInstantiate = GameObject.Instantiate(mainCan) as GameObject;
                 }
 
                 break;
@@ -41,10 +50,14 @@ public class DiceRoll : MonoBehaviour
                 if(enemyStatus.diceSituation == 0) {
                     highDice();
                     enemyNormalDice();
+                    DiceButton.SetActive(false);
+                    mainPreInstantiate = GameObject.Instantiate(mainCan) as GameObject;
                 }
                 if(enemyStatus.diceSituation == 1) {
                     highDice();
                     enemyLowDice();
+                    DiceButton.SetActive(false);
+                    mainPreInstantiate = GameObject.Instantiate(mainCan) as GameObject;
                 }
                 break;
 
