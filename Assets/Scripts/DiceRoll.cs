@@ -11,10 +11,7 @@ public class DiceRoll : MonoBehaviour
 
     [SerializeField] 
     EnemyStatus enemyStatus;
-    [SerializeField] private GameObject mainCan;
-    [SerializeField]
-    private GameObject DiceButton;
-    private GameObject mainPreInstantiate;
+    switchUI switchUISc;
     void Start()
     {
     }
@@ -29,20 +26,19 @@ public class DiceRoll : MonoBehaviour
 
     public void DiceRolling()
     {
+        switchUISc = GetComponent<switchUI>();
         switch (playerStatus.diceSituation)
         {
             case 0:
                 if(enemyStatus.diceSituation == 0) {
                     NormalDice();
                     enemyNormalDice();
-                    mainPreInstantiate = GameObject.Instantiate(mainCan) as GameObject;
-                    DiceButton.SetActive(false);
+                    switchUISc.state = switchUI.STATE.SELECT;
                     
                 } else if(enemyStatus.diceSituation == 1) {
                     NormalDice();
                     enemyLowDice();
-                    DiceButton.SetActive(false);
-                    mainPreInstantiate = GameObject.Instantiate(mainCan) as GameObject;
+                    switchUISc.state = switchUI.STATE.SELECT;
                 }
 
                 break;
@@ -50,14 +46,12 @@ public class DiceRoll : MonoBehaviour
                 if(enemyStatus.diceSituation == 0) {
                     highDice();
                     enemyNormalDice();
-                    DiceButton.SetActive(false);
-                    mainPreInstantiate = GameObject.Instantiate(mainCan) as GameObject;
+                    switchUISc.state = switchUI.STATE.SELECT;
                 }
                 if(enemyStatus.diceSituation == 1) {
                     highDice();
                     enemyLowDice();
-                    DiceButton.SetActive(false);
-                    mainPreInstantiate = GameObject.Instantiate(mainCan) as GameObject;
+                    switchUISc.state = switchUI.STATE.SELECT;
                 }
                 break;
 
