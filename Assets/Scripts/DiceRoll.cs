@@ -22,8 +22,6 @@ public class DiceRoll : MonoBehaviour
 
     }
 
-
-
     public void DiceRolling()
     {
         switchUISc = GetComponent<switchUI>();
@@ -62,8 +60,6 @@ public class DiceRoll : MonoBehaviour
 
     public void NormalDice()
     {
-        
-        
         playerStatus.MP = 0;
         Debug.Log("ノーマルダイスを振ります");
 

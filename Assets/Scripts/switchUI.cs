@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class switchUI : MonoBehaviour
 {
+    solve solveSc;
+    public PlayerStatus playerStatus;
+    public EnemyStatus enemyStatus;
     public enum STATE
     {
         DICE = 0,
@@ -11,6 +14,9 @@ public class switchUI : MonoBehaviour
         ATTACK,
         GUARD,
         ITEM,
+        DECISION,
+        GAMECLEAR,
+        GAMEOVER
     }
     public STATE state;
     [SerializeField]
@@ -27,29 +33,40 @@ public class switchUI : MonoBehaviour
     void Start()
     {
         state = STATE.DICE;
+        solveSc = FindObjectOfType<solve>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        switch(state)
         {
-            case STATE.DICE:
-                UpdateDice();
-                break;
-            case STATE.SELECT:
-                UpdateSelect();
-                break;
-            case STATE.ATTACK:
-                UpdateAttack();
-                break;
-            case STATE.GUARD:
-                UpdateGuard();
-                break;
-            case STATE.ITEM:
-                UpdateItem();
-                break;
+            switch (state)
+            {
+                case STATE.DICE:
+                    UpdateDice();
+                    break;
+                case STATE.SELECT:
+                    UpdateSelect();
+                    break;
+                case STATE.ATTACK:
+                    UpdateAttack();
+                    break;
+                case STATE.GUARD:
+                    UpdateGuard();
+                    break;
+                case STATE.ITEM:
+                    UpdateItem();
+                    break;
+                case STATE.DECISION:
+                    UpdateDecision();
+                    solveSc.solveTurn();
+                    isDead();
+                    break;
+                //case gameClear
+                //case gameOver
+            }
         }
+
     }
 
     void UpdateDice()
@@ -95,6 +112,16 @@ public class switchUI : MonoBehaviour
         guardUI.SetActive(false);
         itemUI.SetActive(true);
     }
+
+    void UpdateDecision()
+    {
+        diceUI.SetActive(false);
+        selectUI.SetActive(false);
+        attackUI.SetActive(false);
+        guardUI.SetActive(false);
+        itemUI.SetActive(false);
+    }
+
     public void displayAttack()
     {
         state = STATE.ATTACK;
@@ -111,5 +138,29 @@ public class switchUI : MonoBehaviour
     public void displaySelect()
     {
         state = STATE.SELECT;
+    }
+
+    public void displayDecision()
+    {
+        state = STATE.DECISION;
+    }
+
+    public void displayDice()
+    {
+        state = STATE.DICE;
+    }
+
+    private void isDead()
+    {
+        if (playerStatus.HP <= 0) playerStatus.isDead = true;
+        if (enemyStatus.HP <= 0) enemyStatus.isDead = true;
+        if(playerStatus.isDead)
+        {
+            state = STATE.GAMEOVER;
+        }
+        if(enemyStatus.isDead)
+        {
+            state = STATE.GAMECLEAR;
+        }
     }
 }

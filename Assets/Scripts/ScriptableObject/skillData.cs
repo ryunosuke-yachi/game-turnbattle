@@ -19,5 +19,6 @@ public class skillInfo
     public int turnLimit;//ターン制限
     public bool isSelect;//選択されているか
     public int image;//スキルイラスト
+    public bool isUsed;
 
 }

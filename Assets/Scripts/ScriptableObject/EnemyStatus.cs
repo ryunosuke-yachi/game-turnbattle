@@ -13,4 +13,5 @@ public class EnemyStatus : ScriptableObject
     public int diceSituation;//どのダイスをふるか
     public int increaseGauge = 20;//一回の行動で増えるゲージの量
     public int maxGauge = 100;//ゲージのmax量
+    public bool isDead;
 }

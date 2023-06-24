@@ -12,6 +12,7 @@ public class enemySkill : MonoBehaviour
     PlayerStatus playerStatus;
     [SerializeField]
     skillData playerskillData;
+    playerSkill playerSkillSc;
     // Start is called before the first frame update
     void Start()
     {
@@ -49,6 +50,10 @@ public class enemySkill : MonoBehaviour
 
     public void singleAttack() {
         int damage = Random.Range(10,15);
+        if (playerskillData.skillInfoList[5].isUsed == true)
+        {
+            damage /= 2;
+        }
         playerStatus.HP -= damage;//playerのHPを10～11減少させる
         Debug.Log("Playerに" + damage +"のダメージ");
         enemyStatus.gauge += enemyStatus.increaseGauge;
@@ -58,6 +63,10 @@ public class enemySkill : MonoBehaviour
     public void doubleAttack() {
         int[] damage = new int [2];
         for(int i = 0;i < 2; ++i) {
+            if (playerskillData.skillInfoList[5].isUsed == true)
+            {
+                damage [0] /= 2;
+            }
             damage[i] = Random.Range(10,15);//playerのHPを10～11減少させる
             playerStatus.HP -=damage[i];
             Debug.Log("Playerに" + damage[i] + "のダメージ");
@@ -70,6 +79,10 @@ public class enemySkill : MonoBehaviour
     public void thirdAttack()
     {
         int damage = Random.Range(50,56);
+        if (playerskillData.skillInfoList[5].isUsed == true)
+        {
+            damage /= 2;
+        }
         playerStatus.HP -= damage;
         Debug.Log("Playerに" + damage + "のダメージ");
         enemyStatus.gauge += enemyStatus.increaseGauge;
@@ -79,6 +92,10 @@ public class enemySkill : MonoBehaviour
     public void fourthAttack()
     {
         int damage = Random.Range(86,89);
+        if (playerskillData.skillInfoList[5].isUsed == true)
+        {
+            damage /= 2;
+        }
         playerStatus.HP -= damage;
         Debug.Log("Playerに" + damage + "のダメージ");
         enemyStatus.gauge += enemyStatus.increaseGauge;
@@ -88,6 +105,10 @@ public class enemySkill : MonoBehaviour
     public void ult()
     {
         int damage = 150;
+        if (playerskillData.skillInfoList[5].isUsed == true)
+        {
+            damage /= 2;
+        }
         playerStatus.HP -= damage;
         Debug.Log("プレイヤーに" + damage + "のダメージ");
         enemyStatus.gauge = 0;

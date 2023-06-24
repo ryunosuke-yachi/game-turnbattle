@@ -21,9 +21,4 @@ public class skillCon : MonoBehaviour
     {
         buttonList.Remove(element);
     }
-
-    public void DisplayList()
-    {
-        
-    }
 }
