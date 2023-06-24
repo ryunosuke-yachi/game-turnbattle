@@ -29,6 +29,8 @@ public class switchUI : MonoBehaviour
     GameObject guardUI;
     [SerializeField]
     GameObject itemUI;
+    [SerializeField]
+    GameObject statuUI;
     // Start is called before the first frame update
     void Start()
     {
@@ -76,6 +78,7 @@ public class switchUI : MonoBehaviour
         attackUI.SetActive(false);
         guardUI.SetActive(false);
         itemUI.SetActive(false);
+        statuUI.SetActive(true);
     }
 
     void UpdateSelect()
@@ -85,6 +88,7 @@ public class switchUI : MonoBehaviour
         attackUI.SetActive(false);
         guardUI.SetActive(false);
         itemUI.SetActive(false);
+        statuUI.SetActive(true);
     }
 
     void UpdateAttack()
@@ -94,6 +98,7 @@ public class switchUI : MonoBehaviour
         attackUI.SetActive(true);
         guardUI.SetActive(false);
         itemUI.SetActive(false);
+        statuUI.SetActive(true);
     }
 
     void UpdateGuard()
@@ -103,6 +108,7 @@ public class switchUI : MonoBehaviour
         attackUI.SetActive(false);
         guardUI.SetActive(true);
         itemUI.SetActive(false);
+        statuUI.SetActive(true);
     }
     void UpdateItem()
     {
@@ -111,6 +117,7 @@ public class switchUI : MonoBehaviour
         attackUI.SetActive(false);
         guardUI.SetActive(false);
         itemUI.SetActive(true);
+        statuUI.SetActive(true);
     }
 
     void UpdateDecision()
@@ -120,6 +127,7 @@ public class switchUI : MonoBehaviour
         attackUI.SetActive(false);
         guardUI.SetActive(false);
         itemUI.SetActive(false);
+        statuUI.SetActive(false);
     }
 
     public void displayAttack()

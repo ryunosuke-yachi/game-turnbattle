@@ -7,6 +7,6 @@ public class BGRotate2 : MonoBehaviour
 
     void Update()
     {
-        transform.Rotate(new Vector3(0, -0.005f, 0));
+        transform.Rotate(new Vector3(0, -0.01f, 0));
     }
 }

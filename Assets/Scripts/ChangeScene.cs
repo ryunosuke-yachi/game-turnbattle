@@ -16,7 +16,7 @@ public class ChangeScene : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0)) 
         {
-            SceneManager.LoadScene("mainGameScene");
+            SceneManager.LoadScene("MainGame");
         }
     }
 }
