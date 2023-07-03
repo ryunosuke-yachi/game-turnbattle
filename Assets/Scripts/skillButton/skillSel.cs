@@ -9,7 +9,7 @@ public class skillSel : MonoBehaviour
 
     //スキル情報を持っているScriptableObject
     [SerializeField]
-    skillData playerSkillData;
+    skillData playerSkillData; // これが、今持っているスキルのデータ
 
     [SerializeField]
     PlayerStatus PlayerStatus;
@@ -18,113 +18,87 @@ public class skillSel : MonoBehaviour
     {
         SkillCon = FindObjectOfType<skillCon>();
 
-        for (int i = 0; i < playerSkillData.skillInfoList.Count; i++)
+        playerSkillData.skillButtons.Clear();
+        for (int i = 0; i < 5; i++)
         {
-            playerSkillData.skillInfoList[i].isSelect = false;
+            skillButton b = new skillButton();
+            b.skillID = Random.Range(0, 5);
+            b.isSelect = false;
+            playerSkillData.skillButtons.Add(b);
         }
     }
 
-
+    private void SelButton_n(int n)
+    {
+        if (playerSkillData.skillButtons[n].isSelect == false)
+        {
+            int id = playerSkillData.skillButtons[n].skillID;
+            if(PlayerStatus.MP >= playerSkillData.skillInfoList[id].MP)
+            {
+                playerSkillData.skillButtons[n].isSelect = true;
+                Debug.Log(playerSkillData.skillInfoList[id].Name);
+                SkillCon.AddToList(n);
+                PlayerStatus.MP -= playerSkillData.skillInfoList[id].MP;
+                Debug.Log(PlayerStatus.MP);
+            }
+            else
+            {
+                Debug.Log("MPが足りません");
+            }
+        }
+        else if (playerSkillData.skillButtons[n].isSelect == true)
+        {
+            playerSkillData.skillButtons[n].isSelect = false;
+            int id = playerSkillData.skillButtons[n].skillID;
+            SkillCon.RemoveFromList(n);
+            PlayerStatus.MP += playerSkillData.skillInfoList[id].MP;
+        }
+    }
 
     //それぞれのボタンが押されたときのフラグの切り替え
     public void SelButton_0()
     {
-
-        if(playerSkillData.skillInfoList[0].isSelect == false)
-        {
-            playerSkillData.skillInfoList[0].isSelect = true;
-            Debug.Log(playerSkillData.skillInfoList[0].Name);
-            SkillCon.AddToList(0);
-            PlayerStatus.MP -= playerSkillData.skillInfoList[0].MP;
-            Debug.Log(PlayerStatus.MP);
-        }
-        else if(playerSkillData.skillInfoList[0].isSelect == true)
-        {
-            playerSkillData.skillInfoList[0].isSelect = false;
-            SkillCon.RemoveFromList(0);
-            PlayerStatus.MP += playerSkillData.skillInfoList[0].MP;
-        }
-        
+        SelButton_n(0);
     }
 
     public void SelButton_1()
     {
-        if (playerSkillData.skillInfoList[1].isSelect == false)
-        {
-            playerSkillData.skillInfoList[1].isSelect = true;
-            Debug.Log(playerSkillData.skillInfoList[1].Name);
-            SkillCon.AddToList(1);
-            PlayerStatus.MP -= playerSkillData.skillInfoList[1].MP;
-        }
-        else if (playerSkillData.skillInfoList[1].isSelect == true)
-        {
-            playerSkillData.skillInfoList[1].isSelect = false;
-            SkillCon.RemoveFromList(1);
-            PlayerStatus.MP += playerSkillData.skillInfoList[1].MP;
-        }
+        SelButton_n(1);
     }
 
     public void SelButton_2()
     {
-        if (playerSkillData.skillInfoList[2].isSelect == false)
-        {
-            playerSkillData.skillInfoList[2].isSelect = true;
-            Debug.Log(playerSkillData.skillInfoList[2].Name);
-            SkillCon.AddToList(2);
-            PlayerStatus.MP -= playerSkillData.skillInfoList[2].MP;
-        }
-        else if (playerSkillData.skillInfoList[2].isSelect == true)
-        {
-            playerSkillData.skillInfoList[2].isSelect = false;
-            SkillCon.RemoveFromList(2);
-            PlayerStatus.MP += playerSkillData.skillInfoList[2].MP;
-        }
+        SelButton_n(2);
     }
 
     public void SelButton_3()
     {
-        if (playerSkillData.skillInfoList[3].isSelect == false)
-        {
-            playerSkillData.skillInfoList[3].isSelect = true;
-            Debug.Log(playerSkillData.skillInfoList[3].Name);
-            SkillCon.AddToList(3);
-            PlayerStatus.MP -= playerSkillData.skillInfoList[3].MP;
-        }
-        else if (playerSkillData.skillInfoList[3].isSelect == true)
-        {
-            playerSkillData.skillInfoList[3].isSelect = false;
-            SkillCon.RemoveFromList(3);
-            PlayerStatus.MP += playerSkillData.skillInfoList[3].MP;
-        }
+        SelButton_n(3);
     }
 
     public void SelButton_4()
     {
-        if (playerSkillData.skillInfoList[4].isSelect == false)
-        {
-            playerSkillData.skillInfoList[4].isSelect = true;
-            Debug.Log(playerSkillData.skillInfoList[4].Name);
-            SkillCon.AddToList(4);
-            PlayerStatus.MP -= playerSkillData.skillInfoList[4].MP;
-        }
-        else if (playerSkillData.skillInfoList[4].isSelect == true)
-        {
-            playerSkillData.skillInfoList[4].isSelect = false;
-            SkillCon.RemoveFromList(4);
-            PlayerStatus.MP += playerSkillData.skillInfoList[4].MP;
-        }
+        SelButton_n(4);
     }
 
     public void SelButton_5()
     {
-        if (playerSkillData.skillInfoList[5].isSelect == false)
+        //SelButton_n(5);
+        if(playerSkillData.skillInfoList[5].isSelect == false)
         {
-            playerSkillData.skillInfoList[5].isSelect = true;
-            Debug.Log(playerSkillData.skillInfoList[5].Name);
-            SkillCon.AddToList(5);
-            PlayerStatus.MP -= playerSkillData.skillInfoList[5].MP;
+            if(PlayerStatus.MP >= playerSkillData.skillInfoList[5].MP)
+            {
+                playerSkillData.skillInfoList[5].isSelect = true;
+                Debug.Log(playerSkillData.skillInfoList[5].Name);
+                SkillCon.AddToList(5);
+                PlayerStatus.MP -= playerSkillData.skillInfoList[5].MP;
+            }
+            else
+            {
+                Debug.Log("MPが足りません");
+            }
         }
-        else if (playerSkillData.skillInfoList[5].isSelect == true)
+        else if(playerSkillData.skillInfoList[5].isSelect ==true)
         {
             playerSkillData.skillInfoList[5].isSelect = false;
             SkillCon.RemoveFromList(5);
@@ -134,12 +108,20 @@ public class skillSel : MonoBehaviour
 
     public void SelButton_6()
     {
+        //SelButton_n(6);
         if (playerSkillData.skillInfoList[6].isSelect == false)
         {
-            playerSkillData.skillInfoList[6].isSelect = true;
-            Debug.Log(playerSkillData.skillInfoList[6].Name);
-            SkillCon.AddToList(6);
-            PlayerStatus.MP -= playerSkillData.skillInfoList[6].MP;
+            if (PlayerStatus.MP >= playerSkillData.skillInfoList[6].MP)
+            {
+                playerSkillData.skillInfoList[6].isSelect = true;
+                Debug.Log(playerSkillData.skillInfoList[6].Name);
+                SkillCon.AddToList(6);
+                PlayerStatus.MP -= playerSkillData.skillInfoList[6].MP;
+            }
+            else
+            {
+                Debug.Log("MPが足りません");
+            }
         }
         else if (playerSkillData.skillInfoList[6].isSelect == true)
         {
@@ -151,12 +133,20 @@ public class skillSel : MonoBehaviour
 
     public void SelButton_7()
     {
+        //SelButton_n(7);
         if (playerSkillData.skillInfoList[7].isSelect == false)
         {
-            playerSkillData.skillInfoList[7].isSelect = true;
-            Debug.Log(playerSkillData.skillInfoList[7].Name);
-            SkillCon.AddToList(7);
-            PlayerStatus.MP -= playerSkillData.skillInfoList[7].MP;
+            if (PlayerStatus.MP >= playerSkillData.skillInfoList[7].MP)
+            {
+                playerSkillData.skillInfoList[7].isSelect = true;
+                Debug.Log(playerSkillData.skillInfoList[7].Name);
+                SkillCon.AddToList(7);
+                PlayerStatus.MP -= playerSkillData.skillInfoList[7].MP;
+            }
+            else
+            {
+                Debug.Log("MPが足りません");
+            }
         }
         else if (playerSkillData.skillInfoList[7].isSelect == true)
         {

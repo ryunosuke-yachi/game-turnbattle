@@ -5,7 +5,8 @@ using UnityEngine;
 [CreateAssetMenu]
 public class skillData : ScriptableObject
 {
-    public List<skillInfo> skillInfoList = new List<skillInfo>(); 
+    public List<skillInfo> skillInfoList = new List<skillInfo>();
+    public List<skillButton> skillButtons = new List<skillButton>();
 }
 
 [System.Serializable]
@@ -21,4 +22,10 @@ public class skillInfo
     public int image;//スキルイラスト
     public bool isUsed;
 
+}
+
+public class skillButton
+{
+    public int skillID; // スキルの種類(skillInfoList[n]の[]の中のnに入れる番号)
+    public bool isSelect; // skillInfoの中にあった、isSelect
 }
