@@ -4,22 +4,27 @@ using UnityEngine;
 
 public class Animation : MonoBehaviour
 {
-    public Animator anim;
+    [SerializeField]
+    public Animator charaAnim;
+    [SerializeField]
+    public Animator cameraAnim;
     // Start is called before the first frame update
     void Start()
     {
-        anim = GetComponent<Animator>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Space))
         {
-            anim.SetBool("start",true);
+            charaAnim.SetBool("start",true);
+            cameraAnim.SetBool("start",true);
         }else
         {
-            anim.SetBool("start",false);
+            charaAnim.SetBool("start",false);
+            cameraAnim.SetBool("start",false);
         }
     }
 }
