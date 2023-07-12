@@ -1,23 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class dice : MonoBehaviour
 {
     private Rigidbody rb;
     public int diceNum;
     Vector3 rot;
+    [Header("force‚Ì‘å‚«‚³")]
+    [SerializeField] private float force = 100.0f;
+    Vector3 forceDir;//—Í‚ð‰Á‚¦‚éŒü‚«
     // Start is called before the first frame update
     void Start()
     {
+        forceDir = new Vector3(0, -1.0f, 2.0f);
         rb = GetComponent<Rigidbody>();
         rot = new Vector3(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
         transform.Rotate(rot);
+        rb.AddForce((transform.forward) * force, ForceMode.Impulse);
     }
 
     // Update is called once per frame
+    
     void Update()
     {
+        rb.AddForce(1.5f * Physics.gravity, ForceMode.Acceleration);
         if(rb.IsSleeping())
         {
             diceNum = getNumber(gameObject.transform);
