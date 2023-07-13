@@ -6,8 +6,8 @@ using UnityEngine.UIElements;
 public class dice : MonoBehaviour
 {
     private Rigidbody rb;
-    public int diceNum;
-    Vector3 rot;
+    public int diceNum;//ダイスの出目
+    Vector3 rot;//ダイスを振るときのrotitation
     [Header("forceの大きさ")]
     [SerializeField] private float force = 100.0f;
     Vector3 forceDir;//力を加える向き
@@ -15,34 +15,45 @@ public class dice : MonoBehaviour
     GameObject[] enemyDice;//enemyDiceタグのオブジェクト配列
     [SerializeField] PlayerStatus playerStatus;
     [SerializeField] EnemyStatus enemyStatus;
-    bool isCalled;
+    bool isCalled; //目を出すスクリプトが呼ばれたか
+    float LimitTime;//重力を強める時間
+    Vector3 startPos;//振る前の座標
     // Start is called before the first frame update
     void Start()
     {
+        startPos = this.transform.position;
         forceDir = new Vector3(0, -1.0f, 2.0f);
         rb = GetComponent<Rigidbody>();
         rot = new Vector3(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
         transform.Rotate(rot);
         rb.AddForce((transform.forward) * force, ForceMode.Impulse);
-        rb.AddForce(1.5f * Physics.gravity, ForceMode.Acceleration);
         isCalled = false;
+        LimitTime = 3.0f;
     }
 
     // Update is called once per frame
     
     void Update()
     {
-        if(rb.IsSleeping() && !isCalled)
+        LimitTime -= Time.deltaTime;
+        if(LimitTime > 0)
+        {
+            rb.AddForce(1.5f * Physics.gravity, ForceMode.Acceleration);
+        }
+        onGround();
+    }
+
+    void onGround()
+    {
+        if (rb.IsSleeping() && !isCalled)
         {
             isCalled = true;
             diceNum = getNumber(gameObject.transform);
             addMP();
-            Debug.Log("playerMP:" + playerStatus.MP);
-            Debug.Log("enemyMP:" + enemyStatus.MP);
-
+            displayDice();
         }
-    }
 
+    }
     public int getNumber(Transform diceTransform)
     {
         float X = Vector3.Dot(diceTransform.right, Vector3.up);//X軸方向との内積
@@ -89,9 +100,41 @@ public class dice : MonoBehaviour
         if(gameObject.tag == "playerDice")
         {
             playerStatus.MP += diceNum;
-        }else if(gameObject.tag == "enemyDice")
-        {
-            enemyStatus.MP += diceNum; 
+            LimitTime = 3.0f;
+            Debug.Log("playerMP:" + playerStatus.MP);
         }
+        else if(gameObject.tag == "enemyDice")
+        {
+            enemyStatus.MP += diceNum;
+            LimitTime = 3.0f;
+            Debug.Log("enemyMP:" + enemyStatus.MP);
+        }
+    }
+
+    void displayDice()
+    {
+        transform.position = startPos;
+        switch (diceNum)
+        {
+            case 1:
+                transform.rotation = Quaternion.Euler(0, 0, -90);
+                break;
+            case 2:
+                transform.rotation = Quaternion.Euler(-90, 0, 0);
+                break;
+            case 3:
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+                break;
+            case 4:
+                transform.rotation = Quaternion.Euler(-180, 0, 0);
+                break;
+            case 5:
+                transform.rotation = Quaternion.Euler(90, 0, 0);
+                break;
+            case 6:
+                transform.rotation = Quaternion.Euler(0, 0, 90);
+                break;
+        }
+        rb.constraints = RigidbodyConstraints.FreezeAll;
     }
 }
