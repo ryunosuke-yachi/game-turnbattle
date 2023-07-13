@@ -11,6 +11,11 @@ public class dice : MonoBehaviour
     [Header("forceの大きさ")]
     [SerializeField] private float force = 100.0f;
     Vector3 forceDir;//力を加える向き
+    GameObject[] playerDice; //playerDiceタグのオブジェクト配列
+    GameObject[] enemyDice;//enemyDiceタグのオブジェクト配列
+    [SerializeField] PlayerStatus playerStatus;
+    [SerializeField] EnemyStatus enemyStatus;
+    bool isCalled;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,17 +24,22 @@ public class dice : MonoBehaviour
         rot = new Vector3(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
         transform.Rotate(rot);
         rb.AddForce((transform.forward) * force, ForceMode.Impulse);
+        rb.AddForce(1.5f * Physics.gravity, ForceMode.Acceleration);
+        isCalled = false;
     }
 
     // Update is called once per frame
     
     void Update()
     {
-        rb.AddForce(1.5f * Physics.gravity, ForceMode.Acceleration);
-        if(rb.IsSleeping())
+        if(rb.IsSleeping() && !isCalled)
         {
+            isCalled = true;
             diceNum = getNumber(gameObject.transform);
-            Debug.Log(diceNum);
+            addMP();
+            Debug.Log("playerMP:" + playerStatus.MP);
+            Debug.Log("enemyMP:" + enemyStatus.MP);
+
         }
     }
 
@@ -71,6 +81,17 @@ public class dice : MonoBehaviour
             {
                 return 5;
             }
+        }
+    }
+
+    public void addMP()
+    {
+        if(gameObject.tag == "playerDice")
+        {
+            playerStatus.MP += diceNum;
+        }else if(gameObject.tag == "enemyDice")
+        {
+            enemyStatus.MP += diceNum; 
         }
     }
 }

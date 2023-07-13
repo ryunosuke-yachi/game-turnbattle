@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.19159928, g: 0.19261038, b: 0.19470823, a: 1}
+  m_IndirectSpecularColor: {r: 0.19159886, g: 0.19260997, b: 0.19470781, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -203,7 +203,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: f9943db5b1759eb4caad8ceca1e55dfe, type: 3}
       propertyPath: m_RootOrder
-      value: 26
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f9943db5b1759eb4caad8ceca1e55dfe, type: 3}
       propertyPath: m_LocalScale.x
@@ -268,6 +268,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f9943db5b1759eb4caad8ceca1e55dfe, type: 3}
       propertyPath: m_Name
       value: playerDice1 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f9943db5b1759eb4caad8ceca1e55dfe, type: 3}
+      propertyPath: m_TagString
+      value: playerDice
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9943db5b1759eb4caad8ceca1e55dfe, type: 3}
@@ -337,7 +341,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: f9943db5b1759eb4caad8ceca1e55dfe, type: 3}
       propertyPath: m_RootOrder
-      value: 25
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f9943db5b1759eb4caad8ceca1e55dfe, type: 3}
       propertyPath: m_LocalScale.x
@@ -402,6 +406,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f9943db5b1759eb4caad8ceca1e55dfe, type: 3}
       propertyPath: m_Name
       value: playerDice1 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f9943db5b1759eb4caad8ceca1e55dfe, type: 3}
+      propertyPath: m_TagString
+      value: playerDice
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9943db5b1759eb4caad8ceca1e55dfe, type: 3}
@@ -898,6 +906,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   diceNum: 0
   force: 15
+  playerStatus: {fileID: 11400000, guid: 0cc79f8d5cd9e3d498871240817f961e, type: 2}
+  enemyStatus: {fileID: 11400000, guid: f1c3de7b4c7eba449b34d495505b47e0, type: 2}
 --- !u!54 &323448525
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1658,6 +1668,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: enemyDice1 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f9943db5b1759eb4caad8ceca1e55dfe, type: 3}
+      propertyPath: m_TagString
+      value: enemyDice
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9943db5b1759eb4caad8ceca1e55dfe, type: 3}
 --- !u!1 &568399015
@@ -2124,6 +2138,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: enemyDice1 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f9943db5b1759eb4caad8ceca1e55dfe, type: 3}
+      propertyPath: m_TagString
+      value: enemyDice
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9943db5b1759eb4caad8ceca1e55dfe, type: 3}
 --- !u!4 &679911219 stripped
@@ -2577,6 +2595,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: playerDice1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f9943db5b1759eb4caad8ceca1e55dfe, type: 3}
+      propertyPath: m_TagString
+      value: playerDice
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9943db5b1759eb4caad8ceca1e55dfe, type: 3}
 --- !u!4 &860641083 stripped
@@ -2991,6 +3013,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   diceNum: 0
   force: 20
+  playerStatus: {fileID: 11400000, guid: 0cc79f8d5cd9e3d498871240817f961e, type: 2}
+  enemyStatus: {fileID: 11400000, guid: f1c3de7b4c7eba449b34d495505b47e0, type: 2}
 --- !u!65 &971431489
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3107,7 +3131,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: f9943db5b1759eb4caad8ceca1e55dfe, type: 3}
       propertyPath: m_RootOrder
-      value: 23
+      value: 27
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f9943db5b1759eb4caad8ceca1e55dfe, type: 3}
       propertyPath: m_LocalScale.x
@@ -3177,6 +3201,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: enemyDice1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f9943db5b1759eb4caad8ceca1e55dfe, type: 3}
+      propertyPath: m_TagString
+      value: enemyDice
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9943db5b1759eb4caad8ceca1e55dfe, type: 3}
 --- !u!4 &1043641759 stripped
@@ -3208,6 +3236,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   diceNum: 0
   force: 15
+  playerStatus: {fileID: 11400000, guid: 0cc79f8d5cd9e3d498871240817f961e, type: 2}
+  enemyStatus: {fileID: 11400000, guid: f1c3de7b4c7eba449b34d495505b47e0, type: 2}
 --- !u!65 &1060873699
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3847,7 +3877,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: f9943db5b1759eb4caad8ceca1e55dfe, type: 3}
       propertyPath: m_RootOrder
-      value: 27
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f9943db5b1759eb4caad8ceca1e55dfe, type: 3}
       propertyPath: m_LocalScale.x
@@ -3912,6 +3942,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f9943db5b1759eb4caad8ceca1e55dfe, type: 3}
       propertyPath: m_Name
       value: playerDice1 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f9943db5b1759eb4caad8ceca1e55dfe, type: 3}
+      propertyPath: m_TagString
+      value: playerDice
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9943db5b1759eb4caad8ceca1e55dfe, type: 3}
@@ -4077,6 +4111,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: enemyDice1 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f9943db5b1759eb4caad8ceca1e55dfe, type: 3}
+      propertyPath: m_TagString
+      value: enemyDice
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9943db5b1759eb4caad8ceca1e55dfe, type: 3}
 --- !u!1001 &1254664015
@@ -4088,7 +4126,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: f9943db5b1759eb4caad8ceca1e55dfe, type: 3}
       propertyPath: m_RootOrder
-      value: 24
+      value: 23
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f9943db5b1759eb4caad8ceca1e55dfe, type: 3}
       propertyPath: m_LocalScale.x
@@ -4153,6 +4191,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f9943db5b1759eb4caad8ceca1e55dfe, type: 3}
       propertyPath: m_Name
       value: playerDice1 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f9943db5b1759eb4caad8ceca1e55dfe, type: 3}
+      propertyPath: m_TagString
+      value: playerDice
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9943db5b1759eb4caad8ceca1e55dfe, type: 3}
@@ -4384,6 +4426,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   diceNum: 0
   force: 20
+  playerStatus: {fileID: 11400000, guid: 0cc79f8d5cd9e3d498871240817f961e, type: 2}
+  enemyStatus: {fileID: 11400000, guid: f1c3de7b4c7eba449b34d495505b47e0, type: 2}
 --- !u!65 &1292632537
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4442,6 +4486,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   diceNum: 0
   force: 15
+  playerStatus: {fileID: 11400000, guid: 0cc79f8d5cd9e3d498871240817f961e, type: 2}
+  enemyStatus: {fileID: 11400000, guid: f1c3de7b4c7eba449b34d495505b47e0, type: 2}
 --- !u!65 &1345985208
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4791,6 +4837,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   diceNum: 0
   force: 20
+  playerStatus: {fileID: 11400000, guid: 0cc79f8d5cd9e3d498871240817f961e, type: 2}
+  enemyStatus: {fileID: 11400000, guid: f1c3de7b4c7eba449b34d495505b47e0, type: 2}
 --- !u!4 &1504029815 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1352132476665782487, guid: d8dc26bff11523c4581fa7b4fc5eeb23, type: 3}
@@ -5127,6 +5175,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   diceNum: 0
   force: 20
+  playerStatus: {fileID: 11400000, guid: 0cc79f8d5cd9e3d498871240817f961e, type: 2}
+  enemyStatus: {fileID: 11400000, guid: f1c3de7b4c7eba449b34d495505b47e0, type: 2}
 --- !u!65 &1608791818
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5465,6 +5515,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: enemyDice1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f9943db5b1759eb4caad8ceca1e55dfe, type: 3}
+      propertyPath: m_TagString
+      value: enemyDice
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9943db5b1759eb4caad8ceca1e55dfe, type: 3}
 --- !u!1 &1755865498
@@ -5701,6 +5755,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   diceNum: 0
   force: 15
+  playerStatus: {fileID: 11400000, guid: 0cc79f8d5cd9e3d498871240817f961e, type: 2}
+  enemyStatus: {fileID: 11400000, guid: f1c3de7b4c7eba449b34d495505b47e0, type: 2}
 --- !u!65 &1764773981
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6007,6 +6063,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   diceNum: 0
   force: 15
+  playerStatus: {fileID: 11400000, guid: 0cc79f8d5cd9e3d498871240817f961e, type: 2}
+  enemyStatus: {fileID: 11400000, guid: f1c3de7b4c7eba449b34d495505b47e0, type: 2}
 --- !u!65 &1899671813
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6227,6 +6285,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   diceNum: 0
   force: 20
+  playerStatus: {fileID: 11400000, guid: 0cc79f8d5cd9e3d498871240817f961e, type: 2}
+  enemyStatus: {fileID: 11400000, guid: f1c3de7b4c7eba449b34d495505b47e0, type: 2}
 --- !u!65 &2052426190
 BoxCollider:
   m_ObjectHideFlags: 0
