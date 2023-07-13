@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class skillSel : MonoBehaviour
+public class skillSel : MonoBehaviour, IPointerClickHandler
 {
     private skillCon SkillCon;
 
@@ -14,17 +14,26 @@ public class skillSel : MonoBehaviour
     [SerializeField]
     PlayerStatus PlayerStatus;
 
+    GameObject clickedGameObject;
+
+    int[] buttonNum = new int[8];
+
     public void Start()
     {
         SkillCon = FindObjectOfType<skillCon>();
 
         playerSkillData.skillButtons.Clear();
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 8; i++)
         {
             skillButton b = new skillButton();
             b.skillID = Random.Range(0, 5);
+            if(i > 5)
+            {
+                b.skillID = i;
+            }
             b.isSelect = false;
             playerSkillData.skillButtons.Add(b);
+            buttonNum[i] = b.skillID;
         }
     }
 
@@ -37,7 +46,7 @@ public class skillSel : MonoBehaviour
             {
                 playerSkillData.skillButtons[n].isSelect = true;
                 Debug.Log(playerSkillData.skillInfoList[id].Name);
-                SkillCon.AddToList(n);
+                SkillCon.AddToList(id);
                 PlayerStatus.MP -= playerSkillData.skillInfoList[id].MP;
                 Debug.Log(PlayerStatus.MP);
             }
@@ -55,31 +64,103 @@ public class skillSel : MonoBehaviour
         }
     }
 
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if(eventData.button == PointerEventData.InputButton.Left)
+        {
+            clickedGameObject = GameObject.Find(name);
+            Debug.Log(clickedGameObject.name);//ゲームオブジェクトの名前を出力
+            Debug.Log(buttonNum[0]);
+
+            string str = clickedGameObject.name;
+            switch (str)
+            {
+                case "Atk_0":
+                    SelButton_n(0);
+                    break;
+                case "Atk_1":
+                    SelButton_n(1);
+                    break;
+                case "Atk_2":
+                    SelButton_n(2);
+                    break;
+                case "Atk_3":
+                    SelButton_n(3);
+                    break;
+                case "Atk_4":
+                    SelButton_n(4);
+                    break;
+                case "Def_5":
+                    SelButton_5();
+                    break;
+                case "Item_6":
+                    SelButton_6();
+                    break;
+                case "Item_7":
+                    SelButton_7();
+                    break;
+            }
+        }
+        else if(eventData.button == PointerEventData.InputButton.Right)
+        {
+            clickedGameObject = GameObject.Find(name);
+            Debug.Log(clickedGameObject.name);
+            string str = clickedGameObject.name;
+            switch (str)
+            {
+                case "Atk_0":
+                        
+                    break;
+                case "Atk_1":
+                        
+                    break;
+                case "Atk_2":
+                        
+                    break;
+                case "Atk_3":
+                        
+                    break;
+                case "Atk_4":
+                        
+                    break;
+                case "Def_5":
+
+                    break;
+                case "Item_6":
+
+                    break;
+                case "Item_7":
+
+                    break;
+            }
+        }
+    }
+
     //それぞれのボタンが押されたときのフラグの切り替え
-    public void SelButton_0()
-    {
-        SelButton_n(0);
-    }
+    //public void SelButton_0()
+    //{
+    //    SelButton_n(0);
+    //}
 
-    public void SelButton_1()
-    {
-        SelButton_n(1);
-    }
+    //public void SelButton_1()
+    //{
+    //    SelButton_n(1);
+    //}
 
-    public void SelButton_2()
-    {
-        SelButton_n(2);
-    }
+    //public void SelButton_2()
+    //{
+    //    SelButton_n(2);
+    //}
 
-    public void SelButton_3()
-    {
-        SelButton_n(3);
-    }
+    //public void SelButton_3()
+    //{
+    //    SelButton_n(3);
+    //}
 
-    public void SelButton_4()
-    {
-        SelButton_n(4);
-    }
+    //public void SelButton_4()
+    //{
+    //    SelButton_n(4);
+    //}
 
     public void SelButton_5()
     {
