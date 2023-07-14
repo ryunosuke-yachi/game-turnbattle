@@ -18,6 +18,7 @@ public class dice : MonoBehaviour
     bool isCalled; //目を出すスクリプトが呼ばれたか
     float LimitTime;//重力を強める時間
     Vector3 startPos;//振る前の座標
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +30,7 @@ public class dice : MonoBehaviour
         rb.AddForce((transform.forward) * force, ForceMode.Impulse);
         isCalled = false;
         LimitTime = 3.0f;
+        playerStatus.diceList = new List<int>();
     }
 
     // Update is called once per frame
@@ -50,7 +52,11 @@ public class dice : MonoBehaviour
             isCalled = true;
             diceNum = getNumber(gameObject.transform);
             addMP();
+        }
+        if (playerStatus.diceList.Count > 9)
+        {
             displayDice();
+            isCalled = false;
         }
 
     }
@@ -101,12 +107,14 @@ public class dice : MonoBehaviour
         {
             playerStatus.MP += diceNum;
             LimitTime = 3.0f;
+            playerStatus.diceList.Add(diceNum);
             Debug.Log("playerMP:" + playerStatus.MP);
         }
         else if(gameObject.tag == "enemyDice")
         {
             enemyStatus.MP += diceNum;
             LimitTime = 3.0f;
+            playerStatus.diceList.Add(diceNum);
             Debug.Log("enemyMP:" + enemyStatus.MP);
         }
     }

@@ -9,5 +9,6 @@ public class PlayerStatus : ScriptableObject
     public int HP;
     public int diceSituation;
     public int[] diceNum = new int[5];
+    public List<int> diceList;
     public bool isDead;
 }
