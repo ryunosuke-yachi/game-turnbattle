@@ -22,6 +22,8 @@ public class dice : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerStatus.MP = 0;
+        enemyStatus.MP = 0;
         startPos = this.transform.position;
         forceDir = new Vector3(0, -1.0f, 2.0f);
         rb = GetComponent<Rigidbody>();
