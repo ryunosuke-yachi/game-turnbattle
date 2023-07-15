@@ -68,7 +68,7 @@ public class playerSkill : MonoBehaviour
         playerskillData.skillInfoList[5].isUsed = true;
         Debug.Log("éüÇ…éÛÇØÇÈÉ_ÉÅÅ[ÉWÇ™50%å∏è≠");
         playerskillData.skillInfoList[5].isSelect = false;
-        playerskillData.skillInfoList[5].turnLimit += 1;
+        playerskillData.skillInfoList[5].turnLimit = 3;
     }
 
     public void firstItem()
@@ -76,7 +76,7 @@ public class playerSkill : MonoBehaviour
         Debug.Log(playerskillData.skillInfoList[6].Name);
         playerStatus.diceSituation = 1;
         playerskillData.skillInfoList[6].isSelect = false;
-        playerskillData.skillInfoList[6].turnLimit += 1;
+        playerskillData.skillInfoList[6].turnLimit = 3;
     }
 
     public void secondItem()
@@ -84,6 +84,6 @@ public class playerSkill : MonoBehaviour
         Debug.Log(playerskillData.skillInfoList[7].Name);
         enemyStatus.diceSituation = 1;
         playerskillData.skillInfoList[7].isSelect = false;
-        playerskillData.skillInfoList[7].turnLimit += 1;
+        playerskillData.skillInfoList[7].turnLimit = 3;
     }
 }

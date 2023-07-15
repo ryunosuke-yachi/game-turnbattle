@@ -6,6 +6,8 @@ using UnityEngine;
 public class solve : MonoBehaviour
 {
     [SerializeField]
+    skillData playerSkillData;
+    [SerializeField]
     PlayerStatus playerStatus;
     [SerializeField]
     EnemyStatus enemyStatus;
@@ -67,6 +69,14 @@ public class solve : MonoBehaviour
         playerStatus.diceSituation = 0;
         enemyStatus.diceSituation = 0;
         skillConSc.buttonList.Clear();
+
+        for(int i = 5; i < 8; i++)
+        {
+            if(playerSkillData.skillInfoList[i].turnLimit != 0)
+            {
+                playerSkillData.skillInfoList[i].turnLimit -= 1;
+            }
+        }
 
         Debug.Log(playerStatus.HP);
         Debug.Log(enemyStatus.HP);

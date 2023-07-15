@@ -20,7 +20,7 @@ public class skillUI : MonoBehaviour
             Button button = buttons[i];
             Image buttonImage = button.GetComponent<Image>();
 
-            if (buttonImage != null)
+            if (buttonImage != null && playerSkillData.skillInfoList[i].turnLimit == 0)
             {
                 int Num = playerSkillData.skillButtons[i].skillID;
                 buttonImage.sprite = newImages[Num];

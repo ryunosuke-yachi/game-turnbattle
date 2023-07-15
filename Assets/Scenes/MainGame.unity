@@ -1203,6 +1203,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3288090863335102633, guid: 435487bfd2d579f4a8ea96772e3b97e6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3288090863335102638, guid: 435487bfd2d579f4a8ea96772e3b97e6, type: 3}
       propertyPath: m_Type
       value: 0
@@ -3887,6 +3891,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3895b9a7b66836949888b6fc88419fdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerSkillData: {fileID: 11400000, guid: 14c61ccf29a5d354b8e8c2c7f7e1d191, type: 2}
   playerStatus: {fileID: 11400000, guid: 0cc79f8d5cd9e3d498871240817f961e, type: 2}
   enemyStatus: {fileID: 11400000, guid: f1c3de7b4c7eba449b34d495505b47e0, type: 2}
   turnCount: 0
