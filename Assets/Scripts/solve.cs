@@ -9,17 +9,19 @@ public class solve : MonoBehaviour
     PlayerStatus playerStatus;
     [SerializeField]
     EnemyStatus enemyStatus;
+
     skillCon skillConSc;
-    public GameObject skillObject;
+    skillSel skillSelSc;
     playerSkill playerSkillSc;
-
     enemySkill enemySkillSc;
-
     switchUI switchUISc;
 
     public int turnCount;
+    public GameObject skillObject;
+
     public void solveTurn()
     {
+        skillSelSc = FindObjectOfType<skillSel>();
         skillConSc = skillObject.GetComponent<skillCon>();
         enemySkillSc = GetComponent<enemySkill>();
         switchUISc = GetComponent<switchUI>();
@@ -69,6 +71,8 @@ public class solve : MonoBehaviour
         Debug.Log(playerStatus.HP);
         Debug.Log(enemyStatus.HP);
 
+        skillSelSc.setInitialValues();
+        skillSelSc.usedFunction = false;
         switchUISc.displayDice();
     }
 }

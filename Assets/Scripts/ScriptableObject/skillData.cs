@@ -17,7 +17,7 @@ public class skillInfo
     public int MP;//必要MP
     public string Effect;//スキル効果
     public int skillGroup;//0 = 攻撃, 1 = 防御, 2 = アイテム
-    public int turnLimit;//ターン制限
+    public int turnLimit = 0;//ターン制限
     public bool isSelect;//選択されているか
     public int image;//スキルイラスト
     public bool isUsed;
