@@ -6,6 +6,9 @@ TagManager:
   tags:
   - playerDice
   - enemyDice
+  - Normaldice
+  - 123Dice
+  - 456Dice
   layers:
   - Default
   - TransparentFX

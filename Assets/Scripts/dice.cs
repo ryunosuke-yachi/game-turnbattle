@@ -29,7 +29,7 @@ public class dice : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rot = new Vector3(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
         transform.Rotate(rot);
-        rb.AddForce((transform.forward) * force, ForceMode.Impulse);
+        rb.AddForce(transform.forward * force, ForceMode.Impulse);
         isCalled = false;
         LimitTime = 3.0f;
         playerStatus.diceList = new List<int>();
@@ -40,9 +40,9 @@ public class dice : MonoBehaviour
     void Update()
     {
         LimitTime -= Time.deltaTime;
-        if(LimitTime > 0)
+        if (LimitTime > 0)
         {
-            rb.AddForce(1.5f * Physics.gravity, ForceMode.Acceleration);
+            rb.AddForce(0.1f * Physics.gravity, ForceMode.Acceleration);
         }
         onGround();
     }
@@ -67,52 +67,125 @@ public class dice : MonoBehaviour
         float X = Vector3.Dot(diceTransform.right, Vector3.up);//X軸方向との内積
         float Y = Vector3.Dot(diceTransform.up, Vector3.up);//Y軸方向との内積
         float Z = Vector3.Dot(diceTransform.forward, Vector3.up);//Z軸方向との内積
-
-        if (Mathf.Abs(X) > Mathf.Abs(Y) && Mathf.Abs(X) > Mathf.Abs(Z))//X軸が一番upベクトルに近い
+        if(gameObject.tag == "playerDice" || gameObject.tag == "enemyDice")
         {
-            if (X > 0.0f)//符号で出目を決定
+            if (Mathf.Abs(X) > Mathf.Abs(Y) && Mathf.Abs(X) > Mathf.Abs(Z))//X軸が一番upベクトルに近い
             {
-                return 6;
+                if (X > 0.0f)//符号で出目を決定
+                {
+                    return 5;
+                }
+                else
+                {
+                    return 2;
+                }
+            }
+            else if (Mathf.Abs(Y) > Mathf.Abs(X) && Mathf.Abs(Y) > Mathf.Abs(Z))//Y軸が一番近い
+            {
+                if (Y > 0.0f)
+                {
+                    return 6;
+                }
+                else
+                {
+                    return 1;
+                }
             }
             else
             {
-                return 1;
-            }
-        }
-        else if (Mathf.Abs(Y) > Mathf.Abs(X) && Mathf.Abs(Y) > Mathf.Abs(Z))//Y軸が一番近い
+                if (Z > 0.0f)
+                {
+                    return 3;
+                }
+                else
+                {
+                    return 4;
+                }
+             } 
+         }else if(gameObject.tag == "456Dice")
         {
-            if (Y > 0.0f)
+            if (Mathf.Abs(X) > Mathf.Abs(Y) && Mathf.Abs(X) > Mathf.Abs(Z))//X軸が一番upベクトルに近い
             {
-                return 3;
+                if (X > 0.0f)//符号で出目を決定
+                {
+                    return 5;
+                }
+                else
+                {
+                    return 5;
+                }
+            }
+            else if (Mathf.Abs(Y) > Mathf.Abs(X) && Mathf.Abs(Y) > Mathf.Abs(Z))//Y軸が一番近い
+            {
+                if (Y > 0.0f)
+                {
+                    return 6;
+                }
+                else
+                {
+                    return 4;
+                }
             }
             else
             {
-                return 4;
+                if (Z > 0.0f)
+                {
+                    return 4;
+                }
+                else
+                {
+                    return 6;
+                }
             }
         }
         else
-        { 
-            if (Z > 0.0f)
+        {
+            if (Mathf.Abs(X) > Mathf.Abs(Y) && Mathf.Abs(X) > Mathf.Abs(Z))//X軸が一番upベクトルに近い
             {
-                return 2;
+                if (X > 0.0f)//符号で出目を決定
+                {
+                    return 2;
+                }
+                else
+                {
+                    return 2;
+                }
+            }
+            else if (Mathf.Abs(Y) > Mathf.Abs(X) && Mathf.Abs(Y) > Mathf.Abs(Z))//Y軸が一番近い
+            {
+                if (Y > 0.0f)
+                {
+                    return 3;
+                }
+                else
+                {
+                    return 1;
+                }
             }
             else
             {
-                return 5;
+                if (Z > 0.0f)
+                {
+                    return 1;
+                }
+                else
+                {
+                    return 3;
+                }
             }
         }
     }
 
-    public void addMP()
+    void addMP()
     {
-        if(gameObject.tag == "playerDice")
+        if(gameObject.tag == "playerDice" || gameObject.tag == "456Dice")
         {
             playerStatus.MP += diceNum;
             LimitTime = 3.0f;
             playerStatus.diceList.Add(diceNum);
             Debug.Log("playerMP:" + playerStatus.MP);
         }
-        else if(gameObject.tag == "enemyDice")
+        else if(gameObject.tag == "enemyDice" || gameObject.tag == "123Dice")
         {
             enemyStatus.MP += diceNum;
             LimitTime = 3.0f;
