@@ -18,7 +18,9 @@ public class dice : MonoBehaviour
     bool isCalled; //目を出すスクリプトが呼ばれたか
     float LimitTime;//重力を強める時間
     Vector3 startPos;//振る前の座標
-    
+    GameObject normalDice;
+    GameObject lowDice;
+    GameObject highDice;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,7 +44,7 @@ public class dice : MonoBehaviour
         LimitTime -= Time.deltaTime;
         if (LimitTime > 0)
         {
-            rb.AddForce(0.1f * Physics.gravity, ForceMode.Acceleration);
+            rb.AddForce(1.5f * Physics.gravity, ForceMode.Acceleration);
         }
         onGround();
     }
