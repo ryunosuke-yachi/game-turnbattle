@@ -6,20 +6,24 @@ using UnityEngine;
 public class solve : MonoBehaviour
 {
     [SerializeField]
+    skillData playerSkillData;
+    [SerializeField]
     PlayerStatus playerStatus;
     [SerializeField]
     EnemyStatus enemyStatus;
+
     skillCon skillConSc;
-    public GameObject skillObject;
+    skillSel skillSelSc;
     playerSkill playerSkillSc;
-
     enemySkill enemySkillSc;
-
     switchUI switchUISc;
 
     public int turnCount;
+    public GameObject skillObject;
+
     public void solveTurn()
     {
+        skillSelSc = FindObjectOfType<skillSel>();
         skillConSc = skillObject.GetComponent<skillCon>();
         enemySkillSc = GetComponent<enemySkill>();
         switchUISc = GetComponent<switchUI>();
@@ -66,9 +70,19 @@ public class solve : MonoBehaviour
         enemyStatus.diceSituation = 0;
         skillConSc.buttonList.Clear();
 
+        for(int i = 5; i < 8; i++)
+        {
+            if(playerSkillData.skillInfoList[i].turnLimit != 0)
+            {
+                playerSkillData.skillInfoList[i].turnLimit -= 1;
+            }
+        }
+
         Debug.Log(playerStatus.HP);
         Debug.Log(enemyStatus.HP);
 
+        skillSelSc.setInitialValues();
+        skillSelSc.usedFunction = false;
         switchUISc.displayDice();
     }
 }

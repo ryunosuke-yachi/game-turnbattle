@@ -5,6 +5,7 @@ using UnityEngine;
 public class switchUI : MonoBehaviour
 {
     solve solveSc;
+
     public PlayerStatus playerStatus;
     public EnemyStatus enemyStatus;
     public enum STATE

@@ -3,166 +3,257 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class skillSel : MonoBehaviour
+public class skillSel : MonoBehaviour, IPointerClickHandler
 {
-    private skillCon SkillCon;
+    skillCon skillConSc;
+    skillUI skillUISc;
 
     //スキル情報を持っているScriptableObject
     [SerializeField]
-    skillData playerSkillData;
+    skillData playerSkillData; // これが、今持っているスキルのデータ
 
     [SerializeField]
     PlayerStatus PlayerStatus;
 
+    GameObject clickedGameObject;
+
+    public bool usedFunction = false;
+
     public void Start()
     {
-        SkillCon = FindObjectOfType<skillCon>();
+        skillConSc = FindObjectOfType<skillCon>();
+        skillUISc = FindObjectOfType<skillUI>();
 
-        for (int i = 0; i < playerSkillData.skillInfoList.Count; i++)
+        setInitialValues();
+
+        for(int i = 0; i < 8; i++)
         {
             playerSkillData.skillInfoList[i].isSelect = false;
+            playerSkillData.skillInfoList[i].turnLimit = 0;
         }
     }
 
-
-
-    //それぞれのボタンが押されたときのフラグの切り替え
-    public void SelButton_0()
+    public void setInitialValues() //スキル番号の初期化処理
     {
+        if (usedFunction ==false)
+        {
+            skillConSc = FindObjectOfType<skillCon>();
+            skillUISc = FindObjectOfType<skillUI>();
 
-        if(playerSkillData.skillInfoList[0].isSelect == false)
-        {
-            playerSkillData.skillInfoList[0].isSelect = true;
-            Debug.Log(playerSkillData.skillInfoList[0].Name);
-            SkillCon.AddToList(0);
-            PlayerStatus.MP -= playerSkillData.skillInfoList[0].MP;
-            Debug.Log(PlayerStatus.MP);
-        }
-        else if(playerSkillData.skillInfoList[0].isSelect == true)
-        {
-            playerSkillData.skillInfoList[0].isSelect = false;
-            SkillCon.RemoveFromList(0);
-            PlayerStatus.MP += playerSkillData.skillInfoList[0].MP;
+            playerSkillData.skillButtons.Clear();
+            for (int i = 0; i < 8; i++)
+            {
+                skillButton b = new skillButton();
+                b.skillID = Random.Range(0, 5);
+                if (i > 4)
+                {
+                    b.skillID = i;
+                }
+                b.isSelect = false;
+                playerSkillData.skillButtons.Add(b);
+            }
+
+            skillUISc.changeUI();
         }
         
     }
 
-    public void SelButton_1()
+    private void SelButton_n(int n) //攻撃スキルの選択処理
     {
-        if (playerSkillData.skillInfoList[1].isSelect == false)
+        if (playerSkillData.skillButtons[n].isSelect == false)
         {
-            playerSkillData.skillInfoList[1].isSelect = true;
-            Debug.Log(playerSkillData.skillInfoList[1].Name);
-            SkillCon.AddToList(1);
-            PlayerStatus.MP -= playerSkillData.skillInfoList[1].MP;
+            int id = playerSkillData.skillButtons[n].skillID;
+            if(PlayerStatus.MP >= playerSkillData.skillInfoList[id].MP)
+            {
+                playerSkillData.skillButtons[n].isSelect = true;
+                Debug.Log(playerSkillData.skillInfoList[id].Name);
+                skillConSc.AddToList(id);
+                PlayerStatus.MP -= playerSkillData.skillInfoList[id].MP;
+                Debug.Log(PlayerStatus.MP);
+            }
+            else
+            {
+                Debug.Log("MPが足りません");
+            }
         }
-        else if (playerSkillData.skillInfoList[1].isSelect == true)
+        else if (playerSkillData.skillButtons[n].isSelect == true)
         {
-            playerSkillData.skillInfoList[1].isSelect = false;
-            SkillCon.RemoveFromList(1);
-            PlayerStatus.MP += playerSkillData.skillInfoList[1].MP;
+            playerSkillData.skillButtons[n].isSelect = false;
+            int id = playerSkillData.skillButtons[n].skillID;
+            skillConSc.RemoveFromList(id);
+            PlayerStatus.MP += playerSkillData.skillInfoList[id].MP;
+        }
+        skillUISc.UsedUI(n);
+    }
+
+    public void OnPointerClick(PointerEventData eventData) //クリック判別と対応する処理
+    {
+        if(eventData.button == PointerEventData.InputButton.Left)
+        {
+            clickedGameObject = GameObject.Find(name);
+            Debug.Log(clickedGameObject.name);//ゲームオブジェクトの名前を出力
+
+            string str = clickedGameObject.name;
+            switch (str)
+            {
+                case "Atk_0":
+                    SelButton_n(0);
+                    break;
+                case "Atk_1":
+                    SelButton_n(1);
+                    break;
+                case "Atk_2":
+                    SelButton_n(2);
+                    break;
+                case "Atk_3":
+                    SelButton_n(3);
+                    break;
+                case "Atk_4":
+                    SelButton_n(4);
+                    break;
+                case "Def_5":
+                    SelButton_5();
+                    break;
+                case "Item_6":
+                    SelButton_6();
+                    break;
+                case "Item_7":
+                    SelButton_7();
+                    break;
+            }
+        }
+        else if(eventData.button == PointerEventData.InputButton.Right)
+        {
+            clickedGameObject = GameObject.Find(name);
+            Debug.Log(clickedGameObject.name);
+            string str = clickedGameObject.name;
+            switch (str)
+            {
+                case "Atk_0":
+                        
+                    break;
+                case "Atk_1":
+                        
+                    break;
+                case "Atk_2":
+                        
+                    break;
+                case "Atk_3":
+                        
+                    break;
+                case "Atk_4":
+                        
+                    break;
+                case "Def_5":
+
+                    break;
+                case "Item_6":
+
+                    break;
+                case "Item_7":
+
+                    break;
+            }
         }
     }
 
-    public void SelButton_2()
+    public void SelButton_5() //防御スキルの選択処理
     {
-        if (playerSkillData.skillInfoList[2].isSelect == false)
+        if(playerSkillData.skillInfoList[5].turnLimit  == 0)
         {
-            playerSkillData.skillInfoList[2].isSelect = true;
-            Debug.Log(playerSkillData.skillInfoList[2].Name);
-            SkillCon.AddToList(2);
-            PlayerStatus.MP -= playerSkillData.skillInfoList[2].MP;
-        }
-        else if (playerSkillData.skillInfoList[2].isSelect == true)
+            if (playerSkillData.skillInfoList[5].isSelect == false)
+            {
+                if (PlayerStatus.MP >= playerSkillData.skillInfoList[5].MP)
+                {
+                    playerSkillData.skillInfoList[5].isSelect = true;
+                    Debug.Log(playerSkillData.skillInfoList[5].Name);
+                    skillConSc.AddToList(5);
+                    PlayerStatus.MP -= playerSkillData.skillInfoList[5].MP;
+                    skillUISc.UsedUI(5);
+                }
+                else
+                {
+                    Debug.Log("MPが足りません");
+                }
+            }
+            else if (playerSkillData.skillInfoList[5].isSelect == true)
+            {
+                playerSkillData.skillInfoList[5].isSelect = false;
+                skillConSc.RemoveFromList(5);
+                PlayerStatus.MP += playerSkillData.skillInfoList[5].MP;
+                skillUISc.UsedUI(5);
+            }
+        }else
         {
-            playerSkillData.skillInfoList[2].isSelect = false;
-            SkillCon.RemoveFromList(2);
-            PlayerStatus.MP += playerSkillData.skillInfoList[2].MP;
+            Debug.Log("まだ使用できません");
         }
+    } 
+
+    public void SelButton_6() //アイテムスキルの選択処理１
+    {
+        if(playerSkillData.skillInfoList[6].turnLimit == 0)
+        {
+            if (playerSkillData.skillInfoList[6].isSelect == false)
+            {
+                if (PlayerStatus.MP >= playerSkillData.skillInfoList[6].MP)
+                {
+                    playerSkillData.skillInfoList[6].isSelect = true;
+                    Debug.Log(playerSkillData.skillInfoList[6].Name);
+                    skillConSc.AddToList(6);
+                    PlayerStatus.MP -= playerSkillData.skillInfoList[6].MP;
+                    skillUISc.UsedUI(6);
+                }
+                else
+                {
+                    Debug.Log("MPが足りません");
+                }
+            }
+            else if (playerSkillData.skillInfoList[6].isSelect == true)
+            {
+                playerSkillData.skillInfoList[6].isSelect = false;
+                skillConSc.RemoveFromList(6);
+                PlayerStatus.MP += playerSkillData.skillInfoList[6].MP;
+                skillUISc.UsedUI(6);
+            }
+        }
+        else
+        {
+            Debug.Log("まだ使用できません");
+        }
+        
     }
 
-    public void SelButton_3()
+    public void SelButton_7() //アイテムスキルの選択処理２
     {
-        if (playerSkillData.skillInfoList[3].isSelect == false)
+        if (playerSkillData.skillInfoList[7].turnLimit == 0)
         {
-            playerSkillData.skillInfoList[3].isSelect = true;
-            Debug.Log(playerSkillData.skillInfoList[3].Name);
-            SkillCon.AddToList(3);
-            PlayerStatus.MP -= playerSkillData.skillInfoList[3].MP;
+            if (playerSkillData.skillInfoList[7].isSelect == false)
+            {
+                if (PlayerStatus.MP >= playerSkillData.skillInfoList[7].MP)
+                {
+                    playerSkillData.skillInfoList[7].isSelect = true;
+                    Debug.Log(playerSkillData.skillInfoList[7].Name);
+                    skillConSc.AddToList(7);
+                    PlayerStatus.MP -= playerSkillData.skillInfoList[7].MP;
+                    skillUISc.UsedUI(7);
+                }
+                else
+                {
+                    Debug.Log("MPが足りません");
+                }
+            }
+            else if (playerSkillData.skillInfoList[7].isSelect == true)
+            {
+                playerSkillData.skillInfoList[7].isSelect = false;
+                skillConSc.RemoveFromList(7);
+                PlayerStatus.MP += playerSkillData.skillInfoList[7].MP;
+                skillUISc.UsedUI(7);
+            }
         }
-        else if (playerSkillData.skillInfoList[3].isSelect == true)
+        else
         {
-            playerSkillData.skillInfoList[3].isSelect = false;
-            SkillCon.RemoveFromList(3);
-            PlayerStatus.MP += playerSkillData.skillInfoList[3].MP;
+            Debug.Log("まだ使用できません");
         }
-    }
-
-    public void SelButton_4()
-    {
-        if (playerSkillData.skillInfoList[4].isSelect == false)
-        {
-            playerSkillData.skillInfoList[4].isSelect = true;
-            Debug.Log(playerSkillData.skillInfoList[4].Name);
-            SkillCon.AddToList(4);
-            PlayerStatus.MP -= playerSkillData.skillInfoList[4].MP;
-        }
-        else if (playerSkillData.skillInfoList[4].isSelect == true)
-        {
-            playerSkillData.skillInfoList[4].isSelect = false;
-            SkillCon.RemoveFromList(4);
-            PlayerStatus.MP += playerSkillData.skillInfoList[4].MP;
-        }
-    }
-
-    public void SelButton_5()
-    {
-        if (playerSkillData.skillInfoList[5].isSelect == false)
-        {
-            playerSkillData.skillInfoList[5].isSelect = true;
-            Debug.Log(playerSkillData.skillInfoList[5].Name);
-            SkillCon.AddToList(5);
-            PlayerStatus.MP -= playerSkillData.skillInfoList[5].MP;
-        }
-        else if (playerSkillData.skillInfoList[5].isSelect == true)
-        {
-            playerSkillData.skillInfoList[5].isSelect = false;
-            SkillCon.RemoveFromList(5);
-            PlayerStatus.MP += playerSkillData.skillInfoList[5].MP;
-        }
-    }
-
-    public void SelButton_6()
-    {
-        if (playerSkillData.skillInfoList[6].isSelect == false)
-        {
-            playerSkillData.skillInfoList[6].isSelect = true;
-            Debug.Log(playerSkillData.skillInfoList[6].Name);
-            SkillCon.AddToList(6);
-            PlayerStatus.MP -= playerSkillData.skillInfoList[6].MP;
-        }
-        else if (playerSkillData.skillInfoList[6].isSelect == true)
-        {
-            playerSkillData.skillInfoList[6].isSelect = false;
-            SkillCon.RemoveFromList(6);
-            PlayerStatus.MP += playerSkillData.skillInfoList[6].MP;
-        }
-    }
-
-    public void SelButton_7()
-    {
-        if (playerSkillData.skillInfoList[7].isSelect == false)
-        {
-            playerSkillData.skillInfoList[7].isSelect = true;
-            Debug.Log(playerSkillData.skillInfoList[7].Name);
-            SkillCon.AddToList(7);
-            PlayerStatus.MP -= playerSkillData.skillInfoList[7].MP;
-        }
-        else if (playerSkillData.skillInfoList[7].isSelect == true)
-        {
-            playerSkillData.skillInfoList[7].isSelect = false;
-            SkillCon.RemoveFromList(7);
-            PlayerStatus.MP += playerSkillData.skillInfoList[7].MP;
-        }
+        
     }
 }
