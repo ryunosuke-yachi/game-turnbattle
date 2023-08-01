@@ -18,9 +18,10 @@ public class dice : MonoBehaviour
     bool isCalled; //目を出すスクリプトが呼ばれたか
     float LimitTime;//重力を強める時間
     Vector3 startPos;//振る前の座標
-    GameObject normalDice;
-    GameObject lowDice;
-    GameObject highDice;
+    [SerializeField] GameObject playerNormal;//プレイヤーの通常ダイス
+    [SerializeField] GameObject high;//プレイヤー456ダイス
+    [SerializeField] GameObject low;//敵123ダイス
+    [SerializeField] GameObject enemyNormal;//敵の通常ダイス
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +36,21 @@ public class dice : MonoBehaviour
         isCalled = false;
         LimitTime = 3.0f;
         playerStatus.diceList = new List<int>();
+        if(playerStatus.diceSituation == 0)
+        {
+            playerNormal.SetActive(true);
+        }else
+        {
+            high.SetActive(true);
+        }
+        if(enemyStatus.diceSituation == 0)
+        {
+            enemyNormal.SetActive(true);
+        }
+        else
+        {
+            low.SetActive(true);
+        }
     }
 
     // Update is called once per frame
