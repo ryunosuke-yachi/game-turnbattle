@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class dice : MonoBehaviour
@@ -36,27 +37,33 @@ public class dice : MonoBehaviour
         isCalled = false;
         LimitTime = 3.0f;
         playerStatus.diceList = new List<int>();
-        if(playerStatus.diceSituation == 0)
-        {
-            playerNormal.SetActive(true);
-        }else
-        {
-            high.SetActive(true);
-        }
-        if(enemyStatus.diceSituation == 0)
-        {
-            enemyNormal.SetActive(true);
-        }
-        else
-        {
-            low.SetActive(true);
-        }
     }
 
     // Update is called once per frame
     
     void Update()
     {
+        if (playerStatus.diceSituation == 0)
+        {
+            playerNormal.SetActive(true);
+            high.SetActive(false);
+        }
+        else
+        {
+            high.SetActive(true);
+            playerNormal.SetActive(false);
+        }
+        if (enemyStatus.diceSituation == 0)
+        {
+            enemyNormal.SetActive(true);
+            low.SetActive(false);
+        }
+        else
+        {
+            low.SetActive(true);
+            enemyNormal.SetActive(false);
+        }
+
         LimitTime -= Time.deltaTime;
         if (LimitTime > 0)
         {
@@ -77,11 +84,15 @@ public class dice : MonoBehaviour
         {
             displayDice();
             isCalled = false;
+            if(!isCalled)
+            {
+                StartCoroutine(ChangeScene());
+            }
         }
-
     }
     public int getNumber(Transform diceTransform)
     {
+
         float X = Vector3.Dot(diceTransform.right, Vector3.up);//Xé≤ï˚å¸Ç∆ÇÃì‡êœ
         float Y = Vector3.Dot(diceTransform.up, Vector3.up);//Yé≤ï˚å¸Ç∆ÇÃì‡êœ
         float Z = Vector3.Dot(diceTransform.forward, Vector3.up);//Zé≤ï˚å¸Ç∆ÇÃì‡êœ
@@ -201,41 +212,67 @@ public class dice : MonoBehaviour
             playerStatus.MP += diceNum;
             LimitTime = 3.0f;
             playerStatus.diceList.Add(diceNum);
-            Debug.Log("playerMP:" + playerStatus.MP);
+            Debug.Log("playerèoñ⁄:" + diceNum);
         }
         else if(gameObject.tag == "enemyDice" || gameObject.tag == "123Dice")
         {
             enemyStatus.MP += diceNum;
             LimitTime = 3.0f;
             playerStatus.diceList.Add(diceNum);
-            Debug.Log("enemyMP:" + enemyStatus.MP);
+            Debug.Log("enemyèoñ⁄:" + diceNum);
         }
     }
 
     void displayDice()
     {
+
         transform.position = startPos;
-        switch (diceNum)
+        if (playerStatus.diceSituation == 0 || enemyStatus.diceSituation == 0)
         {
-            case 1:
-                transform.rotation = Quaternion.Euler(0, 0, -90);
-                break;
-            case 2:
-                transform.rotation = Quaternion.Euler(-90, 0, 0);
-                break;
-            case 3:
-                transform.rotation = Quaternion.Euler(0, 0, 0);
-                break;
-            case 4:
-                transform.rotation = Quaternion.Euler(-180, 0, 0);
-                break;
-            case 5:
-                transform.rotation = Quaternion.Euler(90, 0, 0);
-                break;
-            case 6:
-                transform.rotation = Quaternion.Euler(0, 0, 90);
-                break;
+            switch (diceNum)
+            {
+                case 1:
+                    transform.rotation = Quaternion.Euler(180, 90, 0);
+                    break;
+                case 2:
+                    transform.rotation = Quaternion.Euler(0, 90, -90);
+                    break;
+                case 3:
+                    transform.rotation = Quaternion.Euler(-90, 90, 0);
+                    break;
+                case 4:
+                    transform.rotation = Quaternion.Euler(90, 90, 0);
+                    break;
+                case 5:
+                    transform.rotation = Quaternion.Euler(0, 90, 90);
+                    break;
+                case 6:
+                    transform.rotation = Quaternion.Euler(0, 90, 0);
+                    break;
+            }
         }
+        if(enemyStatus.diceSituation == 1)
+        {
+            switch(diceNum)
+            {
+                case 1:
+                    transform.rotation = Quaternion.Euler(180, 90, 0);
+                    break;
+                case 2:
+                    transform.rotation = Quaternion.Euler(0, 90, 90);
+                    break;
+                case 3:
+                    transform.rotation = Quaternion.Euler(0, 90, 0);
+                    break;
+            }
+        }
+
         rb.constraints = RigidbodyConstraints.FreezeAll;
+    }
+
+    IEnumerator ChangeScene()
+    {
+        yield return new WaitForSeconds(1.5f);
+        SceneManager.LoadScene("MainGame");
     }
 }
