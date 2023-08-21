@@ -11,12 +11,6 @@ public class ChangeScene1 : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void DiceScene()
     {
         SceneManager.LoadScene("DiceScene");

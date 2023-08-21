@@ -12,10 +12,8 @@ public class GameController : MonoBehaviour
     void Start()
     {
         playerStatus.HP = 450;
-        playerStatus.MP = 0;
         playerStatus.diceSituation = 0;
         enemyStatus.HP = 500;
-        enemyStatus.MP = 0;
         enemyStatus.diceSituation = 0;
         enemyStatus.gauge = 0;
     }

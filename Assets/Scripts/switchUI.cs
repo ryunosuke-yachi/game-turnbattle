@@ -35,8 +35,16 @@ public class switchUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        state = STATE.DICE;
         solveSc = FindObjectOfType<solve>();
+
+        if (playerStatus.MP > 0)
+        {
+            state = STATE.SELECT;
+        }
+        else 
+        {
+            state = STATE.DICE;
+        }
     }
 
     // Update is called once per frame

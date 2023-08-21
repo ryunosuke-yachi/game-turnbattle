@@ -17,6 +17,7 @@ public class solve : MonoBehaviour
     playerSkill playerSkillSc;
     enemySkill enemySkillSc;
     switchUI switchUISc;
+    ChangeScene1 ChangeScene1Sc;
 
     public int turnCount;
     public GameObject skillObject;
@@ -28,12 +29,11 @@ public class solve : MonoBehaviour
         enemySkillSc = GetComponent<enemySkill>();
         switchUISc = GetComponent<switchUI>();
         playerSkillSc = GetComponent<playerSkill>();
-        Debug.Log("test1");
+        ChangeScene1Sc = GetComponent<ChangeScene1>();
+
         Debug.Log("skillconut:" + skillConSc.buttonList.Count);
         for(int i = 0; i < skillConSc.buttonList.Count; i++) //Player‚Ìs“®ˆ—
         {
-            Debug.Log("test");
-
             switch (skillConSc.buttonList[i])
             {
                 case 0:
