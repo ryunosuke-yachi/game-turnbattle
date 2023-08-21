@@ -227,45 +227,38 @@ public class dice : MonoBehaviour
     {
 
         transform.position = startPos;
-        if (playerStatus.diceSituation == 0 || enemyStatus.diceSituation == 0)
+
+        switch (diceNum)
         {
-            switch (diceNum)
-            {
-                case 1:
-                    transform.rotation = Quaternion.Euler(180, 90, 0);
-                    break;
-                case 2:
-                    transform.rotation = Quaternion.Euler(0, 90, -90);
-                    break;
-                case 3:
-                    transform.rotation = Quaternion.Euler(-90, 90, 0);
-                    break;
-                case 4:
-                    transform.rotation = Quaternion.Euler(90, 90, 0);
-                    break;
-                case 5:
-                    transform.rotation = Quaternion.Euler(0, 90, 90);
-                    break;
-                case 6:
+            case 1:
+                transform.rotation = Quaternion.Euler(180, 90, 0);
+                break;
+            case 2:
+                transform.rotation = Quaternion.Euler(0, 90, -90);
+                break;
+            case 3:
+                transform.rotation = Quaternion.Euler(-90, 90, 0);
+                if (enemyStatus.diceSituation == 1)
+                {
                     transform.rotation = Quaternion.Euler(0, 90, 0);
-                    break;
-            }
-        }
-        if(enemyStatus.diceSituation == 1)
-        {
-            switch(diceNum)
-            {
-                case 1:
+                }
+                break;
+            case 4:
+                transform.rotation = Quaternion.Euler(90, 90, 0);
+                if (playerStatus.diceSituation == 1)
+                {
                     transform.rotation = Quaternion.Euler(180, 90, 0);
-                    break;
-                case 2:
-                    transform.rotation = Quaternion.Euler(0, 90, 90);
-                    break;
-                case 3:
-                    transform.rotation = Quaternion.Euler(0, 90, 0);
-                    break;
-            }
+                }
+                break;
+            case 5:
+                transform.rotation = Quaternion.Euler(0, 90, 90);
+                break;
+            case 6:
+                transform.rotation = Quaternion.Euler(0, 90, 0);
+                break;
         }
+
+
 
         rb.constraints = RigidbodyConstraints.FreezeAll;
     }
