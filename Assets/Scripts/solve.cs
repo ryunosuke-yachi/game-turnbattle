@@ -81,8 +81,8 @@ public class solve : MonoBehaviour
         Debug.Log(playerStatus.HP);
         Debug.Log(enemyStatus.HP);
 
-        skillSelSc.setInitialValues();
-        skillSelSc.usedFunction = false;
+        //skillSelSc.setInitialValues();
+        //skillSelSc.usedFunction = false;
         switchUISc.displayDice();
     }
 }

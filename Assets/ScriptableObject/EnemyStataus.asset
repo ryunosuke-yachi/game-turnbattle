@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 500
   MP: 0
-  gauge: 0
+  gauge: 60
   diceNum: 0200000004000000050000000100000003000000
   diceSituation: 0
   increaseGauge: 20

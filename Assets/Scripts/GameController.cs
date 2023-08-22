@@ -15,7 +15,7 @@ public class GameController : MonoBehaviour
         playerStatus.diceSituation = 0;
         enemyStatus.HP = 500;
         enemyStatus.diceSituation = 0;
-        enemyStatus.gauge = 0;
+        //enemyStatus.gauge = 0;
     }
 
     // Update is called once per frame
