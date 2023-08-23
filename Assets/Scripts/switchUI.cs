@@ -5,7 +5,8 @@ using UnityEngine;
 public class switchUI : MonoBehaviour
 {
     solve solveSc;
-
+    public GameObject Button_SE;
+    SE SESc;
     public PlayerStatus playerStatus;
     public EnemyStatus enemyStatus;
     public enum STATE
@@ -45,6 +46,7 @@ public class switchUI : MonoBehaviour
         {
             state = STATE.DICE;
         }
+        SESc = Button_SE.GetComponent<SE>();
     }
 
     // Update is called once per frame
@@ -141,19 +143,23 @@ public class switchUI : MonoBehaviour
 
     public void displayAttack()
     {
+        SESc.PlayButtonSE();
         state = STATE.ATTACK;
     }
     public void displayGuard()
     {
+        SESc.PlayButtonSE();
         state = STATE.GUARD;
     }
     public void displayItem()
     {
+        SESc.PlayButtonSE();
         state = STATE.ITEM;
     }
 
     public void displaySelect()
     {
+        SESc.PlayButtonSE();
         state = STATE.SELECT;
     }
 
@@ -164,6 +170,7 @@ public class switchUI : MonoBehaviour
 
     public void displayDice()
     {
+        SESc.PlayButtonSE();
         state = STATE.DICE;
     }
 

@@ -873,7 +873,7 @@ GameObject:
   - component: {fileID: 347948463}
   - component: {fileID: 347948462}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: StartText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2464,7 +2464,7 @@ GameObject:
   - component: {fileID: 1466603080}
   - component: {fileID: 1466603079}
   m_Layer: 5
-  m_Name: Image (3)
+  m_Name: Logo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2666,7 +2666,7 @@ GameObject:
   - component: {fileID: 1585144143}
   - component: {fileID: 1585144142}
   m_Layer: 5
-  m_Name: Image
+  m_Name: StartShadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2773,7 +2773,7 @@ GameObject:
   - component: {fileID: 1745285888}
   - component: {fileID: 1745285887}
   m_Layer: 5
-  m_Name: Image (2)
+  m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

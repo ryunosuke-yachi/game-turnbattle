@@ -7,7 +7,8 @@ public class skillSel : MonoBehaviour, IPointerClickHandler
 {
     skillCon skillConSc;
     skillUI skillUISc;
-
+    public GameObject Button_SE;
+    SE SESc;
     //スキル情報を持っているScriptableObject
     [SerializeField]
     skillData playerSkillData; // これが、今持っているスキルのデータ
@@ -23,7 +24,7 @@ public class skillSel : MonoBehaviour, IPointerClickHandler
     {
         skillConSc = FindObjectOfType<skillCon>();
         skillUISc = FindObjectOfType<skillUI>();
-
+        SESc = Button_SE.GetComponent<SE>();
         setInitialValues();
 
         for(int i = 0; i < 8; i++)
@@ -98,27 +99,35 @@ public class skillSel : MonoBehaviour, IPointerClickHandler
             {
                 case "Atk_0":
                     SelButton_n(0);
+                    SESc.PlayButtonSE();
                     break;
                 case "Atk_1":
                     SelButton_n(1);
+                    SESc.PlayButtonSE();
                     break;
                 case "Atk_2":
                     SelButton_n(2);
+                    SESc.PlayButtonSE();
                     break;
                 case "Atk_3":
                     SelButton_n(3);
+                    SESc.PlayButtonSE();
                     break;
                 case "Atk_4":
                     SelButton_n(4);
+                    SESc.PlayButtonSE();
                     break;
                 case "Def_5":
                     SelButton_5();
+                    SESc.PlayButtonSE();
                     break;
                 case "Item_6":
                     SelButton_6();
+                    SESc.PlayButtonSE();
                     break;
                 case "Item_7":
                     SelButton_7();
+                    SESc.PlayButtonSE();
                     break;
             }
         }
