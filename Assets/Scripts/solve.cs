@@ -66,8 +66,8 @@ public class solve : MonoBehaviour
 
         playerStatus.MP = 0;
         enemyStatus.MP = 0;
-        playerStatus.diceSituation = 0;
-        enemyStatus.diceSituation = 0;
+        //playerStatus.diceSituation = 0;
+        //enemyStatus.diceSituation = 0;
         skillConSc.buttonList.Clear();
 
         for(int i = 5; i < 8; i++)
