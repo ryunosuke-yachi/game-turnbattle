@@ -6,6 +6,7 @@ using UnityEngine;
 public class title : MonoBehaviour
 {
     public Image startText;
+    public Image shadow;
     Color color;
     float time;
     // Start is called before the first frame update
@@ -21,6 +22,6 @@ public class title : MonoBehaviour
         color.a = Mathf.Cos(2 * time) / 2 + 0.5f;
         Debug.Log(color.a);
         startText.color = new Color(1, 1, 1, color.a);
-        
+        shadow.color = new Color(0, 0, 0, color.a);
     }
 }

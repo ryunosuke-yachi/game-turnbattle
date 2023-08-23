@@ -266,6 +266,8 @@ public class dice : MonoBehaviour
     IEnumerator ChangeScene()
     {
         yield return new WaitForSeconds(1.5f);
+        playerStatus.diceSituation = 0;
+        enemyStatus.diceSituation = 0;
         SceneManager.LoadScene("MainGame");
     }
 }

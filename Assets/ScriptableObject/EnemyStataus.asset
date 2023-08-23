@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: EnemyStataus
   m_EditorClassIdentifier: 
   HP: 500
-  MP: 12
-  gauge: 20
+  MP: 11
+  gauge: 40
   diceNum: 0200000004000000050000000100000003000000
   diceSituation: 0
   increaseGauge: 20
