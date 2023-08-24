@@ -9,6 +9,9 @@ public class skillSel : MonoBehaviour, IPointerClickHandler
     skillUI skillUISc;
     public GameObject Button_SE;
     SE SESc;
+    public GameObject PlayerMP;
+    PlayerStatusUIManager PlayerStatusUIManagerSc;
+
     //スキル情報を持っているScriptableObject
     [SerializeField]
     skillData playerSkillData; // これが、今持っているスキルのデータ
@@ -25,6 +28,7 @@ public class skillSel : MonoBehaviour, IPointerClickHandler
         skillConSc = FindObjectOfType<skillCon>();
         skillUISc = FindObjectOfType<skillUI>();
         SESc = Button_SE.GetComponent<SE>();
+        PlayerStatusUIManagerSc = PlayerMP.GetComponent<PlayerStatusUIManager>();
         setInitialValues();
 
         for(int i = 0; i < 8; i++)
@@ -71,6 +75,7 @@ public class skillSel : MonoBehaviour, IPointerClickHandler
                 skillConSc.AddToList(id);
                 PlayerStatus.MP -= playerSkillData.skillInfoList[id].MP;
                 Debug.Log(PlayerStatus.MP);
+                skillUISc.UsedUI(n);
             }
             else
             {
@@ -83,8 +88,9 @@ public class skillSel : MonoBehaviour, IPointerClickHandler
             int id = playerSkillData.skillButtons[n].skillID;
             skillConSc.RemoveFromList(id);
             PlayerStatus.MP += playerSkillData.skillInfoList[id].MP;
+            skillUISc.UsedUI(n);
         }
-        skillUISc.UsedUI(n);
+        //skillUISc.UsedUI(n);
     }
 
     public void OnPointerClick(PointerEventData eventData) //クリック判別と対応する処理
@@ -100,34 +106,42 @@ public class skillSel : MonoBehaviour, IPointerClickHandler
                 case "Atk_0":
                     SelButton_n(0);
                     SESc.PlayButtonSE();
+                    PlayerStatusUIManagerSc.CalculateMPRatio();
                     break;
                 case "Atk_1":
                     SelButton_n(1);
                     SESc.PlayButtonSE();
+                    PlayerStatusUIManagerSc.CalculateMPRatio();
                     break;
                 case "Atk_2":
                     SelButton_n(2);
                     SESc.PlayButtonSE();
+                    PlayerStatusUIManagerSc.CalculateMPRatio();
                     break;
                 case "Atk_3":
                     SelButton_n(3);
                     SESc.PlayButtonSE();
+                    PlayerStatusUIManagerSc.CalculateMPRatio();
                     break;
                 case "Atk_4":
                     SelButton_n(4);
                     SESc.PlayButtonSE();
+                    PlayerStatusUIManagerSc.CalculateMPRatio();
                     break;
                 case "Def_5":
                     SelButton_5();
                     SESc.PlayButtonSE();
+                    PlayerStatusUIManagerSc.CalculateMPRatio();
                     break;
                 case "Item_6":
                     SelButton_6();
                     SESc.PlayButtonSE();
+                    PlayerStatusUIManagerSc.CalculateMPRatio();
                     break;
                 case "Item_7":
                     SelButton_7();
                     SESc.PlayButtonSE();
+                    PlayerStatusUIManagerSc.CalculateMPRatio();
                     break;
             }
         }
@@ -192,7 +206,8 @@ public class skillSel : MonoBehaviour, IPointerClickHandler
                 PlayerStatus.MP += playerSkillData.skillInfoList[5].MP;
                 skillUISc.UsedUI(5);
             }
-        }else
+        }
+        else
         {
             Debug.Log("まだ使用できません");
         }

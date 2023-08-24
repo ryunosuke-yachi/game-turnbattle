@@ -19,6 +19,9 @@ public class solve : MonoBehaviour
     switchUI switchUISc;
     ChangeScene1 ChangeScene1Sc;
 
+    public GameObject PlayerMP;
+    PlayerStatusUIManager PlayerStatusUIManagerSc;
+
     public int turnCount;
     public GameObject skillObject;
 
@@ -30,6 +33,7 @@ public class solve : MonoBehaviour
         switchUISc = GetComponent<switchUI>();
         playerSkillSc = GetComponent<playerSkill>();
         ChangeScene1Sc = GetComponent<ChangeScene1>();
+        PlayerStatusUIManagerSc = PlayerMP.GetComponent<PlayerStatusUIManager>();
 
         Debug.Log("skillconut:" + skillConSc.buttonList.Count);
         for(int i = 0; i < skillConSc.buttonList.Count; i++) //Player‚Ìs“®ˆ—
@@ -65,6 +69,7 @@ public class solve : MonoBehaviour
         enemySkillSc.useEnemySkill(); //“G‚Ìs“®ˆ—
 
         playerStatus.MP = 0;
+        playerStatus.MaxMP = 0;
         enemyStatus.MP = 0;
         //playerStatus.diceSituation = 0;
         //enemyStatus.diceSituation = 0;
@@ -84,5 +89,6 @@ public class solve : MonoBehaviour
         //skillSelSc.setInitialValues();
         //skillSelSc.usedFunction = false;
         switchUISc.displayDice();
+        PlayerStatusUIManagerSc.CalculateMPRatio();
     }
 }
