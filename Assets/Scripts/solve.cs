@@ -87,7 +87,6 @@ public class solve : MonoBehaviour
         Debug.Log(enemyStatus.HP);
 
         //skillSelSc.setInitialValues();
-        //skillSelSc.usedFunction = false;
         switchUISc.displayDice();
         PlayerStatusUIManagerSc.CalculateMPRatio();
     }

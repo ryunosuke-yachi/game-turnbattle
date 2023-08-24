@@ -29,7 +29,7 @@ public class skillSel : MonoBehaviour, IPointerClickHandler
         skillUISc = FindObjectOfType<skillUI>();
         SESc = Button_SE.GetComponent<SE>();
         PlayerStatusUIManagerSc = PlayerMP.GetComponent<PlayerStatusUIManager>();
-        setInitialValues();
+        //setInitialValues();
 
         for(int i = 0; i < 8; i++)
         {
