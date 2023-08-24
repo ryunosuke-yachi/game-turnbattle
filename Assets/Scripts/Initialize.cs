@@ -25,6 +25,7 @@ public class Initialize : MonoBehaviour
     {
         playerStatus.HP = 450;
         playerStatus.MP = 0;
+        playerStatus.MaxMP = 0;
         playerStatus.diceSituation = 0;
         enemyStatus.HP = 500;
         enemyStatus.MP = 0;
