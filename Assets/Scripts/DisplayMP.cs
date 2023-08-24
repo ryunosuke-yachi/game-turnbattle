@@ -6,12 +6,12 @@ using UnityEngine.UI;
 public class DisplayMP : MonoBehaviour
 {
     [SerializeField]
-    Sprite[] Number;
+    Sprite[] Number;//Še”š‚Ì‰æ‘œ
     [SerializeField]
-    Image tensPlace, onesPlace;
+    Image tensPlace, onesPlace;//10‚ÌˆÊA‚P‚ÌˆÊ‚Ì‰æ‘œ
     [SerializeField]
     EnemyStatus enemyStatus;
-    int tensPlaceNum, onesPlaceNum;
+    int tensPlaceNum, onesPlaceNum;//10‚ÌˆÊ‚Ì”šA1‚ÌˆÊ‚Ì”š
     // Start is called before the first frame update
     void Start()
     {

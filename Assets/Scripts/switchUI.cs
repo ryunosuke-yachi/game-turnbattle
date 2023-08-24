@@ -80,6 +80,7 @@ public class switchUI : MonoBehaviour
             }
         }
 
+
     }
 
     void UpdateDice()
@@ -100,6 +101,7 @@ public class switchUI : MonoBehaviour
         guardUI.SetActive(false);
         itemUI.SetActive(false);
         statuUI.SetActive(true);
+
     }
 
     void UpdateAttack()
@@ -110,6 +112,7 @@ public class switchUI : MonoBehaviour
         guardUI.SetActive(false);
         itemUI.SetActive(false);
         statuUI.SetActive(true);
+
     }
 
     void UpdateGuard()
@@ -120,6 +123,7 @@ public class switchUI : MonoBehaviour
         guardUI.SetActive(true);
         itemUI.SetActive(false);
         statuUI.SetActive(true);
+
     }
     void UpdateItem()
     {
@@ -129,6 +133,7 @@ public class switchUI : MonoBehaviour
         guardUI.SetActive(false);
         itemUI.SetActive(true);
         statuUI.SetActive(true);
+
     }
 
     void UpdateDecision()
@@ -140,6 +145,7 @@ public class switchUI : MonoBehaviour
         itemUI.SetActive(false);
         statuUI.SetActive(false);
     }
+
 
     public void displayAttack()
     {
@@ -173,6 +179,7 @@ public class switchUI : MonoBehaviour
         SESc.PlayButtonSE();
         state = STATE.DICE;
     }
+
 
     private void isDead()
     {
