@@ -210,6 +210,7 @@ public class dice : MonoBehaviour
         if(gameObject.tag == "playerDice" || gameObject.tag == "456Dice")
         {
             playerStatus.MP += diceNum;
+            playerStatus.MaxMP += diceNum; 
             LimitTime = 3.0f;
             playerStatus.diceList.Add(diceNum);
             Debug.Log("playerèoñ⁄:" + diceNum);

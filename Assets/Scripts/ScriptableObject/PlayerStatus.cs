@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerStatus : ScriptableObject
 {
     public int MP;
+    public int MaxMP;
     public int HP;
     public int diceSituation;
     public int[] diceNum = new int[5];
