@@ -19,7 +19,9 @@ public class SkillInfoUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SkillInfo.SetActive(false);
+
+        //SkillInfo.SetActive(false);
+        //Debug.Log("skillInfo_false");
     }
 
     // Update is called once per frame

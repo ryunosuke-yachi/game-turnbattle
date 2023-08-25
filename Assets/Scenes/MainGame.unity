@@ -3682,7 +3682,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &991243661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6923,7 +6923,7 @@ MonoBehaviour:
   Button_SE: {fileID: 1543927316}
   PlayerMP: {fileID: 749794664}
   SkillInfo: {fileID: 991243660}
-  GameController: {fileID: 0}
+  GameController: {fileID: 1755865498}
   playerSkillData: {fileID: 11400000, guid: 14c61ccf29a5d354b8e8c2c7f7e1d191, type: 2}
   PlayerStatus: {fileID: 11400000, guid: 0cc79f8d5cd9e3d498871240817f961e, type: 2}
   usedFunction: 0
