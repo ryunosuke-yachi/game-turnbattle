@@ -12,6 +12,11 @@ public class skillSel : MonoBehaviour, IPointerClickHandler
     public GameObject PlayerMP;
     PlayerStatusUIManager PlayerStatusUIManagerSc;
 
+    //SkillInfoUI SkillInfoUI;
+    public GameObject SkillInfo;
+
+    public GameObject GameController;
+
     //スキル情報を持っているScriptableObject
     [SerializeField]
     skillData playerSkillData; // これが、今持っているスキルのデータ
@@ -29,7 +34,8 @@ public class skillSel : MonoBehaviour, IPointerClickHandler
         skillUISc = FindObjectOfType<skillUI>();
         SESc = Button_SE.GetComponent<SE>();
         PlayerStatusUIManagerSc = PlayerMP.GetComponent<PlayerStatusUIManager>();
-        setInitialValues();
+        //SkillInfo = GetComponent<GameObject>();
+        //setInitialValues();
 
         for(int i = 0; i < 8; i++)
         {
@@ -150,31 +156,41 @@ public class skillSel : MonoBehaviour, IPointerClickHandler
             clickedGameObject = GameObject.Find(name);
             Debug.Log(clickedGameObject.name);
             string str = clickedGameObject.name;
+            SkillInfoUI SkillInfoUISc = GameController.GetComponent<SkillInfoUI>();
             switch (str)
             {
                 case "Atk_0":
-                        
+                    //SkillInfoUI SkillInfoUISc = GameController.GetComponent<SkillInfoUI>();
+                    SkillInfo.SetActive(true);
+                    SkillInfoUISc.showSkillInfoUI(0);
                     break;
                 case "Atk_1":
-                        
+                    SkillInfo.SetActive(true);
+                    SkillInfoUISc.showSkillInfoUI(1);
                     break;
                 case "Atk_2":
-                        
+                    SkillInfo.SetActive(true);
+                    SkillInfoUISc.showSkillInfoUI(2);
                     break;
                 case "Atk_3":
-                        
+                    SkillInfo.SetActive(true);
+                    SkillInfoUISc.showSkillInfoUI(3);
                     break;
                 case "Atk_4":
-                        
+                    SkillInfo.SetActive(true);
+                    SkillInfoUISc.showSkillInfoUI(4);
                     break;
                 case "Def_5":
-
+                    SkillInfo.SetActive(true);
+                    SkillInfoUISc.showSkillInfoUI(5);
                     break;
                 case "Item_6":
-
+                    SkillInfo.SetActive(true);
+                    SkillInfoUISc.showSkillInfoUI(6);
                     break;
                 case "Item_7":
-
+                    SkillInfo.SetActive(true);
+                    SkillInfoUISc.showSkillInfoUI(7);
                     break;
             }
         }
