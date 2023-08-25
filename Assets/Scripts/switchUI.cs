@@ -41,7 +41,13 @@ public class switchUI : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI GameOverText;
     [SerializeField]
-    Image BlackPanel;
+    Image GameOverPanel;
+    [SerializeField]
+    GameObject GameClearUI;
+    [SerializeField]
+    Image GameClearPanel;
+    [SerializeField]
+    TextMeshProUGUI GameClearText;
     float BlackOutTime = 0;
     float FadeInTime = 0;
     float StartColor_a = 0f;
@@ -92,8 +98,10 @@ public class switchUI : MonoBehaviour
                     UpdateGameOver();
                     displayGameOver();
                     break;
-                //case gameClear
-                //case gameOver
+                case STATE.GAMECLEAR:
+                    UpdateGameClear();
+                    displayGameClear();
+                    break;
             }
         }
 
@@ -120,6 +128,7 @@ public class switchUI : MonoBehaviour
         itemUI.SetActive(false);
         statusUI.SetActive(true);
         GameOverUI.SetActive(false);
+        GameClearUI.SetActive(false);
     }
 
     void UpdateAttack()
@@ -131,6 +140,7 @@ public class switchUI : MonoBehaviour
         itemUI.SetActive(false);
         statusUI.SetActive(true);
         GameOverUI.SetActive(false);
+        GameClearUI.SetActive(false);
     }
 
     void UpdateGuard()
@@ -142,6 +152,7 @@ public class switchUI : MonoBehaviour
         itemUI.SetActive(false);
         statusUI.SetActive(true);
         GameOverUI.SetActive(false);
+        GameClearUI.SetActive(false);
     }
     void UpdateItem()
     {
@@ -152,6 +163,7 @@ public class switchUI : MonoBehaviour
         itemUI.SetActive(true);
         statusUI.SetActive(true);
         GameOverUI.SetActive(false);
+        GameClearUI.SetActive(false);
     }
 
     void UpdateDecision()
@@ -163,6 +175,7 @@ public class switchUI : MonoBehaviour
         itemUI.SetActive(false);
         statusUI.SetActive(false);
         GameOverUI.SetActive(false);
+        GameClearUI.SetActive(false);
     }
 
     void UpdateGameOver()
@@ -174,6 +187,19 @@ public class switchUI : MonoBehaviour
         itemUI.SetActive(false);
         statusUI.SetActive(false);
         GameOverUI.SetActive(true);
+        GameClearUI.SetActive(false);
+    }
+
+    void UpdateGameClear()
+    {
+        diceUI.SetActive(false);
+        selectUI.SetActive(false);
+        attackUI.SetActive(false);
+        guardUI.SetActive(false);
+        itemUI.SetActive(false);
+        statusUI.SetActive(false);
+        GameOverUI.SetActive(true);
+        GameClearUI.SetActive(true);
     }
     public void displayAttack()
     {
@@ -213,15 +239,19 @@ public class switchUI : MonoBehaviour
         StartCoroutine(BlackOut());
     }
 
+    public void displayGameClear()
+    {
+        StartCoroutine(WhiteOut());
+    }
     IEnumerator BlackOut()
     {
         Color CurrentColor = new Color(0, 0, 0, Mathf.Lerp(StartColor_a, EndColor_a, BlackOutTime));
         BlackOutTime += 1.0f * Time.deltaTime;
-        BlackPanel.color = CurrentColor;
-        if (BlackPanel.color.a >= EndColor_a) yield return StartCoroutine(Restart());
+        GameOverPanel.color = CurrentColor;
+        if (GameOverPanel.color.a >= EndColor_a) yield return StartCoroutine(FadeInGameOver());
     }
 
-    IEnumerator Restart()
+    IEnumerator FadeInGameOver()
     {
         Color CurrentColor = new Color(1, 1, 1, Mathf.Lerp(StartColor_a, EndColor_a, FadeInTime));
         FadeInTime += 0.5f * Time.deltaTime;
@@ -232,7 +262,27 @@ public class switchUI : MonoBehaviour
             yield return new WaitForSeconds(2);
             SceneManager.LoadScene("Title");
         }
+    }
 
+    IEnumerator WhiteOut()
+    {
+        Color CurrentColor = new Color(0, 0, 0, Mathf.Lerp(StartColor_a, EndColor_a, BlackOutTime));
+        BlackOutTime += 1.0f * Time.deltaTime;
+        GameClearPanel.color = CurrentColor;
+        if (GameClearPanel.color.a >= EndColor_a) yield return StartCoroutine(FadeInGameClear()); 
+    }
+
+    IEnumerator FadeInGameClear()
+    {
+        Color CurrentColor = new Color(1, 1, 1, Mathf.Lerp(StartColor_a, EndColor_a, FadeInTime));
+        FadeInTime += 0.5f * Time.deltaTime;
+        GameClearText.color = CurrentColor;
+        yield return null;
+        if (GameClearText.color.a >= EndColor_a)
+        {
+            yield return new WaitForSeconds(2);
+            SceneManager.LoadScene("Title");
+        }
     }
     private void isDead()
     {
