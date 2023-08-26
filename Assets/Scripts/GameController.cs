@@ -15,10 +15,10 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerStatus.HP = 450;
-        playerStatus.diceSituation = 0;
-        enemyStatus.HP = 500;
-        enemyStatus.diceSituation = 0;
+        //playerStatus.HP = 450;
+        //playerStatus.diceSituation = 0;
+        //enemyStatus.HP = 500;
+        //enemyStatus.diceSituation = 0;
         //enemyStatus.gauge = 0;
         skillSelSc = SkillButtons.GetComponent<skillSel>();
         skillSelSc.setInitialValues();
