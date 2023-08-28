@@ -271,4 +271,49 @@ public class dice : MonoBehaviour
         enemyStatus.diceSituation = 0;
         SceneManager.LoadScene("MainGame");
     }
+
+    void SkipDiceRoll() 
+    {
+        if(gameObject.tag == "playerDice" || gameObject.tag == "456Dice") {
+            playerDiceRoll();
+            addMP();
+        } else {
+            enemyDiceRoll();
+            addMP();
+        }
+
+        if(playerStatus.diceList.Count > 9) {
+            displayDice();
+            isCalled = false;
+            if(!isCalled) {
+                StartCoroutine(ChangeScene());
+            }
+        }
+    }
+
+    void playerDiceRoll() //skip用のplayer出目決定関数
+    {
+        switch(playerStatus.diceSituation) 
+        {
+            case 0:
+                diceNum = Random.Range(1,7);
+                break;
+                case 1:
+                diceNum = Random.Range(4,7);
+                break;
+        }
+    }
+
+    void enemyDiceRoll() //skip用のenemy出目決定関数
+    {
+        switch(enemyStatus.diceSituation) 
+        {
+            case 0:
+                diceNum = Random.Range(1,7);
+                break;
+                case 1:
+                diceNum = Random.Range(1,4);
+                break;
+        }
+    }
 }
