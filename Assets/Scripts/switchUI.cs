@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+using UnityEngine.SceneManagement;
 
 public class switchUI : MonoBehaviour
 {
     solve solveSc;
-
+    public GameObject Button_SE;
+    SE SESc;
     public PlayerStatus playerStatus;
     public EnemyStatus enemyStatus;
     public enum STATE
@@ -31,12 +35,37 @@ public class switchUI : MonoBehaviour
     [SerializeField]
     GameObject itemUI;
     [SerializeField]
-    GameObject statuUI;
+    GameObject statusUI;
+    [SerializeField]
+    GameObject GameOverUI;
+    [SerializeField]
+    TextMeshProUGUI GameOverText;
+    [SerializeField]
+    Image GameOverPanel;
+    [SerializeField]
+    GameObject GameClearUI;
+    [SerializeField]
+    Image GameClearPanel;
+    [SerializeField]
+    TextMeshProUGUI GameClearText;
+    float BlackOutTime = 0;
+    float FadeInTime = 0;
+    float StartColor_a = 0f;
+    float EndColor_a = 1.0f;
     // Start is called before the first frame update
     void Start()
     {
-        state = STATE.DICE;
         solveSc = FindObjectOfType<solve>();
+
+        if (playerStatus.MP > 0)
+        {
+            state = STATE.SELECT;
+        }
+        else 
+        {
+            state = STATE.DICE;
+        }
+        SESc = Button_SE.GetComponent<SE>();
     }
 
     // Update is called once per frame
@@ -65,10 +94,17 @@ public class switchUI : MonoBehaviour
                     solveSc.solveTurn();
                     isDead();
                     break;
-                //case gameClear
-                //case gameOver
+                case STATE.GAMEOVER:
+                    UpdateGameOver();
+                    displayGameOver();
+                    break;
+                case STATE.GAMECLEAR:
+                    UpdateGameClear();
+                    displayGameClear();
+                    break;
             }
         }
+
 
     }
 
@@ -79,7 +115,8 @@ public class switchUI : MonoBehaviour
         attackUI.SetActive(false);
         guardUI.SetActive(false);
         itemUI.SetActive(false);
-        statuUI.SetActive(true);
+        statusUI.SetActive(true);
+        GameOverUI.SetActive(false);
     }
 
     void UpdateSelect()
@@ -89,7 +126,9 @@ public class switchUI : MonoBehaviour
         attackUI.SetActive(false);
         guardUI.SetActive(false);
         itemUI.SetActive(false);
-        statuUI.SetActive(true);
+        statusUI.SetActive(true);
+        GameOverUI.SetActive(false);
+        GameClearUI.SetActive(false);
     }
 
     void UpdateAttack()
@@ -99,7 +138,9 @@ public class switchUI : MonoBehaviour
         attackUI.SetActive(true);
         guardUI.SetActive(false);
         itemUI.SetActive(false);
-        statuUI.SetActive(true);
+        statusUI.SetActive(true);
+        GameOverUI.SetActive(false);
+        GameClearUI.SetActive(false);
     }
 
     void UpdateGuard()
@@ -109,7 +150,9 @@ public class switchUI : MonoBehaviour
         attackUI.SetActive(false);
         guardUI.SetActive(true);
         itemUI.SetActive(false);
-        statuUI.SetActive(true);
+        statusUI.SetActive(true);
+        GameOverUI.SetActive(false);
+        GameClearUI.SetActive(false);
     }
     void UpdateItem()
     {
@@ -118,7 +161,9 @@ public class switchUI : MonoBehaviour
         attackUI.SetActive(false);
         guardUI.SetActive(false);
         itemUI.SetActive(true);
-        statuUI.SetActive(true);
+        statusUI.SetActive(true);
+        GameOverUI.SetActive(false);
+        GameClearUI.SetActive(false);
     }
 
     void UpdateDecision()
@@ -128,24 +173,53 @@ public class switchUI : MonoBehaviour
         attackUI.SetActive(false);
         guardUI.SetActive(false);
         itemUI.SetActive(false);
-        statuUI.SetActive(false);
+        statusUI.SetActive(false);
+        GameOverUI.SetActive(false);
+        GameClearUI.SetActive(false);
     }
 
+    void UpdateGameOver()
+    {
+        diceUI.SetActive(false);
+        selectUI.SetActive(false);
+        attackUI.SetActive(false);
+        guardUI.SetActive(false);
+        itemUI.SetActive(false);
+        statusUI.SetActive(false);
+        GameOverUI.SetActive(true);
+        GameClearUI.SetActive(false);
+    }
+
+    void UpdateGameClear()
+    {
+        diceUI.SetActive(false);
+        selectUI.SetActive(false);
+        attackUI.SetActive(false);
+        guardUI.SetActive(false);
+        itemUI.SetActive(false);
+        statusUI.SetActive(false);
+        GameOverUI.SetActive(true);
+        GameClearUI.SetActive(true);
+    }
     public void displayAttack()
     {
+        SESc.PlayButtonSE();
         state = STATE.ATTACK;
     }
     public void displayGuard()
     {
+        SESc.PlayButtonSE();
         state = STATE.GUARD;
     }
     public void displayItem()
     {
+        SESc.PlayButtonSE();
         state = STATE.ITEM;
     }
 
     public void displaySelect()
     {
+        SESc.PlayButtonSE();
         state = STATE.SELECT;
     }
 
@@ -156,9 +230,60 @@ public class switchUI : MonoBehaviour
 
     public void displayDice()
     {
+        SESc.PlayButtonSE();
         state = STATE.DICE;
     }
 
+    public void displayGameOver()
+    {
+        StartCoroutine(BlackOut());
+    }
+
+    public void displayGameClear()
+    {
+        StartCoroutine(WhiteOut());
+    }
+    IEnumerator BlackOut()
+    {
+        Color CurrentColor = new Color(0, 0, 0, Mathf.Lerp(StartColor_a, EndColor_a, BlackOutTime));
+        BlackOutTime += 1.0f * Time.deltaTime;
+        GameOverPanel.color = CurrentColor;
+        if (GameOverPanel.color.a >= EndColor_a) yield return StartCoroutine(FadeInGameOver());
+    }
+
+    IEnumerator FadeInGameOver()
+    {
+        Color CurrentColor = new Color(1, 1, 1, Mathf.Lerp(StartColor_a, EndColor_a, FadeInTime));
+        FadeInTime += 0.5f * Time.deltaTime;
+        GameOverText.color = CurrentColor;
+        yield return null;
+        if(GameOverText.color.a >= EndColor_a)
+        {
+            yield return new WaitForSeconds(2);
+            SceneManager.LoadScene("Title");
+        }
+    }
+
+    IEnumerator WhiteOut()
+    {
+        Color CurrentColor = new Color(0, 0, 0, Mathf.Lerp(StartColor_a, EndColor_a, BlackOutTime));
+        BlackOutTime += 1.0f * Time.deltaTime;
+        GameClearPanel.color = CurrentColor;
+        if (GameClearPanel.color.a >= EndColor_a) yield return StartCoroutine(FadeInGameClear()); 
+    }
+
+    IEnumerator FadeInGameClear()
+    {
+        Color CurrentColor = new Color(1, 1, 1, Mathf.Lerp(StartColor_a, EndColor_a, FadeInTime));
+        FadeInTime += 0.5f * Time.deltaTime;
+        GameClearText.color = CurrentColor;
+        yield return null;
+        if (GameClearText.color.a >= EndColor_a)
+        {
+            yield return new WaitForSeconds(2);
+            SceneManager.LoadScene("Title");
+        }
+    }
     private void isDead()
     {
         if (playerStatus.HP <= 0) playerStatus.isDead = true;

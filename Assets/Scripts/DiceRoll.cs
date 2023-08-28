@@ -31,12 +31,10 @@ public class DiceRoll : MonoBehaviour
                 if(enemyStatus.diceSituation == 0) {
                     NormalDice();
                     enemyNormalDice();
-                    switchUISc.state = switchUI.STATE.SELECT;
                     
                 } else if(enemyStatus.diceSituation == 1) {
                     NormalDice();
                     enemyLowDice();
-                    switchUISc.state = switchUI.STATE.SELECT;
                 }
 
                 break;
@@ -44,12 +42,10 @@ public class DiceRoll : MonoBehaviour
                 if(enemyStatus.diceSituation == 0) {
                     highDice();
                     enemyNormalDice();
-                    switchUISc.state = switchUI.STATE.SELECT;
                 }
                 if(enemyStatus.diceSituation == 1) {
                     highDice();
                     enemyLowDice();
-                    switchUISc.state = switchUI.STATE.SELECT;
                 }
                 break;
 

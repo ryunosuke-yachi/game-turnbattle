@@ -7,6 +7,15 @@ public class skillSel : MonoBehaviour, IPointerClickHandler
 {
     skillCon skillConSc;
     skillUI skillUISc;
+    public GameObject Button_SE;
+    SE SESc;
+    public GameObject PlayerMP;
+    PlayerStatusUIManager PlayerStatusUIManagerSc;
+
+    //SkillInfoUI SkillInfoUI;
+    public GameObject SkillInfo;
+
+    public GameObject GameController;
 
     //スキル情報を持っているScriptableObject
     [SerializeField]
@@ -23,8 +32,10 @@ public class skillSel : MonoBehaviour, IPointerClickHandler
     {
         skillConSc = FindObjectOfType<skillCon>();
         skillUISc = FindObjectOfType<skillUI>();
-
-        setInitialValues();
+        SESc = Button_SE.GetComponent<SE>();
+        PlayerStatusUIManagerSc = PlayerMP.GetComponent<PlayerStatusUIManager>();
+        //SkillInfo = GetComponent<GameObject>();
+        //setInitialValues();
 
         for(int i = 0; i < 8; i++)
         {
@@ -70,6 +81,7 @@ public class skillSel : MonoBehaviour, IPointerClickHandler
                 skillConSc.AddToList(id);
                 PlayerStatus.MP -= playerSkillData.skillInfoList[id].MP;
                 Debug.Log(PlayerStatus.MP);
+                skillUISc.UsedUI(n);
             }
             else
             {
@@ -82,8 +94,9 @@ public class skillSel : MonoBehaviour, IPointerClickHandler
             int id = playerSkillData.skillButtons[n].skillID;
             skillConSc.RemoveFromList(id);
             PlayerStatus.MP += playerSkillData.skillInfoList[id].MP;
+            skillUISc.UsedUI(n);
         }
-        skillUISc.UsedUI(n);
+        //skillUISc.UsedUI(n);
     }
 
     public void OnPointerClick(PointerEventData eventData) //クリック判別と対応する処理
@@ -98,27 +111,43 @@ public class skillSel : MonoBehaviour, IPointerClickHandler
             {
                 case "Atk_0":
                     SelButton_n(0);
+                    SESc.PlayButtonSE();
+                    PlayerStatusUIManagerSc.CalculateMPRatio();
                     break;
                 case "Atk_1":
                     SelButton_n(1);
+                    SESc.PlayButtonSE();
+                    PlayerStatusUIManagerSc.CalculateMPRatio();
                     break;
                 case "Atk_2":
                     SelButton_n(2);
+                    SESc.PlayButtonSE();
+                    PlayerStatusUIManagerSc.CalculateMPRatio();
                     break;
                 case "Atk_3":
                     SelButton_n(3);
+                    SESc.PlayButtonSE();
+                    PlayerStatusUIManagerSc.CalculateMPRatio();
                     break;
                 case "Atk_4":
                     SelButton_n(4);
+                    SESc.PlayButtonSE();
+                    PlayerStatusUIManagerSc.CalculateMPRatio();
                     break;
                 case "Def_5":
                     SelButton_5();
+                    SESc.PlayButtonSE();
+                    PlayerStatusUIManagerSc.CalculateMPRatio();
                     break;
                 case "Item_6":
                     SelButton_6();
+                    SESc.PlayButtonSE();
+                    PlayerStatusUIManagerSc.CalculateMPRatio();
                     break;
                 case "Item_7":
                     SelButton_7();
+                    SESc.PlayButtonSE();
+                    PlayerStatusUIManagerSc.CalculateMPRatio();
                     break;
             }
         }
@@ -127,31 +156,41 @@ public class skillSel : MonoBehaviour, IPointerClickHandler
             clickedGameObject = GameObject.Find(name);
             Debug.Log(clickedGameObject.name);
             string str = clickedGameObject.name;
+            SkillInfoUI SkillInfoUISc = GameController.GetComponent<SkillInfoUI>();
             switch (str)
             {
                 case "Atk_0":
-                        
+                    //SkillInfoUI SkillInfoUISc = GameController.GetComponent<SkillInfoUI>();
+                    SkillInfo.SetActive(true);
+                    SkillInfoUISc.showSkillInfoUI(0);
                     break;
                 case "Atk_1":
-                        
+                    SkillInfo.SetActive(true);
+                    SkillInfoUISc.showSkillInfoUI(1);
                     break;
                 case "Atk_2":
-                        
+                    SkillInfo.SetActive(true);
+                    SkillInfoUISc.showSkillInfoUI(2);
                     break;
                 case "Atk_3":
-                        
+                    SkillInfo.SetActive(true);
+                    SkillInfoUISc.showSkillInfoUI(3);
                     break;
                 case "Atk_4":
-                        
+                    SkillInfo.SetActive(true);
+                    SkillInfoUISc.showSkillInfoUI(4);
                     break;
                 case "Def_5":
-
+                    SkillInfo.SetActive(true);
+                    SkillInfoUISc.showSkillInfoUI(5);
                     break;
                 case "Item_6":
-
+                    SkillInfo.SetActive(true);
+                    SkillInfoUISc.showSkillInfoUI(6);
                     break;
                 case "Item_7":
-
+                    SkillInfo.SetActive(true);
+                    SkillInfoUISc.showSkillInfoUI(7);
                     break;
             }
         }
@@ -183,7 +222,8 @@ public class skillSel : MonoBehaviour, IPointerClickHandler
                 PlayerStatus.MP += playerSkillData.skillInfoList[5].MP;
                 skillUISc.UsedUI(5);
             }
-        }else
+        }
+        else
         {
             Debug.Log("まだ使用できません");
         }

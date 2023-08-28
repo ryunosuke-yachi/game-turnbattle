@@ -210,6 +210,7 @@ public class dice : MonoBehaviour
         if(gameObject.tag == "playerDice" || gameObject.tag == "456Dice")
         {
             playerStatus.MP += diceNum;
+            playerStatus.MaxMP += diceNum; 
             LimitTime = 3.0f;
             playerStatus.diceList.Add(diceNum);
             Debug.Log("playerèoñ⁄:" + diceNum);
@@ -228,35 +229,35 @@ public class dice : MonoBehaviour
 
         transform.position = startPos;
 
-            switch (diceNum)
-            {
-                case 1:
-                    transform.rotation = Quaternion.Euler(180, 90, 0);
-                    break;
-                case 2:
-                    transform.rotation = Quaternion.Euler(0, 90, -90);
-                    break;
-                case 3:
-                    transform.rotation = Quaternion.Euler(-90, 90, 0);
+        switch (diceNum)
+        {
+            case 1:
+                transform.rotation = Quaternion.Euler(180, 90, 0);
+                break;
+            case 2:
+                transform.rotation = Quaternion.Euler(0, 90, -90);
+                break;
+            case 3:
+                transform.rotation = Quaternion.Euler(-90, 90, 0);
                 if (enemyStatus.diceSituation == 1)
                 {
-                    transform.rotation = Quaternion.Euler(0,90,0);
+                    transform.rotation = Quaternion.Euler(0, 90, 0);
                 }
                 break;
-                case 4:
-                    transform.rotation = Quaternion.Euler(90, 90, 0);
-                if(playerStatus.diceSituation == 1)
+            case 4:
+                transform.rotation = Quaternion.Euler(90, 90, 0);
+                if (playerStatus.diceSituation == 1)
                 {
-                    transform.rotation = Quaternion.Euler(180,90,0);
+                    transform.rotation = Quaternion.Euler(180, 90, 0);
                 }
-                    break;
-                case 5:
-                    transform.rotation = Quaternion.Euler(0, 90, 90);
-                    break;
-                case 6:
-                    transform.rotation = Quaternion.Euler(0, 90, 0);
-                    break;
-            }
+                break;
+            case 5:
+                transform.rotation = Quaternion.Euler(0, 90, 90);
+                break;
+            case 6:
+                transform.rotation = Quaternion.Euler(0, 90, 0);
+                break;
+        }
 
 
 
@@ -266,6 +267,8 @@ public class dice : MonoBehaviour
     IEnumerator ChangeScene()
     {
         yield return new WaitForSeconds(1.5f);
+        playerStatus.diceSituation = 0;
+        enemyStatus.diceSituation = 0;
         SceneManager.LoadScene("MainGame");
     }
 }

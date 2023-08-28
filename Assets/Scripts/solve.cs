@@ -17,6 +17,10 @@ public class solve : MonoBehaviour
     playerSkill playerSkillSc;
     enemySkill enemySkillSc;
     switchUI switchUISc;
+    ChangeScene1 ChangeScene1Sc;
+
+    public GameObject PlayerMP;
+    PlayerStatusUIManager PlayerStatusUIManagerSc;
 
     public int turnCount;
     public GameObject skillObject;
@@ -28,12 +32,12 @@ public class solve : MonoBehaviour
         enemySkillSc = GetComponent<enemySkill>();
         switchUISc = GetComponent<switchUI>();
         playerSkillSc = GetComponent<playerSkill>();
-        Debug.Log("test1");
+        ChangeScene1Sc = GetComponent<ChangeScene1>();
+        PlayerStatusUIManagerSc = PlayerMP.GetComponent<PlayerStatusUIManager>();
+
         Debug.Log("skillconut:" + skillConSc.buttonList.Count);
         for(int i = 0; i < skillConSc.buttonList.Count; i++) //Player‚Ìs“®ˆ—
         {
-            Debug.Log("test");
-
             switch (skillConSc.buttonList[i])
             {
                 case 0:
@@ -65,9 +69,10 @@ public class solve : MonoBehaviour
         enemySkillSc.useEnemySkill(); //“G‚Ìs“®ˆ—
 
         playerStatus.MP = 0;
+        playerStatus.MaxMP = 0;
         enemyStatus.MP = 0;
-        playerStatus.diceSituation = 0;
-        enemyStatus.diceSituation = 0;
+        //playerStatus.diceSituation = 0;
+        //enemyStatus.diceSituation = 0;
         skillConSc.buttonList.Clear();
 
         for(int i = 5; i < 8; i++)
@@ -81,8 +86,8 @@ public class solve : MonoBehaviour
         Debug.Log(playerStatus.HP);
         Debug.Log(enemyStatus.HP);
 
-        skillSelSc.setInitialValues();
-        skillSelSc.usedFunction = false;
+        //skillSelSc.setInitialValues();
         switchUISc.displayDice();
+        PlayerStatusUIManagerSc.CalculateMPRatio();
     }
 }
