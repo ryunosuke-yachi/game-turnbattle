@@ -27,9 +27,11 @@ public class Initialize : MonoBehaviour
         playerStatus.MP = 0;
         playerStatus.MaxMP = 0;
         playerStatus.diceSituation = 0;
+        playerStatus.isDead = false;
         enemyStatus.HP = 500;
         enemyStatus.MP = 0;
         enemyStatus.diceSituation = 0;
         enemyStatus.gauge = 0;
+        enemyStatus.isDead = false;
     }
 }
