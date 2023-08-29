@@ -23,6 +23,7 @@ public class dice : MonoBehaviour
     [SerializeField] GameObject high;//プレイヤー456ダイス
     [SerializeField] GameObject low;//敵123ダイス
     [SerializeField] GameObject enemyNormal;//敵の通常ダイス
+    [SerializeField] private Camera camera;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +38,7 @@ public class dice : MonoBehaviour
         isCalled = false;
         LimitTime = 3.0f;
         playerStatus.diceList = new List<int>();
+        camera.orthographicSize = 14.0f;
     }
 
     // Update is called once per frame
@@ -80,9 +82,9 @@ public class dice : MonoBehaviour
             diceNum = getNumber(gameObject.transform);
             addMP();
         }
-        if (playerStatus.diceList.Count == 10)
+        if (playerStatus.diceList.Count > 9)
         {
-            rb.constraints = RigidbodyConstraints.FreezeAll;
+            camera.orthographicSize = 6.0f;
             displayDice();
             isCalled = false;
             if(!isCalled)
