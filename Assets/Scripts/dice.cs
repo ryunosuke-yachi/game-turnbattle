@@ -80,8 +80,9 @@ public class dice : MonoBehaviour
             diceNum = getNumber(gameObject.transform);
             addMP();
         }
-        if (playerStatus.diceList.Count > 9)
+        if (playerStatus.diceList.Count == 10)
         {
+            rb.constraints = RigidbodyConstraints.FreezeAll;
             displayDice();
             isCalled = false;
             if(!isCalled)
@@ -261,7 +262,7 @@ public class dice : MonoBehaviour
 
 
 
-        rb.constraints = RigidbodyConstraints.FreezeAll;
+
     }
 
     IEnumerator ChangeScene()
