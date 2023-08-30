@@ -26,7 +26,6 @@ public class dice : MonoBehaviour
     [SerializeField] GameObject low;//敵123ダイス
     [SerializeField] GameObject enemyNormal;//敵の通常ダイス
     [SerializeField] private Camera camera_;//カメラオブジェクト
-    [SerializeField] private GameObject targetObject;
     // Start is called before the first frame update
     void Start()
     {
