@@ -77,7 +77,7 @@ public class solve : MonoBehaviour
 
         for(int i = 5; i < 8; i++)
         {
-            if(playerSkillData.skillInfoList[i].turnLimit != 0)
+            if(playerSkillData.skillInfoList[i].turnLimit > 0)
             {
                 playerSkillData.skillInfoList[i].turnLimit -= 1;
             }

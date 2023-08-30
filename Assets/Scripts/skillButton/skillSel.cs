@@ -40,7 +40,7 @@ public class skillSel : MonoBehaviour, IPointerClickHandler
         for(int i = 0; i < 8; i++)
         {
             playerSkillData.skillInfoList[i].isSelect = false;
-            playerSkillData.skillInfoList[i].turnLimit = 0;
+            //playerSkillData.skillInfoList[i].turnLimit = 0;
         }
     }
 
@@ -198,34 +198,27 @@ public class skillSel : MonoBehaviour, IPointerClickHandler
 
     public void SelButton_5() //防御スキルの選択処理
     {
-        if(playerSkillData.skillInfoList[5].turnLimit  == 0)
+        if (playerSkillData.skillInfoList[5].isSelect == false)
         {
-            if (playerSkillData.skillInfoList[5].isSelect == false)
+            if (PlayerStatus.MP >= playerSkillData.skillInfoList[5].MP)
             {
-                if (PlayerStatus.MP >= playerSkillData.skillInfoList[5].MP)
-                {
-                    playerSkillData.skillInfoList[5].isSelect = true;
-                    Debug.Log(playerSkillData.skillInfoList[5].Name);
-                    skillConSc.AddToList(5);
-                    PlayerStatus.MP -= playerSkillData.skillInfoList[5].MP;
-                    skillUISc.UsedUI(5);
-                }
-                else
-                {
-                    Debug.Log("MPが足りません");
-                }
-            }
-            else if (playerSkillData.skillInfoList[5].isSelect == true)
-            {
-                playerSkillData.skillInfoList[5].isSelect = false;
-                skillConSc.RemoveFromList(5);
-                PlayerStatus.MP += playerSkillData.skillInfoList[5].MP;
+                playerSkillData.skillInfoList[5].isSelect = true;
+                Debug.Log(playerSkillData.skillInfoList[5].Name);
+                skillConSc.AddToList(5);
+                PlayerStatus.MP -= playerSkillData.skillInfoList[5].MP;
                 skillUISc.UsedUI(5);
             }
+            else
+            {
+                Debug.Log("MPが足りません");
+            }
         }
-        else
+        else if (playerSkillData.skillInfoList[5].isSelect == true)
         {
-            Debug.Log("まだ使用できません");
+            playerSkillData.skillInfoList[5].isSelect = false;
+            skillConSc.RemoveFromList(5);
+            PlayerStatus.MP += playerSkillData.skillInfoList[5].MP;
+            skillUISc.UsedUI(5);
         }
     } 
 

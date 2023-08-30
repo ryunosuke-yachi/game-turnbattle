@@ -25,6 +25,11 @@ public class skillUI : MonoBehaviour
                 int Num = playerSkillData.skillButtons[i].skillID;
                 buttonImage.sprite = newImages[Num];
             }
+            else
+            {
+                int Num = playerSkillData.skillButtons[i].skillID;
+                buttonImage.sprite = newImages[Num + 8];
+            }
         }
     }
 
@@ -32,17 +37,32 @@ public class skillUI : MonoBehaviour
     {
         Button button = buttons[n];
         Image buttonImage = button.GetComponent<Image>();
-
-        if(playerSkillData.skillInfoList[n].isSelect == true)
-        {
-            int Num = playerSkillData.skillButtons[n].skillID;
-            buttonImage.sprite = newImages[Num + 8];
+        if (n < 5){
+            if (playerSkillData.skillButtons[n].isSelect == true)
+            {
+                int Num = playerSkillData.skillButtons[n].skillID;
+                buttonImage.sprite = newImages[Num + 8];
+            }
+            else if (playerSkillData.skillButtons[n].isSelect == false)
+            {
+                int Num = playerSkillData.skillButtons[n].skillID;
+                buttonImage.sprite = newImages[Num];
+            }
         }
-        else if(playerSkillData.skillInfoList[n].isSelect == false)
+        else
         {
-            int Num = playerSkillData.skillButtons[n].skillID;
-            buttonImage.sprite = newImages[Num];
+            if (playerSkillData.skillInfoList[n].isSelect == true)
+            {
+                int Num = playerSkillData.skillButtons[n].skillID;
+                buttonImage.sprite = newImages[Num + 8];
+            }
+            else if (playerSkillData.skillInfoList[n].isSelect == false)
+            {
+                int Num = playerSkillData.skillButtons[n].skillID;
+                buttonImage.sprite = newImages[Num];
+            }
         }
+        
         return 0;
     }
 }

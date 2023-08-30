@@ -55,7 +55,7 @@ MonoBehaviour:
     isUsed: 0
   - Name: "\u9632\u5FA1\u306E\u69CB\u3048"
     MP: 10
-    Effect: "\u6B21\u306B\u53D7\u3051\u30C0\u30E1\u30FC\u30B8\u309250\uFF05\u6E1B\u3089\u3059"
+    Effect: "\u6B21\u306B\u53D7\u3051\u308B\u30C0\u30E1\u30FC\u30B8\u309250\uFF05\u6E1B\u3089\u3059"
     skillGroup: 1
     turnLimit: 0
     isSelect: 0
