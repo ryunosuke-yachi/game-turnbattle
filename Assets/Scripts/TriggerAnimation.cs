@@ -7,6 +7,8 @@ public class TriggerAnimation : MonoBehaviour
     [SerializeField] Animator mainCharaAnim;//メインキャラのアニメーター
     [SerializeField] Animator cameraAnim;//カメラのアニメーター
     [SerializeField] Animator enemyAnim;//敵のアニメーター
+
+    private bool animationPlaying = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,55 +21,41 @@ public class TriggerAnimation : MonoBehaviour
 
     }
 
-    IEnumerator WaitForAnimation()//animetion終了まで次の処理を待つコルーチン
+    IEnumerator WaitForAnimation(string animationName)//animetion終了まで次の処理を待つコルーチン
     {
-        while(mainCharaAnim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
+
+        if(animationPlaying)
         {
-            yield return null;
+            mainCharaAnim.SetTrigger(animationName);
+
+            while (!mainCharaAnim.GetCurrentAnimatorStateInfo(0).IsName(animationName))
+            {
+                Debug.Log("test");
+                yield return null;
+            }
+
+            while (mainCharaAnim.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.8f)
+            {
+                Debug.Log("test2");
+                yield return null;
+            }
+
+            animationPlaying = false;
+            Debug.Log("animation Finished");
         }
 
-        StopCoroutine(WaitForAnimation());
-        Debug.Log("animation Finished");
     }
-    public void TriggerSingleAttack()//playerのSingleAttackアニメーション再生
+    public void TriggerPlayerAnimation (string animationName)//playerのSingleAttackアニメーション再生
     {
-        mainCharaAnim.SetTrigger("singleAttack");
-        StartCoroutine(WaitForAnimation());
+        StartCoroutine(WaitForAnimation(animationName));
+        animationPlaying = true;
+
     }
 
-    public void TriggerDoubleAttack()//playerのdoubleAttackアニメーション再生
+    public bool IsAnimationPlaying()
     {
-        mainCharaAnim.SetTrigger("doubleAttack");
-        StartCoroutine(WaitForAnimation());
-    }
-
-    public void TriggerThirdAttack()//playerの3番目の攻撃アニメーション再生
-    {
-        mainCharaAnim.SetTrigger("thirdAttack");
-        StartCoroutine(WaitForAnimation());
-    }
-
-    public void TriggerFourthAttack()//playerの4番目の攻撃アニメーション再生
-    {
-        mainCharaAnim.SetTrigger("fourthAttack");
-        StartCoroutine(WaitForAnimation());
-    }
-
-    public void TriggerFifthAttack()//playerの5番目の攻撃アニメーション再生
-    {
-        mainCharaAnim.SetTrigger("fifthAttack");
-        StartCoroutine(WaitForAnimation());
-    }
-
-    public void TriggerGuard()//playerのガードアニメーション再生
-    {
-        mainCharaAnim.SetTrigger("guard");
-        StartCoroutine(WaitForAnimation());
-    }
-
-    public void TriggerDiceSkill()//pleyerのダイススキルアニメーション再生
-    {
-        mainCharaAnim.SetTrigger("diceSkill");
-        StartCoroutine(WaitForAnimation());
+        {
+            return animationPlaying;
+        } 
     }
 }

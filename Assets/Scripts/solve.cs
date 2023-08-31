@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -31,7 +32,7 @@ public class solve : MonoBehaviour
     {
         TriggerAnimationSc = animator.GetComponent<TriggerAnimation>();
     }
-    public void solveTurn()
+    public IEnumerator solveTurn()
     {
         skillSelSc = FindObjectOfType<skillSel>();
         skillConSc = skillObject.GetComponent<skillCon>();
@@ -44,41 +45,16 @@ public class solve : MonoBehaviour
         Debug.Log("skillconut:" + skillConSc.buttonList.Count);
         for(int i = 0; i < skillConSc.buttonList.Count; i++) //Player‚Ìs“®ˆ—
         {
-            switch (skillConSc.buttonList[i])
+            string animationName = GetAnimationNameForSkill(skillConSc.buttonList[i]);
+
+            TriggerAnimationSc.TriggerPlayerAnimation(animationName);
+
+            while (TriggerAnimationSc.IsAnimationPlaying())
             {
-                case 0:
-                    playerSkillSc.firstAttack();
-                    TriggerAnimationSc.TriggerSingleAttack();
-                    break;
-                case 1:
-                    playerSkillSc.secondAttack();
-                    TriggerAnimationSc.TriggerDoubleAttack();
-                    break;
-                case 2:
-                    playerSkillSc.thirdAttack();
-                    TriggerAnimationSc.TriggerThirdAttack();
-                    break;
-                case 3:
-                    playerSkillSc.fourthAttack();
-                    TriggerAnimationSc.TriggerFourthAttack();
-                    break;
-                case 4:
-                    playerSkillSc.fifthAttack();
-                    TriggerAnimationSc.TriggerFifthAttack();
-                    break;
-                case 5:
-                    playerSkillSc.firstDefense();
-                    TriggerAnimationSc.TriggerGuard();
-                    break;
-                case 6:
-                    playerSkillSc.firstItem();
-                    TriggerAnimationSc.TriggerDiceSkill();
-                    break;
-                case 7:
-                    playerSkillSc.secondItem();
-                    TriggerAnimationSc.TriggerDiceSkill();
-                    break;
+                yield return null;
             }
+
+            PerformSkill(skillConSc.buttonList[i]);
         }
         enemySkillSc.useEnemySkill(); //“G‚Ìs“®ˆ—
 
@@ -103,5 +79,61 @@ public class solve : MonoBehaviour
         //skillSelSc.setInitialValues();
         switchUISc.displayDice();
         PlayerStatusUIManagerSc.CalculateMPRatio();
+    }
+
+    void PerformSkill(int skillIndex)
+    {
+        switch(skillIndex)
+        {
+            case 0:
+                playerSkillSc.firstAttack();
+                break;
+            case 1:
+                playerSkillSc.secondAttack();
+                break;
+            case 2:
+                playerSkillSc.thirdAttack();
+                break;
+            case 3:
+                playerSkillSc.fourthAttack();
+                break;
+            case 4:
+                playerSkillSc.fifthAttack();
+                break;
+            case 5:
+                playerSkillSc.firstDefense();
+                break;
+            case 6:
+                playerSkillSc.firstItem();
+                break;
+            case 7:
+                playerSkillSc.secondItem();
+                break;
+        }
+    }
+
+    string GetAnimationNameForSkill(int skillIndex)
+    {
+        switch(skillIndex)
+        {
+            case 0:
+                return "singleAttack";
+            case 1:
+                return "doubleAttack";
+            case 2:
+                return "thirdAttack";
+            case 3:
+                return "fourthAttack";
+            case 4:
+                return "fifthAttack";
+            case 5:
+                return "guard";
+            case 6:
+                return "diceSkill";
+            case 7:
+                return "diceSkill";
+            default:
+                return "";
+        }
     }
 }
