@@ -11,7 +11,9 @@ public class solve : MonoBehaviour
     PlayerStatus playerStatus;
     [SerializeField]
     EnemyStatus enemyStatus;
-
+    [SerializeField]
+    GameObject animator;
+    TriggerAnimation TriggerAnimationSc;
     skillCon skillConSc;
     skillSel skillSelSc;
     playerSkill playerSkillSc;
@@ -25,6 +27,10 @@ public class solve : MonoBehaviour
     public int turnCount;
     public GameObject skillObject;
 
+    private void Start()
+    {
+        TriggerAnimationSc = animator.GetComponent<TriggerAnimation>();
+    }
     public void solveTurn()
     {
         skillSelSc = FindObjectOfType<skillSel>();
@@ -42,27 +48,35 @@ public class solve : MonoBehaviour
             {
                 case 0:
                     playerSkillSc.firstAttack();
+                    TriggerAnimationSc.TriggerSingleAttack();
                     break;
                 case 1:
                     playerSkillSc.secondAttack();
+                    TriggerAnimationSc.TriggerDoubleAttack();
                     break;
                 case 2:
                     playerSkillSc.thirdAttack();
+                    TriggerAnimationSc.TriggerThirdAttack();
                     break;
                 case 3:
                     playerSkillSc.fourthAttack();
+                    TriggerAnimationSc.TriggerFourthAttack();
                     break;
                 case 4:
                     playerSkillSc.fifthAttack();
+                    TriggerAnimationSc.TriggerFifthAttack();
                     break;
                 case 5:
                     playerSkillSc.firstDefense();
+                    TriggerAnimationSc.TriggerGuard();
                     break;
                 case 6:
                     playerSkillSc.firstItem();
+                    TriggerAnimationSc.TriggerDiceSkill();
                     break;
                 case 7:
                     playerSkillSc.secondItem();
+                    TriggerAnimationSc.TriggerDiceSkill();
                     break;
             }
         }

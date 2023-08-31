@@ -67,6 +67,10 @@ public class dice : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(transform.position.y < -14.0f)
+        {
+            rb.Sleep();
+        }
 
         LimitTime -= Time.deltaTime;
         if (LimitTime > 0)
