@@ -75,7 +75,7 @@ public class solve : MonoBehaviour
         //enemyStatus.diceSituation = 0;
         skillConSc.buttonList.Clear();
 
-        for(int i = 5; i < 8; i++)
+        for(int i = 6; i < 8; i++)
         {
             if(playerSkillData.skillInfoList[i].turnLimit > 0)
             {
