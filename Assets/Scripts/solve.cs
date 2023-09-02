@@ -21,7 +21,7 @@ public class solve : MonoBehaviour
     enemySkill enemySkillSc;
     switchUI switchUISc;
     ChangeScene1 ChangeScene1Sc;
-
+    private bool usedCoroutine = false;
     public GameObject PlayerMP;
     PlayerStatusUIManager PlayerStatusUIManagerSc;
 
@@ -32,7 +32,7 @@ public class solve : MonoBehaviour
     {
         TriggerAnimationSc = animator.GetComponent<TriggerAnimation>();
     }
-    public IEnumerator solveTurn()
+    public void solveTurn()
     {
         skillSelSc = FindObjectOfType<skillSel>();
         skillConSc = skillObject.GetComponent<skillCon>();
@@ -43,97 +43,87 @@ public class solve : MonoBehaviour
         PlayerStatusUIManagerSc = PlayerMP.GetComponent<PlayerStatusUIManager>();
 
         Debug.Log("skillconut:" + skillConSc.buttonList.Count);
-        for(int i = 0; i < skillConSc.buttonList.Count; i++) //Player‚Ìs“®ˆ—
-        {
-            string animationName = GetAnimationNameForSkill(skillConSc.buttonList[i]);
+        usedCoroutine = true;
+        StartCoroutine(SkillSolve());
 
-            TriggerAnimationSc.TriggerPlayerAnimation(animationName);
-
-            while (TriggerAnimationSc.IsAnimationPlaying())
-            {
-                yield return null;
-            }
-
-            PerformSkill(skillConSc.buttonList[i]);
-        }
-        enemySkillSc.useEnemySkill(); //“G‚Ìs“®ˆ—
-
-        playerStatus.MP = 0;
-        playerStatus.MaxMP = 0;
-        enemyStatus.MP = 0;
-        //playerStatus.diceSituation = 0;
-        //enemyStatus.diceSituation = 0;
-        skillConSc.buttonList.Clear();
-
-        for(int i = 5; i < 8; i++)
-        {
-            if(playerSkillData.skillInfoList[i].turnLimit != 0)
-            {
-                playerSkillData.skillInfoList[i].turnLimit -= 1;
-            }
-        }
-
-        Debug.Log(playerStatus.HP);
-        Debug.Log(enemyStatus.HP);
 
         //skillSelSc.setInitialValues();
-        switchUISc.displayDice();
-        PlayerStatusUIManagerSc.CalculateMPRatio();
+
     }
 
-    void PerformSkill(int skillIndex)
-    {
-        switch(skillIndex)
-        {
-            case 0:
-                playerSkillSc.firstAttack();
-                break;
-            case 1:
-                playerSkillSc.secondAttack();
-                break;
-            case 2:
-                playerSkillSc.thirdAttack();
-                break;
-            case 3:
-                playerSkillSc.fourthAttack();
-                break;
-            case 4:
-                playerSkillSc.fifthAttack();
-                break;
-            case 5:
-                playerSkillSc.firstDefense();
-                break;
-            case 6:
-                playerSkillSc.firstItem();
-                break;
-            case 7:
-                playerSkillSc.secondItem();
-                break;
-        }
-    }
 
-    string GetAnimationNameForSkill(int skillIndex)
+
+
+    IEnumerator SkillSolve()
     {
-        switch(skillIndex)
-        {
-            case 0:
-                return "singleAttack";
-            case 1:
-                return "doubleAttack";
-            case 2:
-                return "thirdAttack";
-            case 3:
-                return "fourthAttack";
-            case 4:
-                return "fifthAttack";
-            case 5:
-                return "guard";
-            case 6:
-                return "diceSkill";
-            case 7:
-                return "diceSkill";
-            default:
-                return "";
-        }
+
+            for (int i = 0; i < skillConSc.buttonList.Count; i++)
+            {
+                Debug.Log("test3");
+                switch (skillConSc.buttonList[i])
+                {
+                    case 0:
+                        TriggerAnimationSc.TriggerPlayerAnimation("singleAttack");
+                        playerSkillSc.firstAttack();
+                        break;
+                    case 1:
+                        playerSkillSc.secondAttack();
+                        TriggerAnimationSc.TriggerPlayerAnimation("doubleAttack");
+                        break;
+                    case 2:
+                        playerSkillSc.thirdAttack();
+                        TriggerAnimationSc.TriggerPlayerAnimation("thirdAttack");
+                        break;
+                    case 3:
+                        playerSkillSc.fourthAttack();
+                        TriggerAnimationSc.TriggerPlayerAnimation("fourthAttack");
+                        break;
+                    case 4:
+                        playerSkillSc.fifthAttack();
+                        TriggerAnimationSc.TriggerPlayerAnimation("fifthAttack");
+                        break;
+                    case 5:
+                        playerSkillSc.firstDefense();
+                        TriggerAnimationSc.TriggerPlayerAnimation("guard");
+                        break;
+                    case 6:
+                        playerSkillSc.firstItem();
+                        TriggerAnimationSc.TriggerPlayerAnimation("diceSkill");
+                        break;
+                    case 7:
+                        playerSkillSc.secondItem();
+                        TriggerAnimationSc.TriggerPlayerAnimation("diceSkill");
+                        break;
+                }
+                while (TriggerAnimationSc.animationPlaying)
+                {
+                   
+                    yield return null;
+                }
+            }
+            enemySkillSc.useEnemySkill(); //“G‚Ìs“®ˆ—
+
+            playerStatus.MP = 0;
+            playerStatus.MaxMP = 0;
+            enemyStatus.MP = 0;
+            //playerStatus.diceSituation = 0;
+            //enemyStatus.diceSituation = 0;
+            skillConSc.buttonList.Clear();
+
+            for (int skillNum = 5; skillNum < 8; skillNum++)
+            {
+                if (playerSkillData.skillInfoList[skillNum].turnLimit != 0)
+                {
+                    playerSkillData.skillInfoList[skillNum].turnLimit -= 1;
+                }
+            }
+
+            Debug.Log(playerStatus.HP);
+            Debug.Log(enemyStatus.HP);
+            switchUISc.displayDice();
+            PlayerStatusUIManagerSc.CalculateMPRatio();
+            PlayerStatusUIManagerSc.CalculateMPRatio();
+            usedCoroutine = false;
+            yield return null;
     }
 }

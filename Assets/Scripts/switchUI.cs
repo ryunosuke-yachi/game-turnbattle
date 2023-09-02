@@ -91,7 +91,7 @@ public class switchUI : MonoBehaviour
                     break;
                 case STATE.DECISION:
                     UpdateDecision();
-                    StartCoroutine(solveSc.solveTurn());
+                    //solveSc.solveTurn();
                     isDead();
                     break;
                 case STATE.GAMEOVER:
@@ -225,7 +225,7 @@ public class switchUI : MonoBehaviour
 
     public void displayDecision()
     {
-        StartSolveTurn();
+        solveSc.solveTurn();
         state = STATE.DECISION;
     }
 
@@ -300,13 +300,4 @@ public class switchUI : MonoBehaviour
         }
     }
 
-    void StartSolveTurn()
-    {
-        StartCoroutine(WaitAndCallSolveTurn());
-    }
-
-    IEnumerator WaitAndCallSolveTurn()
-    {
-        yield return StartCoroutine(solveSc.solveTurn());
-    }
 }
