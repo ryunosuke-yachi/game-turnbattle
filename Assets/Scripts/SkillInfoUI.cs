@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class SkillInfoUI : MonoBehaviour
+public class SkillInfoUI : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField]
     skillData playerSkillData;
@@ -19,7 +20,6 @@ public class SkillInfoUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         //SkillInfo.SetActive(false);
         //Debug.Log("skillInfo_false");
     }
@@ -44,9 +44,14 @@ public class SkillInfoUI : MonoBehaviour
         }
     }
 
-    public void closeInfoUI()
+    void closeInfoUI()
     {
         SkillButtons.SetActive(true);
         SkillInfo.SetActive(false);
+    }
+
+    public void OnPointerClick(PointerEventData pointerEventData)
+    {
+        closeInfoUI();
     }
 }
