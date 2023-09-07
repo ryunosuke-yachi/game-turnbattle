@@ -23,7 +23,7 @@ MonoBehaviour:
     isUsed: 0
   - Name: "\u30C0\u30D6\u30EB\u30A2\u30BF\u30C3\u30AF"
     MP: 5
-    Effect: "\u6575\u306B10\uFF5E11\u30C0\u30E1\u30FC\u30B8\u306E\u4E8C\u56DE\u653B\u6483"
+    Effect: "\u6575\u306B10\uFF5E11\u30C0\u30E1\u30FC\u30B8\u306E\uFF12\u56DE\u653B\u6483"
     skillGroup: 0
     turnLimit: 0
     isSelect: 0
@@ -65,7 +65,7 @@ MonoBehaviour:
     MP: 6
     Effect: "\u6B21\u306E\u30BF\u30FC\u30F3\u81EA\u5206\u306E\u632F\u308B\u30C0\u30A4\u30B9\u306E\u76EE\u304C4\uFF0C5\uFF0C6\u306B\u306A\u308B\u3000\uFF13\u30BF\u30FC\u30F3\u306E\u30AF\u30FC\u30EB\u30BF\u30A4\u30E0\u304C\u5FC5\u8981"
     skillGroup: 2
-    turnLimit: 2
+    turnLimit: 0
     isSelect: 0
     image: 6
     isUsed: 0
@@ -73,7 +73,7 @@ MonoBehaviour:
     MP: 6
     Effect: "\u6B21\u306E\u30BF\u30FC\u30F3\u6575\u304C\u632F\u308B\u30C0\u30A4\u30B9\u306E\u76EE\u304C1\uFF0C2\uFF0C3\u306B\u306A\u308B\uFF13\u30BF\u30FC\u30F3\u306E\u30AF\u30FC\u30EB\u30BF\u30A4\u30E0\u304C\u5FC5\u8981"
     skillGroup: 2
-    turnLimit: 2
+    turnLimit: 0
     isSelect: 0
     image: 7
     isUsed: 0
