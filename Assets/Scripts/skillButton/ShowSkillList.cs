@@ -11,10 +11,12 @@ public class ShowSkillList : MonoBehaviour
     [SerializeField]
     GameObject button;
 
+    SkillListViewer SkillListViewerSc;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        SkillListViewerSc = FindObjectOfType<SkillListViewer>();
     }
 
     // Update is called once per frame
@@ -27,5 +29,13 @@ public class ShowSkillList : MonoBehaviour
     {
         ListUI.SetActive(true);
         button.SetActive(false);
+
+        SkillListViewerSc.ListViewer();
+    }
+
+    public void CloseListUI()
+    {
+        ListUI.SetActive(false);
+        button.SetActive(true);
     }
 }
