@@ -91,7 +91,7 @@ public class switchUI : MonoBehaviour
                     break;
                 case STATE.DECISION:
                     UpdateDecision();
-                    solveSc.solveTurn();
+                    //solveSc.solveTurn();
                     isDead();
                     break;
                 case STATE.GAMEOVER:
@@ -225,11 +225,13 @@ public class switchUI : MonoBehaviour
 
     public void displayDecision()
     {
+        solveSc.solveTurn();
         state = STATE.DECISION;
     }
 
     public void displayDice()
     {
+
         SESc.PlayButtonSE();
         state = STATE.DICE;
     }
@@ -297,4 +299,5 @@ public class switchUI : MonoBehaviour
             state = STATE.GAMECLEAR;
         }
     }
+
 }

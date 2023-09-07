@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class dice : MonoBehaviour
 {
@@ -19,10 +20,12 @@ public class dice : MonoBehaviour
     bool isCalled; //目を出すスクリプトが呼ばれたか
     float LimitTime;//重力を強める時間
     Vector3 startPos;//振る前の座標
+    bool isSkiped = false;//skipボタンが押されたか
     [SerializeField] GameObject playerNormal;//プレイヤーの通常ダイス
     [SerializeField] GameObject high;//プレイヤー456ダイス
     [SerializeField] GameObject low;//敵123ダイス
     [SerializeField] GameObject enemyNormal;//敵の通常ダイス
+    [SerializeField] private Camera camera_;//カメラオブジェクト
     // Start is called before the first frame update
     void Start()
     {
@@ -36,13 +39,9 @@ public class dice : MonoBehaviour
         rb.AddForce(transform.forward * force, ForceMode.Impulse);
         isCalled = false;
         LimitTime = 3.0f;
+        camera_.orthographicSize = 14.0f;
         playerStatus.diceList = new List<int>();
-    }
-
-    // Update is called once per frame
-    
-    void Update()
-    {
+        enemyStatus.diceList = new List<int>();
         if (playerStatus.diceSituation == 0)
         {
             playerNormal.SetActive(true);
@@ -63,6 +62,15 @@ public class dice : MonoBehaviour
             low.SetActive(true);
             enemyNormal.SetActive(false);
         }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if(transform.position.y < -14.0f)
+        {
+            rb.Sleep();
+        }
 
         LimitTime -= Time.deltaTime;
         if (LimitTime > 0)
@@ -80,8 +88,9 @@ public class dice : MonoBehaviour
             diceNum = getNumber(gameObject.transform);
             addMP();
         }
-        if (playerStatus.diceList.Count > 9)
+        if ((playerStatus.diceList.Count == 5)&&(enemyStatus.diceList.Count == 5))
         {
+            camera_.orthographicSize = 6.0f;
             displayDice();
             isCalled = false;
             if(!isCalled)
@@ -207,6 +216,7 @@ public class dice : MonoBehaviour
 
     void addMP()
     {
+        Debug.Log(gameObject.name + " addMP");
         if(gameObject.tag == "playerDice" || gameObject.tag == "456Dice")
         {
             playerStatus.MP += diceNum;
@@ -219,7 +229,7 @@ public class dice : MonoBehaviour
         {
             enemyStatus.MP += diceNum;
             LimitTime = 3.0f;
-            playerStatus.diceList.Add(diceNum);
+            enemyStatus.diceList.Add(diceNum);
             Debug.Log("enemy出目:" + diceNum);
         }
     }
@@ -261,7 +271,7 @@ public class dice : MonoBehaviour
 
 
 
-        rb.constraints = RigidbodyConstraints.FreezeAll;
+
     }
 
     IEnumerator ChangeScene()
@@ -269,6 +279,66 @@ public class dice : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         playerStatus.diceSituation = 0;
         enemyStatus.diceSituation = 0;
+        playerStatus.diceList.Clear();
         SceneManager.LoadScene("MainGame");
+    }
+
+    public void SkipDiceRoll() 
+    {
+        
+        if(gameObject.tag == "playerDice" || gameObject.tag == "456Dice") {
+            playerDiceRoll();
+            addMP();
+        } else {
+            enemyDiceRoll();
+            addMP();
+        }
+
+        if((playerStatus.diceList.Count == 5) && (enemyStatus.diceList.Count == 5))
+        {
+            displayDice();
+            isCalled = false;
+            if(!isCalled) {
+                StartCoroutine(ChangeScene());
+            }
+        }
+    }
+
+    void playerDiceRoll() //skip用のplayer出目決定関数
+    {
+        switch(playerStatus.diceSituation) 
+        {
+            case 0:
+                diceNum = Random.Range(1,7);
+                break;
+                case 1:
+                diceNum = Random.Range(4,7);
+                break;
+        }
+    }
+
+    void enemyDiceRoll() //skip用のenemy出目決定関数
+    {
+        switch(enemyStatus.diceSituation) 
+        {
+            case 0:
+                diceNum = Random.Range(1,7);
+                break;
+                case 1:
+                diceNum = Random.Range(1,4);
+                break;
+        }
+    }
+
+    public void skip()
+    {
+        isSkiped = true;
+        if ((!isCalled) && (isSkiped))
+        {
+            isCalled = true;
+            Debug.Log("isCalled" + isCalled);
+            Debug.Log("isSkiped" + isSkiped);
+            SkipDiceRoll();
+        }
     }
 }
