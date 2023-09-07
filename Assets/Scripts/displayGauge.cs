@@ -41,7 +41,8 @@ public class displayGauge : MonoBehaviour
         }
         else if (enemyStatus.gauge == enemyStatus.maxGauge)
         {
-            //ult;
+            enemySkillButton.SetActive(true);
+            enemySkillButtonImage.sprite = enemySkill[4];
         }
         else if (enemyStatus.MP <= enemyskillData.enemySkillInfoList[0].maxMP && enemyStatus.gauge < enemyStatus.maxGauge)
         {

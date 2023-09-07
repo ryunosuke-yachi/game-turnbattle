@@ -4908,6 +4908,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3bcf3c38a8450ad4fba2ba1152ca02cb, type: 3}
   - {fileID: 21300000, guid: 3866c59b267f8f24cba3237d05ccb084, type: 3}
   - {fileID: 21300000, guid: 03641c9f8db6b634a9fa4e8106677f57, type: 3}
+  - {fileID: 21300000, guid: 5cc68fb12b9d1ac40a8fde334868e1e2, type: 3}
   enemySkillButton: {fileID: 1555578625}
   enemyskillData: {fileID: 11400000, guid: 16a5a46d32bcc7f48b9595f981256f7c, type: 2}
 --- !u!4 &1243278266
