@@ -18,5 +18,6 @@ public class enemySkillInfo{
     public string Effect;//スキル効果
     public int gauge;//ためるゲージの量
     public int image;//スキルイラスト
+    public int currentSkill; //どのスキルを使うかの番号
 
 }

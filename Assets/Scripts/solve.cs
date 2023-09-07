@@ -41,7 +41,7 @@ public class solve : MonoBehaviour
         playerSkillSc = GetComponent<playerSkill>();
         ChangeScene1Sc = GetComponent<ChangeScene1>();
         PlayerStatusUIManagerSc = PlayerMP.GetComponent<PlayerStatusUIManager>();
-
+        enemySkillSc.currentSkill();
         Debug.Log("skillconut:" + skillConSc.buttonList.Count);
         usedCoroutine = true;
         StartCoroutine(SkillSolve());
@@ -95,12 +95,13 @@ public class solve : MonoBehaviour
                         TriggerAnimationSc.TriggerPlayerAnimation("diceSkill");
                         break;
                 }
-                while (TriggerAnimationSc.animationPlaying)
+                while (TriggerAnimationSc.playerAnimationPlaying)
                 {
                    
                     yield return null;
                 }
             }
+
             enemySkillSc.useEnemySkill(); //ìGÇÃçsìÆèàóù
 
             playerStatus.MP = 0;
