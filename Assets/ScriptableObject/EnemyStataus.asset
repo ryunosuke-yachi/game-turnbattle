@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 356f8a83f6f2bc44ab9039fea5d6ff9c, type: 3}
   m_Name: EnemyStataus
   m_EditorClassIdentifier: 
-  HP: 322
+  HP: 500
   MP: 0
-  gauge: 236
+  gauge: 0
   diceList: 0100000004000000030000000600000005000000
   diceSituation: 0
   increaseGauge: 20
   maxGauge: 100
   isDead: 0
+  currentSkill: 0
