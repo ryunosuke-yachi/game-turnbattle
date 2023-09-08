@@ -21,7 +21,6 @@ public class solve : MonoBehaviour
     enemySkill enemySkillSc;
     switchUI switchUISc;
     ChangeScene1 ChangeScene1Sc;
-    private bool usedCoroutine = false;
     public GameObject PlayerMP;
     PlayerStatusUIManager PlayerStatusUIManagerSc;
 
@@ -41,9 +40,8 @@ public class solve : MonoBehaviour
         playerSkillSc = GetComponent<playerSkill>();
         ChangeScene1Sc = GetComponent<ChangeScene1>();
         PlayerStatusUIManagerSc = PlayerMP.GetComponent<PlayerStatusUIManager>();
-
+        enemySkillSc.currentSkill();
         Debug.Log("skillconut:" + skillConSc.buttonList.Count);
-        usedCoroutine = true;
         StartCoroutine(SkillSolve());
 
 
@@ -95,11 +93,33 @@ public class solve : MonoBehaviour
                         TriggerAnimationSc.TriggerPlayerAnimation("diceSkill");
                         break;
                 }
-                while (TriggerAnimationSc.animationPlaying)
+                while (TriggerAnimationSc.playerAnimationPlaying)
                 {
                    
                     yield return null;
                 }
+            }
+            switch(enemyStatus.currentSkill)
+            {
+                case 0:
+                    TriggerAnimationSc.TriggerEnemyAnimation("enemyFirstAttack");
+                    break;
+                case 1:
+                    TriggerAnimationSc.TriggerEnemyAnimation("enemySecondAttack");
+                     break;
+                case 2:
+                    TriggerAnimationSc.TriggerEnemyAnimation("enemyThirdAttack");
+                    break;
+                case 3:
+                    TriggerAnimationSc.TriggerEnemyAnimation("enemyFourthAttack");
+                    break;
+                case 4:
+                    TriggerAnimationSc.TriggerEnemyAnimation("enemyUlt");
+                    break;
+            }
+            while(TriggerAnimationSc.enemyAnimationPlaying)
+            {
+                yield return null;
             }
             enemySkillSc.useEnemySkill(); //ìGÇÃçsìÆèàóù
 
@@ -123,7 +143,6 @@ public class solve : MonoBehaviour
             switchUISc.displayDice();
             PlayerStatusUIManagerSc.CalculateMPRatio();
             PlayerStatusUIManagerSc.CalculateMPRatio();
-            usedCoroutine = false;
             yield return null;
     }
 }

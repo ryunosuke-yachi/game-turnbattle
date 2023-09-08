@@ -25,29 +25,50 @@ public class enemySkill : MonoBehaviour
         
     }
     public void useEnemySkill() {
-        if(enemyStatus.gauge == enemyStatus.maxGauge)
+        switch (enemyStatus.currentSkill)
         {
-            ult();
-            Debug.Log(enemyskillData.enemySkillInfoList[4].name);
-        }
-        else if(enemyStatus.MP <= enemyskillData.enemySkillInfoList[0].maxMP && enemyStatus.gauge < enemyStatus.maxGauge) { 
-            singleAttack();
-            Debug.Log(enemyskillData.enemySkillInfoList[0].name);
-        }else if(enemyStatus.MP <= enemyskillData.enemySkillInfoList[1].maxMP && enemyStatus.gauge < enemyStatus.maxGauge) {
-            doubleAttack();
-            Debug.Log(enemyskillData.enemySkillInfoList[1].name);
-        }else if (enemyStatus.MP <= enemyskillData.enemySkillInfoList[2].maxMP && enemyStatus.gauge < enemyStatus.maxGauge)
-        {
-            thirdAttack();
-            Debug.Log(enemyskillData.enemySkillInfoList[2].name);
-        }else if(enemyStatus.MP <= enemyskillData.enemySkillInfoList[3].maxMP && enemyStatus.gauge < enemyStatus.maxGauge)
-        {
-            fourthAttack();
-            Debug.Log(enemyskillData.enemySkillInfoList[3].name);
+            case 0:
+                singleAttack();
+                break;
+            case 1:
+                doubleAttack();
+                break;
+            case 2:
+                thirdAttack();
+                break;
+            case 3:
+                fourthAttack();
+                break;
+            case 4:
+                ult();
+                break;
         }
         
     }
 
+    public void currentSkill()
+    {
+        if (enemyStatus.gauge == enemyStatus.maxGauge)
+        {
+            enemyStatus.currentSkill = 4;
+        }
+        else if (enemyStatus.MP <= enemyskillData.enemySkillInfoList[0].maxMP && enemyStatus.gauge < enemyStatus.maxGauge)
+        {
+            enemyStatus.currentSkill = 0;
+        }
+        else if (enemyStatus.MP <= enemyskillData.enemySkillInfoList[1].maxMP && enemyStatus.gauge < enemyStatus.maxGauge)
+        {
+            enemyStatus.currentSkill = 1;
+        }
+        else if (enemyStatus.MP <= enemyskillData.enemySkillInfoList[2].maxMP && enemyStatus.gauge < enemyStatus.maxGauge)
+        {
+            enemyStatus.currentSkill = 2;
+        }
+        else if (enemyStatus.MP <= enemyskillData.enemySkillInfoList[3].maxMP && enemyStatus.gauge < enemyStatus.maxGauge)
+        {
+            enemyStatus.currentSkill = 3;
+        }
+    }
     public void singleAttack() {
         int damage = Random.Range(10,15);
         if (playerskillData.skillInfoList[5].isUsed == true)

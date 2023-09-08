@@ -8,7 +8,8 @@ public class TriggerAnimation : MonoBehaviour
     [SerializeField] Animator cameraAnim;//カメラのアニメーター
     [SerializeField] Animator enemyAnim;//敵のアニメーター
 
-    public bool animationPlaying = false;
+    public bool playerAnimationPlaying = false;
+    public bool enemyAnimationPlaying = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,22 +40,52 @@ public class TriggerAnimation : MonoBehaviour
                 //Debug.Log("test2");
                 yield return null;
             }
-            animationPlaying = false;
+            playerAnimationPlaying = false;
             Debug.Log("animation Finished");
 
         }
 
 
     }
+
+    IEnumerator WaitForEnemyAnimation(string animationName)
+    {
+        enemyAnim.SetTrigger(animationName);
+        while(IsEnemyAnimationPlaying())
+        {
+            while (!enemyAnim.GetCurrentAnimatorStateInfo(0).IsName(animationName))
+            {
+                yield return null;
+            }
+
+            while(enemyAnim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
+            {
+                yield return null;
+            }
+            enemyAnimationPlaying = false;
+            Debug.Log("enemyAnimation Finished");
+        }
+
+    }
     public void TriggerPlayerAnimation (string animationName)//playerのSingleAttackアニメーション再生
     {
-        animationPlaying = true;
+        playerAnimationPlaying = true;
         StartCoroutine(WaitForAnimation(animationName));
 
     }
 
+    public void TriggerEnemyAnimation(string animationName)
+    {
+        enemyAnimationPlaying = true;
+        StartCoroutine(WaitForEnemyAnimation(animationName));
+    }
     public bool IsAnimationPlaying()
     {
-        return animationPlaying;
+        return playerAnimationPlaying;
+    }
+
+    public bool IsEnemyAnimationPlaying()
+    {
+        return enemyAnimationPlaying;
     }
 }
