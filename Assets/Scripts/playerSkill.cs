@@ -11,12 +11,20 @@ public class playerSkill : MonoBehaviour
     [SerializeField]
     skillData playerskillData;
 
+    void PassDamege(int damage)
+    {
+        GameObject UICanvas = GameObject.Find("DamageUICanvas");
+        DamageUI DamageUI = UICanvas.GetComponent<DamageUI>();
+        DamageUI.PlayerDamageNum(damage);
+    }
+
     public void firstAttack()
     {
         Debug.Log(playerskillData.skillInfoList[0].Name);
         int damage = Random.Range(10, 11);
         enemyStatus.HP -= damage;//enemyのHPを10～11減少させる
         Debug.Log("Enemyに" + damage + "のダメージ");
+        PassDamege(damage);
         playerskillData.skillInfoList[0].isSelect = false;
     }
 
@@ -29,6 +37,7 @@ public class playerSkill : MonoBehaviour
             damage[i] = Random.Range(10, 11);//enemyのHPを10～11減少させる
             enemyStatus.HP -= damage[i];
             Debug.Log("Enemyに" + damage[i] + "のダメージ");
+            PassDamege(damage[i]);
         }
         playerskillData.skillInfoList[1].isSelect = false;
     }
@@ -39,6 +48,7 @@ public class playerSkill : MonoBehaviour
         Debug.Log(playerskillData.skillInfoList[2].Name);
         enemyStatus.HP -= damage;//enemyのHPを44～45減少させる
         Debug.Log("Enemyに" + damage + "のダメージ");
+        PassDamege(damage);
         playerskillData.skillInfoList[2].isSelect = false;
     }
 
@@ -48,6 +58,7 @@ public class playerSkill : MonoBehaviour
         Debug.Log(playerskillData.skillInfoList[3].Name);
         enemyStatus.HP -= damage;//enemyのHPを66～67減少させる
         Debug.Log("Enemyに" + damage + "のダメージ");
+        PassDamege(damage);
         playerskillData.skillInfoList[3].isSelect = false;
     }
 
@@ -57,6 +68,7 @@ public class playerSkill : MonoBehaviour
         Debug.Log(playerskillData.skillInfoList[4].Name);
         enemyStatus.HP -= damage;//enemyのHPを40～50減少させる
         Debug.Log("Enemyに" + damage + "のダメージ");
+        PassDamege(damage);
         playerStatus.HP += damage / 2;
         Debug.Log("Playerを" + damage/2 + "回復");
         playerskillData.skillInfoList[4].isSelect = false;
