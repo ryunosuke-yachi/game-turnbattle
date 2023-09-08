@@ -20,10 +20,12 @@ public class EnemyAnimationEvent : MonoBehaviour
     void particlePlay()
     {
         particle.Play();
+        Debug.Log("particlePlay");
     }
 
     void particleStop()
     {
         particle.Stop();
+        Debug.Log("particleStop");
     }
 }
