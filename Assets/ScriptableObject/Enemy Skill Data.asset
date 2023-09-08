@@ -40,6 +40,6 @@ MonoBehaviour:
   - name: "\u8D85\u9AD8\u51FA\u529B\u7832"
     minMP: 0
     maxMP: 0
-    Effect: "\u5FC5\u6BBA\u6280\u3000\u30D7\u30EC\u30A4\u30E4\u30FC\u306B150\u30C0\u30E1\u30FC\u30B8"
+    Effect: "\u5FC5\u6BBA\u6280:\u30D7\u30EC\u30A4\u30E4\u30FC\u306B150\u30C0\u30E1\u30FC\u30B8"
     gauge: 0
     image: 4
