@@ -11,18 +11,8 @@ public class DamageUI : MonoBehaviour
     [SerializeField]
     Image tensNum, onesNum;
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField]
+    GameObject DamageCanvas;
 
     public void PlayerDamageNum(int n)
     {
@@ -31,5 +21,19 @@ public class DamageUI : MonoBehaviour
 
         tensNum.sprite = newImages[tens];
         onesNum.sprite = newImages[ones];
+    }
+
+    IEnumerator ShowDamageNum()
+    {
+        DamageCanvas.SetActive(true);
+
+        yield return new WaitForSeconds(0.5f);
+
+        DamageCanvas.SetActive(false);
+    }
+
+    public void StartFunction()
+    {
+        StartCoroutine(ShowDamageNum());
     }
 }

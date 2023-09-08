@@ -13,8 +13,8 @@ public class playerSkill : MonoBehaviour
 
     void PassDamege(int damage)
     {
-        GameObject UICanvas = GameObject.Find("DamageUICanvas");
-        DamageUI DamageUI = UICanvas.GetComponent<DamageUI>();
+        GameObject gameObject = GameObject.Find("mainChara");
+        DamageUI DamageUI = gameObject.GetComponent<DamageUI>();
         DamageUI.PlayerDamageNum(damage);
     }
 
