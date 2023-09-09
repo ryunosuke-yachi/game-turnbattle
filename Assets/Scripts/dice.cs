@@ -20,7 +20,6 @@ public class dice : MonoBehaviour
     bool isCalled; //目を出すスクリプトが呼ばれたか
     float LimitTime;//重力を強める時間
     Vector3 startPos;//振る前の座標
-    bool isSkiped = false;//skipボタンが押されたか
     [SerializeField] GameObject playerNormal;//プレイヤーの通常ダイス
     [SerializeField] GameObject high;//プレイヤー456ダイス
     [SerializeField] GameObject low;//敵123ダイス
@@ -283,62 +282,5 @@ public class dice : MonoBehaviour
         SceneManager.LoadScene("MainGame");
     }
 
-    public void SkipDiceRoll() 
-    {
-        
-        if(gameObject.tag == "playerDice" || gameObject.tag == "456Dice") {
-            playerDiceRoll();
-            addMP();
-        } else {
-            enemyDiceRoll();
-            addMP();
-        }
 
-        if((playerStatus.diceList.Count == 5) && (enemyStatus.diceList.Count == 5))
-        {
-            displayDice();
-            isCalled = false;
-            if(!isCalled) {
-                StartCoroutine(ChangeScene());
-            }
-        }
-    }
-
-    void playerDiceRoll() //skip用のplayer出目決定関数
-    {
-        switch(playerStatus.diceSituation) 
-        {
-            case 0:
-                diceNum = Random.Range(1,7);
-                break;
-                case 1:
-                diceNum = Random.Range(4,7);
-                break;
-        }
-    }
-
-    void enemyDiceRoll() //skip用のenemy出目決定関数
-    {
-        switch(enemyStatus.diceSituation) 
-        {
-            case 0:
-                diceNum = Random.Range(1,7);
-                break;
-                case 1:
-                diceNum = Random.Range(1,4);
-                break;
-        }
-    }
-
-    public void skip()
-    {
-        isSkiped = true;
-        if ((!isCalled) && (isSkiped))
-        {
-            isCalled = true;
-            Debug.Log("isCalled" + isCalled);
-            Debug.Log("isSkiped" + isSkiped);
-            SkipDiceRoll();
-        }
-    }
 }
