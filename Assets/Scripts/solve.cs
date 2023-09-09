@@ -126,6 +126,7 @@ public class solve : MonoBehaviour
             playerStatus.MP = 0;
             playerStatus.MaxMP = 0;
             enemyStatus.MP = 0;
+            playerSkillData.skillInfoList[5].isUsed = false;
             //playerStatus.diceSituation = 0;
             //enemyStatus.diceSituation = 0;
             skillConSc.buttonList.Clear();
