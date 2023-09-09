@@ -21,7 +21,8 @@ public class switchUI : MonoBehaviour
         ITEM,
         DECISION,
         GAMECLEAR,
-        GAMEOVER
+        GAMEOVER,
+        OPERATION
     }
     public STATE state;
     [SerializeField]
@@ -48,6 +49,10 @@ public class switchUI : MonoBehaviour
     Image GameClearPanel;
     [SerializeField]
     TextMeshProUGUI GameClearText;
+    [SerializeField] GameObject OperationUI;
+    [SerializeField] GameObject ScreenOpe;
+    [SerializeField] GameObject MouseOpe;
+    [SerializeField] GameObject SelectSkillUI;
     float BlackOutTime = 0;
     float FadeInTime = 0;
     float StartColor_a = 0f;
@@ -61,7 +66,11 @@ public class switchUI : MonoBehaviour
         {
             state = STATE.SELECT;
         }
-        else 
+        else if(playerStatus.IsStart)
+        {
+            state = STATE.OPERATION;
+        }
+        else
         {
             state = STATE.DICE;
         }
@@ -102,6 +111,10 @@ public class switchUI : MonoBehaviour
                     UpdateGameClear();
                     displayGameClear();
                     break;
+                case STATE.OPERATION:
+                    UpdateOperation();
+                    break;
+
             }
         }
 
@@ -117,6 +130,8 @@ public class switchUI : MonoBehaviour
         itemUI.SetActive(false);
         statusUI.SetActive(true);
         GameOverUI.SetActive(false);
+        OperationUI.SetActive(false);
+        SelectSkillUI.SetActive(false);
     }
 
     void UpdateSelect()
@@ -129,6 +144,8 @@ public class switchUI : MonoBehaviour
         statusUI.SetActive(true);
         GameOverUI.SetActive(false);
         GameClearUI.SetActive(false);
+        OperationUI.SetActive(false);
+        SelectSkillUI.SetActive(true);
     }
 
     void UpdateAttack()
@@ -141,6 +158,8 @@ public class switchUI : MonoBehaviour
         statusUI.SetActive(true);
         GameOverUI.SetActive(false);
         GameClearUI.SetActive(false);
+        OperationUI.SetActive(false);
+        SelectSkillUI.SetActive(false);
     }
 
     void UpdateGuard()
@@ -153,6 +172,8 @@ public class switchUI : MonoBehaviour
         statusUI.SetActive(true);
         GameOverUI.SetActive(false);
         GameClearUI.SetActive(false);
+        OperationUI.SetActive(false);
+        SelectSkillUI.SetActive(false);
     }
     void UpdateItem()
     {
@@ -164,6 +185,8 @@ public class switchUI : MonoBehaviour
         statusUI.SetActive(true);
         GameOverUI.SetActive(false);
         GameClearUI.SetActive(false);
+        OperationUI.SetActive(false);
+        SelectSkillUI.SetActive(false);
     }
 
     void UpdateDecision()
@@ -176,6 +199,8 @@ public class switchUI : MonoBehaviour
         statusUI.SetActive(false);
         GameOverUI.SetActive(false);
         GameClearUI.SetActive(false);
+        OperationUI.SetActive(false);
+        SelectSkillUI.SetActive(false);
     }
 
     void UpdateGameOver()
@@ -188,6 +213,8 @@ public class switchUI : MonoBehaviour
         statusUI.SetActive(false);
         GameOverUI.SetActive(true);
         GameClearUI.SetActive(false);
+        OperationUI.SetActive(false);
+        SelectSkillUI.SetActive(false);
     }
 
     void UpdateGameClear()
@@ -200,6 +227,46 @@ public class switchUI : MonoBehaviour
         statusUI.SetActive(false);
         GameOverUI.SetActive(true);
         GameClearUI.SetActive(true);
+        OperationUI.SetActive(false);
+        SelectSkillUI.SetActive(false);
+    }
+
+    void UpdateOperation()
+    {
+        diceUI.SetActive(false);
+        selectUI.SetActive(false);
+        attackUI.SetActive(false);
+        guardUI.SetActive(false);
+        itemUI.SetActive(false);
+        statusUI.SetActive(false);
+        GameOverUI.SetActive(true);
+        GameClearUI.SetActive(true);
+        OperationUI.SetActive(true);
+        SelectSkillUI.SetActive(false);
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            if(ScreenOpe.activeSelf)
+            {
+                ScreenOpe.SetActive(false);
+                MouseOpe.SetActive(true);
+            }else if (MouseOpe.activeSelf)
+            {
+                ScreenOpe.SetActive(true);
+                MouseOpe.SetActive(false);
+                playerStatus.IsStart = false;
+                state = STATE.DICE;
+            }
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            if (MouseOpe.activeSelf)
+            {
+                ScreenOpe.SetActive(true);
+                MouseOpe.SetActive(false);
+            }
+        }
     }
     public void displayAttack()
     {

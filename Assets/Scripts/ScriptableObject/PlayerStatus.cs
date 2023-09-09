@@ -12,4 +12,5 @@ public class PlayerStatus : ScriptableObject
     public int[] diceNum = new int[5];
     public List<int> diceList;
     public bool isDead;
+    public bool IsStart;
 }
